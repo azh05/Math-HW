@@ -1,0 +1,362 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}			% Use this package to include images
+\usepackage{amsmath}			% A library of many standard math expressions
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}% Sets 1in margins. 
+\usepackage{fancyhdr}			% Creates headers and footers
+\usepackage{enumerate}          %These two package give custom labels to a list
+\usepackage[shortlabels]{enumitem}
+
+
+% Creates the header and footer. You can adjust the look and feel of these here.
+\pagestyle{fancy}
+\fancyhead[l]{Anthony Zhao}
+\fancyhead[c]{Math 131AH Homework \#5}
+\fancyhead[r]{\today}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt} %Creates a horizontal line underneath the header
+\setlength{\headheight}{15pt} %Sets enough space for the header
+
+
+
+\begin{document} %The writing for your homework should all come after this. 
+%FromSection2.4: 4*,6,15*,19,23,36*. FromSection1.1: 3,5,7,12*,17,34*.
+
+%Enumerate starts a list of problems so you can put each homework problem after each item. 
+\begin{enumerate}[start=1,label={\bfseries Problem \arabic*:},leftmargin=1in] %You can change "Problem" to be whatever label you like. 
+    \item Let $a_{1} = 1$ and $a_{n+1} = [1 - \frac{1}{(n+1)^{2}}]a_{n}$ for all $n \geq 1$. 
+    \begin{enumerate}
+        \item We want to show that $\{ a_{n} \}$ is monotonically decreasing and bounded by 0. 
+        
+        \textbf{Claim:} Showing that $0 \leq 1 - \frac{1}{(n+1)^{2}} \leq 1$ or $0 \leq \frac{1}{(n+1)^{2}} \leq 1$ is sufficient. 
+
+        Note, that $(n + 1) \neq 0$ since $n \geq 1$ so $n \neq -1$. Also notice that $(n+1)^{2} > 0$ for all $n \in \mathbb{N}$, so $\frac{1}{(n+1)^{2}} > 0$ for all $n \in \mathbb{N}$.  
+        
+        Now let's show that $\frac{1}{(n+1)^{2}} \leq 1$ for all $n \in \mathbb{N}$. 
+
+        Let's procesed by induction. 
+        
+        \textbf{Base Case:} $n = 1 \Rightarrow \frac{1}{2^{2}} = \frac{1}{4} \leq 1$
+        
+        \textbf{Induction Hypothesis:} Let $n \in \mathbb{N}$. Assume that $\frac{1}{(n+1)^{2}} \leq 1$. 
+
+        We know that $0 < n+1 < n+2$, so $(n+1)^{2} < (n+2)^{2}$ and $\frac{1}{(n+2)^{2}} < \frac{1}{(n+1)^{2}}$. 
+        Hence, $\frac{1}{(n+2)^{2}} < \frac{1}{(n+1)^{2}} \leq 1$. Therefore, $0 \leq \frac{1}{(n+1)^{2}} \leq 1$ for all $n \in \mathbb{N}$. 
+
+        Because $\{ a_{n} \}$ is monotonically decreasing and bounded by 0, it must converge. 
+   
+        \item Notice that \[a_{n+1} = [\frac{(n+1)^{2} - 1}{(n+1)^{2}}]a_{n} = [\frac{n^{2}(n+2)^{2}}{(n+1)^{2}}]a_{n}\]
+        By a telescoping argument, we can show that $a_{n+1} = \frac{1}{2}(\frac{n+1}{n})$\dots
+        Since we know that $\lim_{n \to \infty} \frac{n+1}{n} = 1$, $\lim_{n \to \infty} a_{n} = \frac{1}{2}$. 
+    \end{enumerate}
+
+    \item Let $A$ be a non-empty bounded subset of $\mathbb{R}$. Suppose $\sup A \not \in A$. 
+    
+    First, let's show that there exists an increasing sequence of points. 
+    Choose an arbitrary $a \in A$. Let $a_{1} = a$. There must exist an $a_{2}$ such that $a_{1} < a_{2} < \sup A$, otherwise $a_{1} = \sup A$ and $\sup A \in A$ which contradicts the assumption\dots
+    If we iteratively do this, we can find a subsequence, which by construction is monotonically increasing. 
+
+    Since $\{ a_{n} \}$ is monotonically increasing and bounded above the sequence must converge.
+    Let $\{ a_{n} \}$ converge to $b$. We want to show that $b = \sup A$. 
+
+    Assume otherwise. 
+
+    \textbf{Case 1:} $b > \sup A$. 
+    Then we can choose a $\epsilon$ such that $0 < b - \sup A = \epsilon$\dots
+    This means there exists an $N$ such that $n > N$, $|a_{n} - b| < \epsilon$. So, 
+    \begin{align*}
+        -\epsilon < a_{n} -b &< \epsilon \\ 
+        \Rightarrow b - \epsilon &< a_{n} \\ 
+        \Rightarrow \sup A &< a_{n}
+    \end{align*}
+    This contradicts our construction of $a_{n}$, so $b$ cannot be greater than $\sup A$. 
+
+    \textbf{Case 2:} $b < \sup A$. Let $\epsilon = \frac{b - \sup A}{2} > 0$. 
+
+    Then $b + \epsilon < \sup A$. so $b+\epsilon$ is not an upper bound of $A$. 
+    Thus, there exists a $a \in A \cap \{ a_{n} \}$ such that $b + \epsilon < a$. 
+    So, $b$ would not be the limit of $\{ a_{n} \}$, once again contradicting our claim. 
+
+    Therefore, $b = \sup A$. 
+
+    \item Let $C$ be a the set of Cauchy sequences of $\mathbb{Q}$. 
+    \begin{enumerate}
+        \item \textbf{Reflexive:} Let $\{ a_{n} \} \in C$. $\lim_{n \to \infty} (a_{n} - a_{n}) = \lim_{n \to \infty} 0 = 0$.
+        
+        \textbf{Symmetric:} Let $\{a_{n} \}, \{ b_{n}\} \in C$. Assume that $\{a_{n} \} \sim \{ b_{n} \}$. 
+        Then \[\lim_{n \to \infty} (a_{n} - b_{n}) = 0 \Rightarrow \lim_{n \to \infty} (b_{n}-a_{n}) = 0 \Rightarrow \{b_{n}\} \sim \{a_{n}\}\]
+    
+        \textbf{Transitive:} Let $\{a_{n}\}, \{b_{n}\}, \{c_{n}\} \in C$ and assume that $\{a_{n}\} \sim \{b_{n}\}$ and $\{ b_{n} \} \sim \{ c_{n } \}$. 
+
+        So,
+        \begin{align*}
+            \lim_{n \to \infty} a_{n} - b_{n} &= 0\\ 
+            \lim_{n \to \infty} b_{n} - c_{n} &= 0
+        \end{align*}
+
+        Adding these together, 
+        \begin{align*}
+            &\lim_{n \to \infty} (a_{n} - b_{n}) + \lim_{n \to \infty} (b_{n} - c_{n}) = 0 \\ 
+            \Rightarrow &\lim_{n \to \infty} a_{n} - c_{n} = 0\\
+            \Rightarrow &\{a_{n} \} \sim \{ c_{n} \}
+        \end{align*}
+            
+        \item Let $\{ a_{n} \}, \{ a_{n}' \}, \{ b_{n} \}, \{ b_{n}' \} \in C$ and $\{ a_{n} \} \sim \{a_{n}' \}$ and $\{ b_{n} \sim b_{n}' \}$. 
+        
+        We want to show that $\{ a_{n} + b_{n} \} \sim \{ a_{n}' + b_{n}' \}$. 
+
+        We know that
+        \begin{align*}
+            \lim_{n \to \infty} a_{n} - a_{n}' &= 0 \\ 
+            \lim_{n \to \infty} b_{n} - b_{n}' &= 0 \\ 
+        \end{align*}
+
+        So, 
+        \begin{align*}
+            \lim_{n \to \infty} (a_{n} - a_{n}') + \lim_{n \to \infty} (b_{n} - b_{n}') = 0\\ 
+            \Rightarrow \lim_{n \to \infty} ((a_{n} + b_{n}) - (a_{n}' + b_{n}')) &= 0 \\
+            \Rightarrow \{ a_{n} + b_{n} \} \sim \{ a_{n}' + b_{n}' \}
+        \end{align*}
+        We want to show that $\{ a_{n}b_{n} \} \sim \{ a_{n}'b_{n}'\}$. 
+
+        Observe that 
+        \begin{align*}
+            a_{n}b_{n} - a_{n}'b_{n}' &= a_{n}b_{n} - a_{n}b_{n}' + a_{n}b_{n}' - a_{n}'b_{n}' \\ 
+            &= a_{n}(b_{n} - b_{n}') + b_{n}'(a_{n} - a_{n}')  
+        \end{align*}
+        Now we just need to bound $a_{n}$ and $b_{n}'$. We know that $\{ a_{n} \}$ and $\{ b_{n}' \}$ 
+        are Cauchy, so we can bound above $\{ a_{n} \}$ by some $\left| M_{1} \right|$ and $\{ b_{n}' \}$ by $\left| M_{2} \right| $.
+
+        Let $\epsilon > 0$. Since we know $\lim_{n \to \infty} b_{n} - b_{n}' = 0$, there exists some $N_{1} \in \mathbb{N}$, such that
+        $\left|b_{n}-b_{n'}  \right| < \frac{\epsilon}{\left| M_{1} \right| }$. Similarly, there exists some $N_{2} \in \mathbb{N}$ such that 
+        $\left| a_{n} - a_{n'} \right|  < \frac{\epsilon}{\left| M_{2} \right| }$ 
+
+        Hence, $\left| a_{n}(b_{n} - b_{n}') \right| = \left| a_{n} \right| \left| (b_{n} - b_{n}') \right| \leq |M_{1}| < \epsilon$. So we can choose the $N_{1}$ and $\lim_{n \to \infty} a_{n}(b_{n} - b_{n}') = 0$. 
+        Similarly, we can choose $N_{2}$, and $\lim_{n \to \infty} b_{n}'(a_{n} - a_{n}') = 0$. 
+
+        Hence, $\lim_{n \to \infty} a_{n}b_{n} - a_{n}'b_{n}' = 0$, so $\{a_{n}b_{n} \} \sim \{ a_{n}'b_{n}' \}$.  
+        So, $+, \cdot$ are both well defined operations on $C$. 
+
+        Most of the field axioms on $F$ follow from the axioms of $\mathbb{Q}$. Here are some of the interesting axioms. 
+        \begin{itemize}
+            \item Additive Identity. The additive identity element of $F$ can be the zero sequence since $a_{n} + 0 = a_{n}$ for all $n \in \mathbb{N}$ by the properties of $\mathbb{Q}$. 
+            This is also a Cauchy sequence, since for $N = 1$, the difference between any elements is 0. 
+            \item Additive Inverse. The additive inverse element of any $[a_{n}]$ is $[-a_{n}]$. Evidentally, $a_{n} + (-a_{n}) = 0$ for all $a_{n}$ so the sum results in $[0]$. 
+            This is also a Cauchy sequence, since $|-a_{n} - (-a_{m})| = |a_{n} - a_{m}|$, so we can use the same $N \in \mathbb{N}$ that works for $\{a_{n}\}$. 
+            \item Multiplicative Identity. The multiplicative identity is $[1]$ which is the sequence of $1$. This is evidentally cauchy, since the difference between any two elements is, and by the properties of $\mathbb{Q}$, $a_{n} \cdot 1 = a_{n}$ for all $n \in \mathbb{N}$
+            \item Multiplicative Inverse. We want to show that the sequence $\{\frac{1}{a_{n}}\}$ is Cauchy, given that $\{ a_{n} \}$ is cauchy. This was a question on the midterm, so use the proof from there.
+        \end{itemize}
+        \item Let's first show that $<$ is a well defined order. 
+        
+        \begin{itemize}
+            \item Let $a_{n}, b_{n}, a_{n}', b_{n}' \in C$ where $[a_{n}] = [a_{n}']$, $[b_{n}] = [b_{n}']$. We want to show that $[a_{b}] < [b_{n}] \Leftrightarrow [a_{n}'] < [b_{n}']$.
+        
+            So, $[a_{n}] = [a_{n}']$ means that $\lim_{n \to \infty} a_{n} - a_{n}' = 0$. 
+            So, for all $\epsilon > 0$, there exists some $N_{1} \in \mathbb{N}$ such that $\left| a_{n} - a_{n}' \right| < \epsilon$ for $n > N_{1}$. 
+            Similarly, there exists some $N_{2}$ such that $\left| b_{n} - b_{n}' \right| < \epsilon$. 
+            
+            Let $N_{3} \in \mathbb{N}$ be the value such that $a_{n} < b_{n}$ for all $n \geq N_{3}$. Define $N := max \{ N_{1}, N_{2}, N_{3}\}$. 
+    
+            Let $\epsilon = \frac{b_{n} - a_{n}}{2} > 0$. 
+            
+            So we get, 
+            \begin{align*}
+                a_{n}' &= a_{n} + (a_{n}' - a_{n}) < a_{n} + \epsilon  \\ 
+                b_{n}' &= b_{n} + (b_{n}' - b_{n}) > b_{n} + \epsilon\\
+            \end{align*}
+    
+            Ergo, 
+            \[
+                b_{n}' - a_{n}' > b_{n} + \epsilon + a_{n} + \epsilon = 0
+            \]
+    
+            \item Trichotomy. Let $[a_{n}], [b_{n}] \in F$. Obviously by trichotomy of $\mathbb{Q}$, $[a_{n}] < [b_{n}]$ and $[b_{n}] < [a_{n}]$ cannot both be true. 
+            Now, let's assume that $[a_{n}] = [b_{n}]$ and $[a_{n}] < [b_{n}]$. 
+
+            Then, $\lim_{n \to \infty} a_{n} - b_{n} = 0$. We also know that for some $N_{1} \in \mathbb{N}$, that $a_{n} < b_{n}$ for all $n \geq N_{1}$. 
+            
+            Let $b_{n} - a_{n} = \epsilon > 0$ where this is true for all $n \geq N_{1}$, we can use some lim inf argument to show that this $\epsilon$ exists. 
+            Let $N_{2} \in \mathbb{N}$ such that for all $|b_{n} - a_{n}| < \frac{\epsilon}{2}$. Take $N = max\{ N_{1}, N_{2}\}$. Then, obviously the two statements cannot both be true. Hence, by contradiction only one can be true. 
+     
+            \item Transitivity. Let $[a_{n}] < [b_{n}]$ and $[b_{n}] < [c_{n}]$. 
+            Then for some $N_{1} \in \mathbb{N}$, $a_{n} < b_{n}$ for all $n > N_{1}$, and similarly can be done with a $N_{2}$. 
+            Taking $N = \max{N_{1}, N_{2}}$, we find that $a_{n} < b_{n} < c_{n}$ for all $n \geq N$. Hence, $[a_{n}] < [c_{n}]$. 
+            
+            \item $(01)$. If $[a_{n}] = [0]$, then by definition of $P$ and the well defined ness of $<$, $[a_{n}] \not \in P$. 
+            Assume $[a_{n}] \in P$ and $-[a_{n}] \in P$. 
+
+            Note that $-[a_{n}] = [-a_{n}]$. So at some $N_{1}$, $-a_{n} > 0$ for all $n \geq N_{1}$ and at some $N_{2}$, $a_{n} > 0$ for all $n \geq N_{1}$. 
+            This cannot happen by the trichotomy of the order relation on $\mathbb{Q}$. Hence, by contradiction, only one of $-[a_{n}], [a_{n}]$ can be in $P$. 
+            
+            \item $(02)$. They are both evident by choosing a $N_{1},N_{2} \in \mathbb{N}$ such that $a_{n} > 0$ for all $n \geq N_{1}$ and $b_{n} > 0$ for all $n \geq N_{2}$. 
+            Let $N = max\{ N_{1}, N_{2}\}$. Then $a_{n} + b_{n} > 0$ and $a_{n}\cdot b_{n} > 0$ for all $n \geq N$. Therefore, both are elements of $P$ still. 
+        \end{itemize}
+        
+        \item With $01, 02$, we can use the equivalent definition of an ordered field, since $P \subseteq F$ and has those properties. Therefore, $F$ is an ordered field.
+    \end{enumerate}
+
+    \item Since $\{a_{n}\}$ and $\{ b_{n}\}$ are bounded, we know that there exists a $N_{1}, N_{2} \in \mathbb{N}$ such that 
+    for all $\epsilon > 0$ and $\left| \sup \{a_{n} : n \geq N_{1} \} - L_{a}\right| < \frac{\epsilon}{2}$ and $\left| \sup \{b_{n} : n \geq N_{2} \} - L_{b}\right| < \frac{\epsilon}{2}$
+    where $\lim_{n \to \infty} \sup a_{n} = L_{a}$ and $\lim_{n \to \infty} \sup b_{n} = L_{b}$. 
+
+    Let $N = max\{N_{1}, N_{2}\}$. 
+    So, $\sup \{ a_{n} : n \geq N \} < L_{a} + \frac{\epsilon}{2}$ and $\sup \{ b_{n} : n \geq N \} < L_{b} + \frac{\epsilon}{2}$. 
+    This means
+    \[
+        a_{n} + b_{n} \leq \sup \{a_{n}: n \geq N \} + \sup  \{ b_{n}: n \geq N \} \leq L_{a} + L_{b} + \epsilon 
+    \]
+    for all $n \geq N$, So, $\sup \{a_{n}: n \geq N \} + \sup  \{ b_{n}: n \geq N \}$ is an upper bound for $a_{n} + b_{n}$. Therefore, we can also conclude that 
+    \[
+        \sup \{ a_{n} + b_{n} : n \geq N \} \leq \sup \{a_{n} : n \geq N \} + \sup \{b_{n} : n \geq N\} \leq L_{a} + L_{b} + \epsilon
+    \]
+    We also know that $\lim_{n \to \infty} \sup c_{n} = \inf_{N \geq 1} \sup \{c_{n} : n \geq N\}$
+    so, \[\lim_{n \to \infty} \sup (a_{n} + b_{n})  = \inf_{N \geq 1} \sup \{a_{n} + b_{n} : n \geq N\} \leq  \sup \{ a_{n} + b_{n} : n \geq N \}\]
+    Thus, 
+    \[
+        \lim_{n \to \infty} \sup (a_{n} + b_{n}) \leq L_{a} + L_{b} + \epsilon
+    \]
+    If we assume that $\lim_{n \to \infty} \sup (a_{n} + b_{n}) > L_{a} + L_{b}$, then there must exist a $\delta > 0$ such that 
+    $\lim_{n \to \infty} \sup (a_{n} + b_{n}) = L_{a} + L_{b} + \delta$. If we choose $\epsilon = \frac{\delta}{123}$, then we get a contradiction, since 
+    \[
+        \lim_{n \to \infty} \sup (a_{n} + b_{n}) = L_{a} + L_{b} + \delta \leq L_{a} + L_{b} + \frac{\delta}{123}
+    \]
+    Therefore, $\lim_{n \to \infty} \sup (a_{n} + b_{n}) \leq \lim_{n \to \infty} a_{n} + \lim_{n \to \infty} b_{n}$
+
+    \item Using the same idea as question 4 and using the fact that the sequence is non-negative, we can obtain the inequality 
+    \[
+        \lim_{n \to \infty} \sup (a_{n}b_{n}) \leq (L_{a} + \epsilon)(L_{b} + \epsilon)
+    \]
+    for all $\epsilon > 0$. Let $L =  \lim_{n \to \infty} \sup (a_{n}b_{n})$. 
+
+    Assume for contradiction that 
+    \[
+        L_{a}L_{b} < L \leq (L_{a} + \epsilon)(L_{b} + \epsilon)    
+    \]
+    We want to show that there exists an $\epsilon > 0$ such that $(L_{a} + \epsilon)(L_{b} + \epsilon) < L$. 
+
+    Note that $(L_{a} + \epsilon)(L_{b} + \epsilon) = L_{a}L_{b} + \epsilon(L_{a} + L_{b}) + \epsilon^{2}$. So, 
+    \[
+        \epsilon^{2} + \epsilon(L_{a} + L_{b}) - (L - L_{a}L_{b}) \leq 0 
+    \]
+    
+    Using the quadratic formula, we get 
+    \[
+    \epsilon < \frac{-(L_{a} + L_{b}) + \sqrt{(L_{a} + L_{b})^{2} + 4(L-L_{a}L_{b})}}{2}
+    \]
+    Note that the expression on the right is greater than 0, since $L - L_{a}L_{b} > 0$ so $L_{a} + L_{b} < \sqrt{(L_{a} + L_{b})^{2} + 4(L-L_{a}L_{b})}$
+    So by the density of the real numbers we can find a $\epsilon > 0$ that satisifies the inequality. 
+    
+    Substituting $\epsilon$ with its value, we get that $(L_{a} + \epsilon)(L_{b} + \epsilon) < L$. Hence, we have a contradiction. So $L \leq L_{a}L_{b}$ meaning 
+    \[
+        \lim_{n \to \infty} \sup (L_{a}L_{b}) \leq \lim_{n \to \infty} \sup L_{a} \lim_{n \to \infty} \sup L_{b}
+    \]
+
+    \item $(\Rightarrow)$ Assume that $\{ \left| a_{n} \right|  \}$ is bounded. 
+    Then for all $n \in \mathbb{N}$, $|a_{n}| \leq M$ for some $M > 0, M \in \mathbb{R}$.
+
+    So, for all $N \in n$, $\sup \{ \left|   a_{n} \right|: n \geq N \} \leq M$. Since $\lim_{ n \to \infty } \sup \left| a_{n} \right|  = \inf \sup \{ \left|   a_{n} \right| : n \geq N \}$, then 
+    \[ 
+        \inf \sup \{ \left|   a_{n} \right| : n \geq N \} \leq \sup \{ \left|  a_{n} \right|: n \geq N \} \leq M
+    \]  
+
+    $(\Leftarrow)$ It is sufficient to show that $\{ \left|  a_{n } \right|\}$ is bounded above. Assume that $\lim_{n \to \infty} \sup \left| a_{n} \right| = L < \infty$. 
+
+    Let $\epsilon > 0$. Then, we know that $\sup \{\left| a_{n} \right| : n\geq N\} < L + \epsilon$ for some $N \in \mathbb{N}$. 
+    Recall that for $N' < N$, that $\sup \{\left| a_{n} \right| : n\geq N'\} \geq \sup \{\left| a_{n} \right| : n\geq N'\}$. 
+    So take the max of $\{\sup \{\left| a_{n} \right| : n\geq 1\} , ..., \sup \{\left| a_{n} \right| : n\geq N, L + \epsilon\}\}$. This will be an upper bound of $\{\left| a_{n} \right| \}$. Hence $\{ \left| a_{n} \right| \}$ has an upper bound. This implies that $\{a_{n}\}$ is bounded. 
+
+    \item Let's split the limit into cases. 
+    
+    \textbf{Case 1:} Assume $\lim_{n \to \infty} b_{n} = \infty$. This implies that $A$ is not bounded above, since for every $a \in A$, we can find an element greater than it. 
+    Hence, we can abuse some notation and say that $\sup A = \infty$. From a theorem, we know that $\lim_{n \to \infty} a_{n} = \sup A = \infty$. We also know that $\lim_{n \to \infty} \sup a_{n}$ is a subsequence of $\{ a_{n} \}$, so $\lim_{n \to \infty} \sup a_{n} \in A$. 
+    
+    Therefore, $\infty \in A$ so $\lim_{n \to \infty} b_{n} \in A$. 
+
+    \textbf{Case 2:} $\lim_{n \to \infty} b_{n} = -\infty$ can be proven in a similar way. 
+
+    \textbf{Case 3:} Assume that $\lim_{n \to \infty} b_{n} = L$ for some $L \in \mathbb{R}$. 
+
+    Let $\epsilon > 0$. So we know for some $N \in \mathbb{N}$ that $|b_{n} - L| < \frac{\epsilon}{2}$ for all $n \geq \mathbb{N}$. 
+    This means there exists a subsequence $K_{n}$ such that $\lim_{n \to \infty}a_{K_{n}} = b_{n}$. 
+
+    In this subsequence, we can choose a $m > N'$ such that $|a_{m} - b_{n}| < \frac{\epsilon}{2}$ for some $N' \in \mathbb{N}$. 
+    Combining these statements, we get 
+    \[
+        \left| a_{m} - L \right| = \left| a_{m} - b_{n} + b_{n} - L \right| \leq \left| a_{m} - b_{n} \right| + \left| b_{n} - L \right| < \epsilon  
+    \]
+    Thus, we can construct a subsequence by selecting a $a_{m}$ for each $b_{n}$, $n \geq N$ and by construction its limit will be $L$.
+    Thus, $\lim_{n \to \infty} b_{n} = L \in A$. 
+
+    \item 
+    \begin{enumerate}
+        \item Since we know that $\lim_{n \to \infty} \inf s_{n} \leq \lim_{n \to \infty} \sup s_{n}$, we just need to prove that $\lim_{n \to \infty} \inf a_{n} \leq \lim_{n \to \infty} \inf s_{n}$ and $\lim_{n \to \infty} \sup s_{n} \leq \lim_{n \to \infty} \sup s_{n}$. 
+    
+        \textbf{Case 1:} Assume that $\lim_{n \to \infty} a_{n} = L$ for some $L \in \mathbb{R}$. 
+    
+        Let $\epsilon > 0$. We get that there exists some $N \in \mathbb{N}$ such that for all $n \geq N$, $\left| \inf \{ a_{n} \} - L \right| < \epsilon$. 
+        From this, we find 
+        \begin{align*}
+            L - \epsilon < \inf\{a_{n} \} \leq a_{n} < L + \epsilon
+        \end{align*}
+    
+        Let's use this fact with $s_{n}$, where $n \geq N$. 
+        \[ 
+        s_{n} = \frac{a_{1} + \cdots + a_{N} + (a_{N+1} + \cdots + a_{n})}{n} > \frac{a_{1} + \cdots + a_{N}}{n} + \frac{(n - (N+1))(L- \epsilon)}{n}
+        \]
+        As we take $n$ to infinity, we see that the sum approaches $L-\epsilon$. So we see that $s_{n} > L - \epsilon$. 
+        Since, $L-e$ is a lower bound for all $s_{n}$, $\lim_{n \to \infty} \inf s_{n} \geq L-\epsilon$, and since $\epsilon$ vanishes, we get the desired inequality, $ \lim_{n \to \infty} \inf s_{n} \geq \lim_{n \to \infty} \inf a_{n}$. 
+        
+        Using the same idea, we can show that $\lim_{n \to \infty} \sup s_{n} \leq \lim_{n \to \infty} \sup a_{n}$. 
+    
+        Thus, combining the inequalities together $\lim_{n \to \infty} \inf a_{n} \leq \lim_{n \to \infty} \inf s_{n} \leq \lim_{n \to \infty} \sup s_{n} \leq \lim_{n \to \infty} \sup a_{n}$
+    
+        \textbf{Case 2:} Assume that $\lim_{n \to \infty} a_{n} = -\infty$. 
+    
+        Then for every $M < 0$ there exists an $N \in \mathbb{N}$ such that $a_n < M$ for all $n > N$. 
+        We can use the same idea as the first case and say that 
+    
+        \[ 
+            s_{n} = \frac{a_{1} + \cdots + a_{N} + (a_{N+1} + \cdots + a_{N})}{n} < \frac{a_{1} + \cdots + a_{N}}{n} + \frac{(n - (N+1))M}{n}
+        \]
+        Taking the limit as $n$ approaches $\infty$, we get that $s_{n} < M$. Hence $\lim_{n \to \infty} s_{n} = \infty$ as well. 
+    
+        The same logic can be applied for the lim sup and the positive infinity cases.
+
+        \item We know that if a limit exists then its lim sup equals the lim inf. Since, $s_{n}$ is bounded by the lim sup and lim inf of $\{a_{n}\}$ and they are equal, then we get 
+        \[
+            \lim_{n \to \infty} a_{n} = \lim_{n \to \infty} \inf a_{n} = \lim_{n \to \infty} \inf s_{n} = \lim_{n \to \infty} \sup s_{n} = \lim_{n \to \infty} \sup a_{n} = \lim_{n \to \infty} s_{n}
+        \]
+    \end{enumerate}
+    
+    \item \begin{enumerate}
+        \item Let $\epsilon > 0$. Then there exists some $M \in \mathbb{N}$ such that for all $N \geq M$, $\left| \sup \{a_{n} : n \geq N\} - L\right| < \epsilon$. 
+        This means \[ \sup \{ a_{n} : n \geq N\} \leq \sup  \{ a_{n} : n \geq M \} < L + \epsilon\]
+        
+        Hence, we know that any $a_{k} \in \{ a_{n} \}$ such that $a_{k} \geq L + \epsilon$ must be indexed with $k < M$. 
+        So, it must be in the set $\{ a_{k} : k < M \}$. This set has finitely many elements, so there are only finitely many $n$ for which $a_{n} > L + \epsilon$.  
+    
+        \item Let $\epsilon > 0$. Then, there exists an $M \in \mathbb{N}$ such taht for all $N \geq M$, 
+        \[ 
+            \left| \sup \{ a_{n} : n \geq N \} - L \right| < \epsilon
+        \]
+        So 
+        \[
+            L - \epsilon < \sup \{ a_{n} : n \geq N \} 
+        \]
+        Assume there are finitely many elements such that $a_{k} > L -\epsilon$. 
+        Then we could find a $N' \in \mathbb{N}$ such that for all $n' \geq N'$, $a_{n'} < L - \epsilon$. The sup of this tail would be less than $L - \epsilon$, meaning $\lim_{n \to \infty} \sup a_{n} < L - \epsilon$. 
+        This leads to a contradiction. Hence, there are an infinitely many $n$ for which $a_{n} > L - \epsilon$. 
+    \end{enumerate}
+
+    \item Assume for contradiction there are two real numbers that satisfy both conditions, $L_{1}, L_{2}$. 
+    Assume that $L_{1} < L_{2}$. 
+
+    Choose $\epsilon = \frac{L_{1} + L_{2}}{2}$. 
+
+    Note that $L_{1} + \epsilon = L_{2} - \epsilon$. 
+    By condition ii, we know that there must be infinitely many $a_{n} > L_{2} - \epsilon$, and by condition i, there must be finitely many $a_{n} > L_{1} + \epsilon$, leading to a contradiction. 
+    Hence, there can only exist one such $L$. 
+\end{enumerate}
+
+\end{document}

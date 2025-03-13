@@ -1,0 +1,129 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}			% Use this package to include images
+\usepackage{amsmath}			% A library of many standard math expressions
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}% Sets 1in margins. 
+\usepackage{fancyhdr}			% Creates headers and footers
+\usepackage{enumerate}          %These two package give custom labels to a list
+\usepackage[shortlabels]{enumitem}
+
+
+% Creates the header and footer. You can adjust the look and feel of these here.
+\pagestyle{fancy}
+\fancyhead[l]{Anthony Zhao}
+\fancyhead[c]{Math 170A Homework \#4}
+\fancyhead[r]{\today}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt} %Creates a horizontal line underneath the header
+\setlength{\headheight}{15pt} %Sets enough space for the header
+
+
+
+\begin{document} %The writing for your homework should all come after this. 
+%FromSection2.4: 4*,6,15*,19,23,36*. FromSection1.1: 3,5,7,12*,17,34*.
+
+%Enumerate starts a list of problems so you can put each homework problem after each item. 
+\begin{enumerate}[start=1,label={\bfseries Problem \arabic*:},leftmargin=1in] %You can change "Problem" to be whatever label you like. 
+    \item Using induction on $i$ we can show that $Z_{i}$ are mutually independent and each have exponential distribution with rate parameter of $\lambda$. 
+    
+    \textbf{Base Case:} Let's show that $Z_{1}$ and $Z_{2}$ are independent and are distributed exponentially. 
+
+    Note that $Z_{1} = X_{1} - X_{0} = X_{1}$. So, 
+    \begin{align*}
+        F_{Z_{1}}(t) &= P(Z_{1} \leq t) \\ 
+        &= P(X_{1} \leq t) = P(N_{t} \geq 1) \\
+        &= P(N_{t} - N_{0} \geq 1) \\ 
+        &= 1 - P(N_{t} - N_{0} < 1) \\ 
+        &= 1 - \text{Pois}_{\lambda t}(0)\\
+        &= 1 - e^{-\lambda t}
+    \end{align*}
+    This is the CDF of the exponential distribution. 
+
+    We know that $Z_{2} = X_{2} - X_{1}$. Using similar logic (with some handwaviness), 
+    \begin{align*}
+        F_{Z_{2}}(t) &= P(Z_{2} \leq t) \\
+        &= P(Z_{2} \leq t) \\ 
+        &= 1- P(Z_{2} > t) \quad \text{(here comes the handwaviness)}\\ 
+        &= 1 - P(X_{2} > X_{1} + t \mid X_{1} = s) \\
+        &= 1 - P(N_{t+s} - N_{s} = 0) \\ 
+        &= 1 - P(N_{t} = 0) \quad \text{(by poisson)}\\
+        &= 1 - e^{-\lambda t}
+    \end{align*}
+
+    Thus we get that $Z_{2}$ is similarly distributed exponentially. 
+
+    Let's show that $Z_{1}$ and $Z_{2}$ are independent, so that $P(Z_{1} \leq t \cap Z_{2} \leq t) = P(Z_{1} \leq t)P(Z_{2} \leq t)$. 
+
+    We know that by the independent increments of $N$, 
+     \[ P(Z_{1} \leq t_{1} \cap Z_{2} \leq t_{2}) = P(N_{t_{1}}) \cdot P(N_{{t_{2}}}) = P(Z_{1} \leq t_{1}) P(Z_{2} \leq t_{2})
+      \]
+
+    \textbf{Induction:} Assume that all $Z_{1}, ..., Z_{k}$ are mutually independent and distributed exponential with $\lambda$. 
+    
+    We want to show that $Z_{k+1}$ is independent from $Z_{1}, ..., Z_{k}$ and exponentially distributed. 
+    
+    Using the same idea as before, 
+    \[ 
+        P(Z_{k+1} \leq t) = 1- P(Z_{k+1} > t)  = 1 - P(N_{X_{k + t}} - N_{X_{k}} = 0) = 1- e^{-\lambda t }
+    \]
+    Using the independent increments of the poisson process, $Z_{k+1}$ must be independent of the previous time slices. 
+
+    \item We want to show that $P(Z > z + w | Z > z) = P(Z > w)$. 
+    
+    Using the definition of conditional probability 
+    \begin{align*}
+        P(Z > z + w | Z > z) &= \frac{P(Z > z + w \cap Z > z)}{P(Z > z)}\\ 
+        &=\frac{P(Z > z + w)}{P(Z > z)}\\ 
+        &= \frac{1 - (1 - e^{-\lambda (z+w)})}{1 - (1 - e^{-\lambda (z)})}\\ 
+        &= \frac{e^{-\lambda (z+w)}}{e^{-\lambda (z)}}\\ 
+        &= e^{-\lambda w}\\
+        &= P(Z > z)
+    \end{align*}
+
+    \item Let $X$ be a continuous random variable that satisfies the memoryless property. 
+    
+    Then we get the following expression: for all $z, w \in \mathbb{R}_{\geq 0}$
+    \begin{align*}
+        P(X > w) &= \frac{P(X > z + w)}{P(X > z)} \\ 
+        P(X > z + w) &= P(X > z)P(x > w)
+    \end{align*}
+
+    Notice that $0 \leq P \leq 1$. Define $G(y) = 1 - f_{X}(y) = P(X > y)$. $G$ must also be continuous and bounded by 0 and 1. 
+
+    So, $G(z + w) = G(z)G(w)$. Taking the log of this, we get $\ln (G(z + w)) = \ln (G(z)) + \ln(G(w))$. 
+    Notice that $\ln \circ G$ is a continuous Cauchy function. By a theorem discussed in discussion, $\ln G(y)$ must be linear. Moreover, the linear coefficient must be negative because $G$ is bounded by 0 and 1. 
+
+    Hence we get that $\ln \circ G(y) = -\lambda y$ for some $\lambda > 0$. 
+
+    Thus we get that $G(y) = e^{-\lambda y}$. So $f_{X}(y) = 1 - e^{-\lambda y}$. This is precisely the cdf of a exponential distribution. 
+    Hence, $X$ must be exponentially distributed. 
+
+
+    \item We want to show that $H_{t}$, $T_{t}$ are Poisson Processes with rate $p\lambda$ and $(1-p)\lambda$ respectively. 
+    
+    Obviously, $H_{0} = 0$ and $T_{0} = 0$, since $N_{0} = 0$ (the underlying poisson process) and we haven't had an event where we could flip a coin.
+    
+    $H_{t} - H_{s}$ must be non-decreasing for some $t > s$ because we cannot remove a decrement of heads/tails. It is always the sum of the bernoulli variable whose output is either 0 or 1.
+
+     Now, we want to show that $H_{t}$ has independent increments. Let $0 \leq s_{0} < s_{1} < t$.
+
+    $H_{t}$ is constructed by flipping a coin at every arrival of $N_{t}$. 
+    Let $X$ be a random variable that is $1$ when a heads is flipped and $0$ when a tails is flipped, at the rates $p, (1-p)$. 
+    If we split the intervals $[s_{0}, s_{1}), [s_{1}, t]$ into 
+    smaller a set of intervals, let's say like a partition $\{s_{0}, s_{0} + 1, s_{0} + 2, ..., s_{1}\}$ and $\{s_{1}, s_{1} + 1, s_{1} + 2, ..., t\}$
+    
+    We can define $X_{i}$ for some time $i$ to be the same as $X$ but conditioned on the whether or not an arrival happened during the time period. In other words if $N_{i} - N_{i-1} = 1$ and $X = 1$ then $X_{i} = 1$. 
+    Since, $X$ is independent of previous flips and the poisson process, each $X_{i}$ are mutually independent. 
+
+    Notice that $H_{t}$ are constructed by the sum of these mutually independent events. Hence, by the same reasoning as homework $2$, $H_{t} - H_{s_{1}}$ and $H_{s_{1}} - H_{s_{0}}$ are mutually independent, 
+    and there are independent increments. 
+
+    Using the ideas of the previous proof, since the coin flip $X$ and the poisson process are independent and we are summing the $X_{i}$ it should follow that the rate of $H_{t}$ would be $p\lambda$. 
+    Similarly can be said about $T_{i}$. 
+    
+
+
+\end{enumerate}
+
+\end{document}

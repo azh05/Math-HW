@@ -1,0 +1,128 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}			% Use this package to include images
+\usepackage{amsmath}			% A library of many standard math expressions
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}% Sets 1in margins. 
+\usepackage{fancyhdr}			% Creates headers and footers
+\usepackage{enumerate}          %These two package give custom labels to a list
+\usepackage[shortlabels]{enumitem}
+
+
+% Creates the header and footer. You can adjust the look and feel of these here.
+\pagestyle{fancy}
+\fancyhead[l]{Anthony Zhao}
+\fancyhead[c]{Math 131AH Homework \#7}
+\fancyhead[r]{\today}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt} %Creates a horizontal line underneath the header
+\setlength{\headheight}{15pt} %Sets enough space for the header
+
+
+
+\begin{document} %The writing for your homework should all come after this. 
+%FromSection2.4: 4*,6,15*,19,23,36*. FromSection1.1: 3,5,7,12*,17,34*.
+
+%Enumerate starts a list of problems so you can put each homework problem after each item. 
+\begin{enumerate}[start=1,label={\bfseries Problem \arabic*:},leftmargin=1in] %You can change "Problem" to be whatever label you like. 
+    \item Let $\left| A \right| = n$ and $\left| B \right| = m$. 
+    We want to show there existss $m^{n}$ many functions from $A$ to $B$. 
+
+    For every element in $A$, we can map it to any of the $m$ elements of $B$. 
+    Since there are $n$ elements in $A$, there are $m^{n}$ many mappings/functions from $A$ to $B$. 
+
+    \item \begin{enumerate}
+        \item We want to show that $\sim$ is an equivalence relation on $\mathbb{R}$. 
+        
+        \textbf{Reflexive:} For all $x \in \mathbb{R}$, $x \sim x$ since $x - x = 0$ is an integer.
+
+        \textbf{Symmetric:} Let $x, y \in \mathbb{R}$ and $x \sim y$. Then, $x - y = a$ for some $a \in \mathbb{Z}$. 
+        We also know that $-a \in \mathbb{Z}$. So, $y - x = -a$ is an integer. Thus, $y \sim x$.
+
+        \textbf{Transitive:} Let $x, y, z \in \mathbb{R}$ and $x \sim y$ and $y \sim z$. 
+        Then, $x - y = a$ and $y - z = b$ for some $a, b \in \mathbb{Z}$. Note that $a + b \in \mathbb{Z}$. 
+        So, $x - z = (x - y) + (y - z) = a + b$ is an integer. Thus, $x \sim z$.
+
+        \item Let's show that $\Phi$ is injective. Choose a $x_{1}, x_{2} \in [0, 1)$ such that $\Phi(x_{1}) = \Phi(x_{2})$. 
+        Then $x_{1} - x_{2} = a$ for some $a \in \mathbb{Z}$. We also know that $\left| x_{1} - x_{2} \right| < 1$ because $x_{1}, x_{2} \in [0, 1)$. 
+
+        Since $a$ is an integer, $a = 0$. So, $x_{1} = x_{2}$. Thus, $\Phi$ is injective. 
+
+        Now let's show that $\Phi$ is surjective. Let $y \in \mathbb{R}$. We want to show that there exists an $x \in [0, 1)$ such that $\Phi(x) = [y]$.
+        We can take the floor of $y$, to get $\lfloor y \rfloor \in \mathbb{Z}$. Subtracting $\lfloor y \rfloor$ from $y$ gives us a number in $[0, 1)$.
+        So, $\Phi(y - \lfloor y \rfloor) = y$. Thus, $\Phi$ is surjective.
+    \end{enumerate}
+    
+    \item We want to show that $f$ is bijective where 
+    \[
+        f(n, m) = \frac{(n+m-2)(n+m-1)}{2} +n 
+    \]
+
+    \textbf{Injective:} Injective proof from math stack exchange "Showing a function $f : \mathbb{N} \times \mathbb{N} \to \mathbb{N}$
+    is injective" 
+
+    Let $n, m, u, v \in \mathbb{N}$ such that $f(n, m) = f(u, v)$. 
+    Consider two cases:
+
+    \textbf{Case 1:} $n + m = u + v$.
+    Then \[f(n, m) = \frac{(n+m-2)(n+m-1)}{2} +n = \frac{(u+v-2)(u+v-1)}{2} +u = f(u, v)\]
+    
+    The two products are the same by assumption, so $n = u$. This implies that $m = v$ since $n + m = u + v$. Hence, $f$ is injective. 
+
+    \textbf{Case 2:} $n + m \neq u + v$. Without loss of generality, assume that $n + m < u + v$. 
+
+    We note that 
+    \[
+    \frac{(n+m-2)(n+m-1)}{2} = \sum^{n+m-2}_{k = 1} k 
+    \]
+
+    Since this sum is just a function of $n + m$, 
+    \[ 
+        \frac{(n+m-2)(n+m-1)}{2} - \frac{(u+v-2)(u+v-1)}{2} = \sum^{n+m-2}_{j = 1} j - \sum^{u+v-2}_{k = 1} k  
+    \]
+    Expanding the $k$ sum, 
+
+    \[
+        \sum^{n+m-2}_{j = 1} j - \sum^{u+v-2}_{k = 1} k  = \sum^{n+m-2}_{j = 1} j - (\sum^{n+m-2}_{j = 1} j + \sum^{u+v-2}_{j = n+m-1} j) = -\sum^{u+v-2}_{j = n+m-1} j
+    \]
+    Since $n +m-2 < u + v - 2$, we can assume that the difference is at least $n + m - 1 > 0$. 
+    So, \begin{align*}
+        f(n, m) =  \frac{(n+m-2)(n+m-1)}{2} + n &\leq \frac{(u+v-2)(u+v-1)}{2} - (n + m - 1) + n \\ 
+        &< f(u, v)
+    \end{align*} 
+
+    Thus, by trichotomy $f(n, m) \neq f(u, v)$. This contradicts the assumtion 
+
+    \textbf{Surjective:} Notice, with some algebraic manipulation, $f(n, m) + 1 = f(1, n+1)$ if $m = 1$ and $f(n, m) + 1 = f(n+1, m-1)$ otherwise. 
+    Let $k = f(n, m)$. We can induce on $k$ to show that for all $k \in \mathbb{N}$, $k = f(n, m)$ for some $n, m \in \mathbb{N}$. 
+
+    \textbf{Base Case:} Let $k = 1$. Then, $f(1, 1) = 1$.
+
+    \textbf{Induction Hypothesis:} Assume for some $k \in \mathbb{N}$ that $f(n, m) = k$ for some $n, m \in \mathbb{N}$.
+
+    \textbf{Inductive Step:} Using our observation, we notice that if $k + 1 = f(n, m) + 1$ so $k + 1 = f(1, n+1)$ if $m = 1$ and $k + 1 = f(n+1, m-1)$ otherwise.
+    Thus, we have found a $n, m$ such that $f(n, m) = k + 1$, so $f$ is surjective. 
+
+
+    \item Let $A$ be a non-empty finite set and let $B$ be a proper subset of $A$. 
+    We want to show that there cannot exist a bijection between $A$ and $B$ so they cannot have the same cardinality. 
+
+    Assume there exists a bijection $f: A \rightarrow B$. We know that there exists a $a_{0} \in A \setminus B$. 
+    Construct a sequence $\{a_{n} \}_{n\geq 0}$ where $a_{n+1} = f(a_{n})$. Note that each $a_{n}$ except $a_{0}$ is in $B$.   
+
+    Assume that there exist some $n$ and $k$ such that $a_{n+k} = a_{n}$. This means that $f^{n}(a_{k}) = f^{n+k}(a_{0}) = f^{n}(a_{0})$. Note that the composition of bijective functions are still bijective. 
+    So, by injectivity $a_{k} = a_{0}$. However, $a_{0} \not \in B$, but $a_{k} \in B$. This is a contradiction, so there cannot be repeated elements in the sequence. However, this implies that $B$ is infinite. This contradicts that $B$ is a proper subset of $A$ and is finite. Hence, there cannot exist a bijection between $A$ and $B$. Therefore, $A$ and $B$ have different cardinalities. 
+
+    \item Assume that $A$ is a infinite set. We want to show that $A$ contains a countable subset. 
+    Using an inductive argument we can select a countable subset of $A$.
+
+    We know that $A$ is non-empty. So, we can select an element $a_{1} \in A$.
+    Since $A$ is infinite, $A \setminus a_{1} \neq \emptyset$. 
+
+    Similarly, we can select $a_{2} \in A \setminus \{ a_{1} \}$. $A \setminus \{ a_{1}, a_{2} \} \neq \emptyset$ since $A$ is infinite.
+
+    We can continue this process, for $n$, and notice that $A \setminus \{ a_{1}, \dots, a_{n}\} \neq \emptyset$. Hence, we can select a $a_{n+1} \in A \setminus \{ a_{1}, \dots, a_{n} \}$.
+    
+\end{enumerate}
+
+\end{document}

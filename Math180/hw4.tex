@@ -1,0 +1,164 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}			% Use this package to include images
+\usepackage{amsmath}			% A library of many standard math expressions
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}% Sets 1in margins. 
+\usepackage{fancyhdr}			% Creates headers and footers
+\usepackage{enumerate}          %These two package give custom labels to a list
+\usepackage[shortlabels]{enumitem}
+
+
+% Creates the header and footer. You can adjust the look and feel of these here.
+\pagestyle{fancy}
+\fancyhead[l]{Anthony Zhao}
+\fancyhead[c]{Math 180 Homework \#4}
+\fancyhead[r]{\today}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt} %Creates a horizontal line underneath the header
+\setlength{\headheight}{15pt} %Sets enough space for the header
+
+
+
+\begin{document} %The writing for your homework should all come after this. 
+%FromSection2.4: 4*,6,15*,19,23,36*. FromSection1.1: 3,5,7,12*,17,34*.
+
+%Enumerate starts a list of problems so you can put each homework problem after each item. 
+\begin{enumerate}[start=1,label={\bfseries Problem \arabic*:},leftmargin=1in] %You can change "Problem" to be whatever label you like. 
+    \item $(5.3.3)$ \begin{enumerate}
+        \item Let $T = (V, E)$ be a tree. 
+        
+        Let's induce on the number of vertices, and prove that each tree ($n$ vertices) has an ordering of vertices such that $v_{n}$ is adjacent to $v_{1}$ and every edge $v_{i}, v_{i+1}$ is of maximum distance $3$ away from each other.  
+
+        \textbf{Base case:} Assume that $T$ has three vertices or fewer. Let's take $|V| = 3$ for example. 
+        Then the tree would be isomorphic to something like $V = \{ v_{1}, v_{2}, v_{3} \}, E = \{ \{ v_{1}, v_{2}\}, \{v_{2}, v_{3}\} \}$.
+        Take $v_{1}$ and $v_{2}$. Then we can find the path $v_{1}, v_{3}, v_{2}$ creates an ordering on the tree that satisfies our conditions. 
+
+        \textbf{Induction Hypothesis:} Assume we can find such ordering on trees of less than $n$ vertices. 
+        Let $T$ be a graph with $n \geq 3$ vertices. 
+
+        Take two adjacent vertices, $v$, $w$. Since $T$ is a graph with more 3 vertices, we can either find a vertex connected to either $v$ or $w$. Let's say its connected to $v$, and call that vertex $v'$.
+        If we split $T$ by the edge $\{v, w\}$, then we get two trees, one that contains $v$ and the other that contains $w$. 
+        Using the induction hypothesis, there exists a Hamiltonian Path from $v$ to $v'$ in the tree containing $v$. 
+
+        Assume that $w$ isn't a leaf. Then there exists a $w'$ that it is connected to that isn't $v$. Then, in the tree containing $w$, there exists a hamiltonian path starting at $w$ and ending at $w'$. 
+        Notice that $w'$ and $v'$ are a distance of $3$ apart. So, there exists an edge between them in $T^{(3)}$. This results in a hamiltoninan that starts at $w$ and ends at $v$. Hence, we can find such hamiltonian path (and thus cycle). 
+
+        If $w$ is a leaf, then we can connect $w$ to $v'$ and everything works still 
+        
+        \item Since $G$ is connected, we can find a spanning tree $T$ of $G$. Applying part a, we can find a Hamiltonian Cycle on $T^{(3)}$ which is a subgraph of $G^{(3)}$.
+        \item \includegraphics[scale=0.5]{/Users/anthonyzhao/Desktop/UCLA-Math/Math180/Images/Screenshot 2025-02-20 at 7.25.26 PM.png}
+    \end{enumerate}
+    
+    \item $(5.4.6)$ Let $w$ and $w'$ be two weight functions on $G = (V, E)$. 
+    Let's say the MST $T$ was constructed using Kruskal's algorithm (Picking the lowest edge every time that doesn't create a cycle). 
+
+    Since the if $w(v) < w(v')$ iff $w'(v) < w'(v')$, this implies the ordering of the vertices from lowest weight to greatest weight remains the same. 
+    So, we would select the same edges at each iteration of the algorithm. Hence, $T$ would be the MST relative to $w$ and $w'$. 
+
+    \item $(5.4.8)$ 
+    \begin{enumerate}
+        \item  Let $G = (V, E)$ and let $T$ be the minimum spanning tree on $G$. 
+    
+        Assume for contradiction that some vertex $x$ has degree 7 (same can be proven for greater than 7).  
+        
+        Let the vertices its connected to be $v_{1}, v_{2}, \dots, v_{7}$. 
+        Then, $dist(x, v_{i}) \leq dist(v_{i}, v_{j}))$ for all $i \neq j$. 
+    
+        However, this leads to a contradiction. 
+        Notice, that the angle between some two vertices connected to $x$ must be at least $\frac{360^{\circ}}{7}$. Let these two vertices be $v_{i}$ and $v_{j}$. 
+        Using some basic trigonometry, if we form a triangle between $x, v_{i}, v_{j}$, we know the longest side in the triangle must be opposite of the 
+        greatest angle. So by assumption, the angle $\angle v_{i} x v_{j}$ is the largest angle. This means the sum of angles is at most $\frac{360^{\circ}}{7} \cdot 3$. 
+        However this doesn't add up to $180^{\circ}$, leading to a contradiction since the angles of a triangle must be 180. This means there cannot exist a vertex of degree 7 (or more). 
+
+        \item Let's prove that every step of creating a minimum spanning tree, that we will not cross over an existing edge. 
+        
+        In other words let's show that $v_{1} v_{2}, w_{1} w_{2}$ will never occur. 
+
+        \includegraphics[scale=0.5]{/Users/anthonyzhao/Desktop/UCLA-Math/Math180/Images/Screenshot 2025-02-21 at 12.07.09 AM.png}
+    
+        By the triangle inequality, it is evident that $L_{1} + L_{2} \leq l_{1} + l_{2} + l_{3} + l_{4}$. So the only way that picking $l_{1}+l_{4}, l_{2} + l_{3}$ might occur is if there is a cycle 
+        that prevents the the greedy algorithm from picking $L_{1}$, $L_{2}$.  
+
+        Let's assume that $v_{1}$ and $w_{2}$ are connected, and that the algorithm already chose the edge $v_{1}, v_{2}$.
+
+        Let's assume that $L_1 \leq l_2 + l_3$ (and obviously $L_1 \leq l_1 + l_4$). Then we choose $L_1$ and there will be no intersections. 
+        Otherwise, $L_{1} > l_{2} + l_{3}$. At the step we choose $v_{1},v_{2}$ we know that $l_{1} + l_{4} < L_{2}$. So, $l_{1} + l_{2} + l_{3} + l_{4} < L_{2} + L_{1}$. This must be a contradiction. Hence, this cannot occur and there will crossings in the found MST.
+
+    \end{enumerate}
+   
+    \item $(5.4.11)$
+    Let's show that the greedy edge covering is at most $\frac{3}{2}$ the size of the smallest edge covering. 
+    Let $G = (V, E)$ be a connected graph where $|V| = n$. 
+    
+    Let $E_{M}$ be the edge set of the minimum edge covering. Let $E_{G}$ be the edge set of the edge covering of the greedy algorithm. 
+    
+    Let $E_{G}'$ be the edge set after first step of the algorithm (after picking a matching of $G$). let $E_{M}'$ be an edge covering constructed by removing edges $E_{M}$ until we get a matching of $G$ (that is maximal?). 
+
+    Note that we know that $|E_{M}| \leq |E_{G}|$. 
+
+    \textbf{Claim 1:} We claim that $|E_{M}'| \geq |E_{G}'|$. Intuitively, this must be true because we want to add less edges to $E_{M}$ to get the inequality $|E_{M}| \leq |E_{G}|$. 
+    
+    \textbf{Claim 2:} $|E_{G}'| \geq \frac{1}{2}|E_{M}'|$. Take an edge in $E_{G}'$. Either it is in $E_{M}'$ or at least one of its vertices are covered by $E_{M}'$ (otherwise we could add the edge to $E_{M}'$). 
+
+    So we get the inequality:
+    \[ 
+       |E_{M}'| \geq |E_{G}'| \geq \frac{1}{2} |E_{M}'| 
+    \]
+
+    Using this we can show that $\frac{|E_{G}|}{|E_{M}|} \leq \frac{3}{2}$. 
+
+    Note that $n - |E_{G}'| = |E_{G}|$ because we are adding $n - 2|E_{G}'|$ edges to the remaining $n - 2|E_{G}'|$ vertices. 
+    Also note that $|E_{M}'| \leq \frac{n}{2}$ because there are only $n$ vertices in $G$. 
+    Similarly, $n - |E_{M}'| = |E_{M}|$. 
+    We know that $n - |E_{G}'| \leq n - \frac{1}{2}|E_{M}'|$ from the claim above. 
+    
+    Hence, 
+    \begin{align*}
+        \frac{|E_{G}|}{|E_{M}|} &= \frac{n-|E_{G}'|}{n - |E_{M}'|} \leq \frac{n - \frac{|E_{M}|'}{2}}{n-|E_{M}|'}\\
+        2|E_{M}'|&\leq n\\ 
+        \Rightarrow 2n - |E_{M}'| &\leq 3n - 3|E_{M}'|\\
+        \Rightarrow \frac{n - \frac{|E_{M}|'}{2}}{n-|E_{M}|'} &\leq \frac{3}{2}\\
+        \Rightarrow \frac{|E_{G}|}{|E_{M}|} &\leq \frac{3}{2}
+    \end{align*}
+
+
+    \item $(6.1a)$ This shape 
+
+    \includegraphics[scale=0.8]{/Users/anthonyzhao/Desktop/UCLA-Math/Math180/Images/Screenshot 2025-02-20 at 7.27.35 PM.png}
+    \item $(6.2b)$
+
+    \includegraphics[scale=0.4]{/Users/anthonyzhao/Desktop/UCLA-Math/Math180/Images/Screenshot 2025-02-20 at 7.34.07 PM.png}
+    \item $(6.3.1)$ We know that in in a maximally planar graph, an edge bounds exactly two faces. 
+    Moreover, since each face cannot be bounded by a triangle, the cycle the bounds the face must be at least 4 edges. 
+    
+    So we get the inequality, 
+    \[
+        2|E| = \sum_{F} \text{ edges per face } \geq 4\left| F \right| 
+    \]
+    This means $|E| \geq 2|F|$. By eulers formula, we know that $2 = |V| - |E| + |F|$. So, 
+    \begin{align*}
+        &2 = |V| - |E| + |F| \leq |V| - E| + \frac{|E|}{2} \\ 
+        &\Rightarrow 2 + \frac{|E|}{2} \leq |V| \\
+        &\Rightarrow |E| \leq 2|V| - 4
+    \end{align*}
+    
+    \item $(6.3.8a, c)$ \begin{enumerate}
+        \item We know that a vertex can have at max degree 3. So, at the start, we have $3n$ possible places to connect the two vertices. 
+        At each step, we "remove" two possible connections by connecting two vertices, before adding one back. So, each step yields a net $-1$ places to 
+        draw a connection. Thus, it appears that we can have $3n$ turns before we run out of possible places to draw the arc. However, we can't perform the last step, because 
+        we need to have two available vertices to begin with before adding one back. Hence, we can only take $3n-1$ turns.
+        
+        \item Notice that the game ends when there is at most one arrow pointing into a face. 
+        Also, note that there are $4n$ possible places to draw an arc, and each step doesn't decrease the potential places to draw an arc, since we are creating two more nodes/arrows. 
+
+        So, we can perform a maximum $n-1$ turns before changing the number of faces present in the graph (connecting all $n$ nodes). 
+        After this, each step creates exactly one additional face. Since we start out with $1$ face, then it will take at max $4n-1$ more turns to create $4n$ faces, and at this point 
+        the game must end becuase there are only $4n$ arrows. 
+
+        Adding these two values results in a maximum of $5n - 2$ turns. 
+    \end{enumerate}
+    
+\end{enumerate}
+
+\end{document}

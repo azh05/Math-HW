@@ -1,0 +1,84 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}			% Use this package to include images
+\usepackage{amsmath}			% A library of many standard math expressions
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}% Sets 1in margins. 
+\usepackage{fancyhdr}			% Creates headers and footers
+\usepackage{enumerate}          %These two package give custom labels to a list
+\usepackage[shortlabels]{enumitem}
+
+
+% Creates the header and footer. You can adjust the look and feel of these here.
+\pagestyle{fancy}
+\fancyhead[l]{Anthony Zhao}
+\fancyhead[c]{Math 170A Homework \#2}
+\fancyhead[r]{\today}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt} %Creates a horizontal line underneath the header
+\setlength{\headheight}{15pt} %Sets enough space for the header
+
+
+
+\begin{document} %The writing for your homework should all come after this. 
+%FromSection2.4: 4*,6,15*,19,23,36*. FromSection1.1: 3,5,7,12*,17,34*.
+
+%Enumerate starts a list of problems so you can put each homework problem after each item. 
+\begin{enumerate}[start=1,label={\bfseries Problem \arabic*:},leftmargin=1in] %You can change "Problem" to be whatever label you like. 
+    \item At time step $t$, $V_{x} = \{ -t, -t + 2, \dots, t-2, t\}$ and $\mathbb{P}(x = -t + 2k) = \binom{t}{k}p^{k}q^{t-k}$ because to be at step $-t + 2k$, you have to choose $+1$ $k$ times out of $t$ 
+    
+    \item We are given that $Z_{t}$ are all mutually independent. 
+    \[
+        X_{t} - X_{s_{1}} = \sum^{t}_{{i = s_{1} + 1}} Z_{i}
+    \]
+    \[
+        X_{s_{1}} - X_{s_{0}} = \sum^{s_{1}}_{i=s_{0}+1}Z_{i}
+    \]
+
+    So, the random variable $X_{t} - X_{s_{1}}$ dependent on $\{ Z_{s_{1+1}}, \dots, Z_t\}$ 
+    while the random variable $X_{s_{1}} - X_{s_{0}}$ dependents on $\{ Z_{s_{0}+1}, \dots, Z_{s}\}$. Notice that these two sets are 
+    disjoint and are constructed from mutually independent events . By some theorem or by intuition, since the events are all mutually independent and the sets are disjoint, 
+    the sets of events are also independent (think about how the union of the two sets can be separated into the probabilities of each set occuring). Hence $X_{t} - X_{s_{1}}$ and $X_{s_{1}} - X_{s_{0}}$ are independent random variables
+
+    \item From question 2, we know that $X_{t} - X_{s_{1}}$ and $X_{s_{1}} - X_{s_{0}}$ are independent random variables. So, by the definition of independence, 
+    \[\mathbb{P}(X_{t}-X_{s_{1}} = x_{t} - x_{s_{1}} | X_{s_{1}} - X_{s_{0}} = x_{s_{1}} - x_{s_{0}}) = \mathbb{P}(X_{t}-X_{s_{1}} = x_{t} - x_{s_{1}})\]
+
+    Intuitively, this equation is equivalent to 
+    \[
+        \mathbb{P}(X_{t}-X_{s_{1}} = x_{t} - x_{s_{1}} | X_{s_{1}} = x_{s_{1}},  X_{s_{0}} = x_{s_{0}}) = \mathbb{P}(X_{t}-X_{s_{1}} = x_{t} - x_{s_{1}})
+    \]
+    because the given on the left side of the equation can be derived from knowing the values of the random variables $X_{s_{1}}, X_{s_{0}}$. 
+    Since, we are given that $X_{s_{1}} = x_{s_{1}}$, it is redundant on the left side of the probabilities. So, intuitively, this is equivalent to 
+    \[
+        \mathbb{P}(X_{t} = x_{t} | X_{s_{1}} = x_{s_{1}},  X_{s_{0}} = x_{s_{0}}) = \mathbb{P}(X_{t} = x_{t} | X_{s_{1}} = x_{s_{0}})
+    \]
+    
+
+    \item \begin{itemize}
+        \item Note that for $x  \not \in \{ x_{t-1} + 1, x_{t_{1}} - 1\}$, $\mathbb{P}(X_{t} = x | X_{t-1} = x_{t-1}) = 0$. 
+        Therefore, the sum on the right side is equal to 
+        \begin{align*}
+            &\mathbb{P}(X_{t+1} = x_{t+1} | X_{t} = x_{t-1} + 1)\mathbb{P}(X_{t} = x_{t-1} + 1 | X_{t-1} = x_{t-1}) \\
+            &+ \mathbb{P}(X_{t+1} = x_{t+1} | X_{t} = x_{t-1} - 1)\mathbb{P}(X_{t} = x_{t-1} - 1 | X_{t-1} = x_{t-1})
+        \end{align*}
+            
+        Assume that $X_{t+1} = x_{t-1} + 2$. Then, $\mathbb{P}(X_{t+1} = x_{t-1} + 2| X_{t} = x_{t-1} - 1) = 0$. So, 
+        $\mathbb{P}(X_{t+1} = x_{t-1} + 2 | X_{t-1} = x = t_{1}) = p \cdot p + 0 = p^{2}$.  
+
+        For $X_{t+1} = x_{t-1} - 2$, $\mathbb{P}(X_{t+1} = x_{t-1} - 2| X_{t} = x_{t-1} + 1) = 0$. So, 
+        $\mathbb{P}(X_{t+1} = x_{t-1} - 2 | X_{t-1} = x = t_{1}) = 0 + q \cdot q = q^{2}$.  
+
+
+        For $X_{t+1} = x_{t-1}$, we can get to $X_{t+1} = x_{t-1}$ from $X_{t-1} = x_{t-1}$ by subtracting one first and then adding one, and then reversing the order. 
+        Hence, $\mathbb{P}(X_{t+1} = x_{t-1} | X_{t-1} = x = t_{1}) = p(1-q) + (1-q)p = 2p(1-q)$. 
+
+        Therefore, the sum is equal to the piece wise function. 
+
+        \item The general form for $n$ time steps is 
+        \[
+            \mathbb{P}(X_{t+n} = x_{t+n} | X_{t} = x_{t}) = \sum_{x_{t} \in \mathbb{Z}} \sum_{x_{t+1} \in \mathbb{Z}} \cdots \sum_{x_{t+n-1} \in \mathbb{Z}} \prod_{k = t + 1}^{t+n} \mathbb{P}(X_{k} = x_{k}| X_{{k-1}} = x_{k-1} )
+        \] 
+    \end{itemize}
+\end{enumerate}
+
+\end{document}

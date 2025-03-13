@@ -1,0 +1,192 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}			% Use this package to include images
+\usepackage{amsmath}			% A library of many standard math expressions
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}% Sets 1in margins. 
+\usepackage{fancyhdr}			% Creates headers and footers
+\usepackage{enumerate}          %These two package give custom labels to a list
+\usepackage[shortlabels]{enumitem}
+
+
+% Creates the header and footer. You can adjust the look and feel of these here.
+\pagestyle{fancy}
+\fancyhead[l]{Anthony Zhao}
+\fancyhead[c]{Math 131AH Homework \#6}
+\fancyhead[r]{\today}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt} %Creates a horizontal line underneath the header
+\setlength{\headheight}{15pt} %Sets enough space for the header
+
+
+
+\begin{document} %The writing for your homework should all come after this. 
+%FromSection2.4: 4*,6,15*,19,23,36*. FromSection1.1: 3,5,7,12*,17,34*.
+
+%Enumerate starts a list of problems so you can put each homework problem after each item. 
+\begin{enumerate}[start=1,label={\bfseries Problem \arabic*:},leftmargin=1in] %You can change "Problem" to be whatever label you like. 
+    \item Let $\{ a_{n} \}$ be a sequence such that $\lim_{n \to \infty} \inf |a_{n}| = 0$. 
+    
+    If we show that $\{ |a_{K_{n}}| \}$ converges, then $\{ a_{K_{n}} \}$ must also converge. 
+
+    Since $\lim_{n \to \infty} \inf |a_{n}| = 0$, we know that for all $\epsilon > 0$, there exists a $N_{\epsilon} \in \mathbb{N}$ such that 
+    \[ 
+        \left| \inf\{ a_{n} : n \geq N\}    \right| < \epsilon
+    \]
+    for all $N \geq N_{\epsilon}$. Let's construct our subsequence by choosing the $k$th element in the subsequence by finding a $a_{n}$ such that $\left| a_{n} \right| < \frac{1}{2^{k}}$. 
+    By setting our epsilon to $\frac{1}{2^{n}}$, we can such $a_{n}$ by assumption.
+
+    Since the absolute sum of this subsequence is less than the geometric sum with ratio $\frac{1}{2}$ it must also converge. Since it converges absolutely, it also converges (not absolutely). Hence, we have found such subseqeunce. 
+    
+    \item \begin{enumerate}
+        \item By the ratio test, $\sum_{n \geq 1} \frac{n^{4}}{2^{n}}$ converges. 
+        Notice that 
+        \[ 
+        \frac{a_{n+1}}{a_{n}} = \frac{(n+1)^{4}}{2^{n+1}} \cdot \frac{2^{n}}{(n)^{4}}
+        \]
+
+        Taking the limit of this, we get that $\lim_{n \to \infty} \frac{(n+1)^{4}}{2n^{4}} = \frac{1}{2}$. Since this sequence converges, $\lim_{n \to \infty} \sup \frac{(n+1)^{4}}{2n^{4}} = \frac{1}{2} < 1$. Hence, the sequence converges. 
+        \item By ratio test, $\sum \frac{2^{n}}{n!}$ converges. Notice that 
+        \[ 
+            \frac{a_{n+1}}{a_{n}} = \frac{2^{n+1}}{(n+1)!} \cdot \frac{n!}{2^{n}} = \frac{2}{n+1}
+        \]
+        This sequence converges, and its limit is 0 which is less than 1. Hence, the series must converge.
+
+        \item and (d) both terms do not converge to 0 as the $n$ approaches $\infty$, hence the series both do not converge. 
+    \end{enumerate}
+    \item \begin{enumerate}
+        \item Expanding the first few terms of the sum, we find that 
+        \[
+            \sum_{n \geq 2}\frac{1}{[n+(-1)^{n}]} = \sum_{n \geq 2} \frac{1}{n^{2}}
+        \]
+        Since $\frac{1}{n^{2}}$ is a convergent series, then $\sum_{n \geq 2}\frac{1}{[n+(-1)^{n}]}$ must also be convergent.
+
+        \item Using a telescoping argument, $s_{n} = \sqrt{n+1} - 1$. Since $\lim_{n \to infty} \sqrt{n} = \infty$ the series must also diverge to infinity
+        \item The series converges by the ratio test. 
+        \[
+            \frac{(n+1)!}{(n+1)^{n+1}} \cdot \frac{n^{n}}{n!} = \frac{(n+1)(n)^{n}}{(n+1)^{n+1}} = (\frac{n}{n+1})^{n}
+        \]
+        This is less than 1, for all $n$ because $\frac{n}{n+1} < 1$. Hence, $\lim_{n \to \infty} \frac{n}{n+1} < 1$ so the series converges
+
+    \end{enumerate}
+    \item \begin{enumerate}
+        \item Note that $n^{\ln n} = e^{\ln n^{\ln n}} = e^{\ln n \cdot \ln n}$. Similarly, $(\ln n)^{n} = e^{n\ln (\ln n)}$. 
+        
+        So, 
+        \[
+            \frac{n^{\ln n}}{(\ln n)^{n}} = \frac{e^{\ln n \cdot \ln n}}{e^{n\ln (\ln n)}} = e^{\ln n \cdot \ln n - n\ln (\ln n)}
+        \]
+
+        It can be shown that $\frac{1}{e^{n\ln (\ln n)- \ln n \cdot \ln n}} < \frac{1}{e^{n}}$ for all $n \geq N$ for some $N \in \mathbb{N}$. Thus, 
+        since $\sum \frac{1}{e^{n}}$ converges, then $\sum \frac{1}{e^{n\ln (\ln n)- \ln n \cdot \ln n}}$ converges by comparison test
+        
+        \item Let's use the same idea. $(\ln n)^{\ln n} = e^{\ln ((\ln n)^{\ln n})} = e^{\ln n \cdot \ln (\ln n)}$. 
+        For some $N \in N$ (around 1600), $e^{\ln n \cdot \ln (\ln n)} > n^{2}$ for all $n > N$. So, $\frac{1}{e^{\ln n \cdot \ln (\ln n)}} < \frac{1}{n^{2}}$ for all such $n$\dots
+        Since $\sum \frac{1}{n^{2}}$ converges, by the comparison test, $\sum \frac{1}{e^{\ln n \cdot \ln (\ln n)}}$ also converges. 
+
+        \item Let's use the ratio test.
+        
+    \[ \left| (-1) \frac{(n+1)!}{2^{n+1}} \cdot \frac{2^{n}}{(n)!} \right| = \frac{n+1}{2} \]
+
+    Evidentally, $\lim_{n \to \infty} \inf \frac{n+1}{2} = \infty > 1$. Therefore, the series diverges. 
+    \end{enumerate}
+
+    \item \begin{enumerate}
+        \item Take the series $a_{n} = \frac{1}{n^{0.6}}$. $0.6 < 1$ so the series must diverge. 
+        Note that $a_{n}^2 = \frac{1}{n^{1.2}}$. Since $1.2 > 1$ so the series must converge. 
+
+        \item Assume that $\sum\left| a_{n} \right|$ converges. We want to show that $\sum a_{n}^2$ converges. 
+        Since $\sum |a_{n}|$ converges we know that $\lim_{n \to \infty} \left| a_{n} \right| = 0$. Hence, there exists a $N \in \mathbb{N}$ such that $\left| a_{n} \right| < 1$ for all $n \geq N$. 
+        So, $|a_{n}| > |a_{n}|^{2} = |a_{n}^2|$ for all $n \geq N$. 
+
+        By comparison test, since $|a_{n}^{2}| < |a_{n}|$ and $\sum \left| a_{n} \right|$ converges, then $\sum \left| a_{n}^{2} \right|$ must converge. Since, the series converges absolutely, then $\sum a_{n}^2$ must also converge.
+        
+        \item Using facts from normal calculus (alternating series test), $\sum (-1)^{n} \frac{1}{n^{0.5}}$ converges. 
+        However, $((-1)^{n}\frac{1}{n^{0.5}})^{2} = \frac{1}{n}$ which we know doesn't converge. 
+    \end{enumerate}
+    \item We can separate the fraction into two since $\frac{1}{n(n+1)} = \frac{1}{n} - \frac{1}{n+1}$. 
+    By a telescoping argument, we can see that 
+    \[
+        \sum_{n \geq 1} (\frac{1}{n} - \frac{1}{n+1}) = 1 - \lim_{n \to \infty} \frac{1}{n+1} = 1
+    \]
+
+    \item \begin{enumerate}
+        \item Using the hint, we can use a telescoping argument to show that 
+        \[
+            \sum_{n \geq 1} \frac{n-1}{2^{n+1}} = \frac{1}{2} - \lim_{n \to \infty}\frac{n+1}{2^{n+1}} = \frac{1}{2}
+        \]
+        \item We know that \[ \sum \frac{n-1}{2^{n+1}} = \frac{1}{2} \sum \frac{n-1}{2} = \frac{1}{2}(\sum \frac{n}{2^{n}} - \sum \frac{1}{2^{n}})\] 
+        
+        Using the geometric sum formula, $\sum_{n \geq 1} \frac{1}{2^{n}} = 1$. 
+        So, 
+        \[
+        \frac{1}{2}(\sum_{n \geq 1}\frac{n}{2^{n}} - 1) = \frac{1}{2}
+        \]
+        Hence, $\sum_{n \geq 1} \frac{n}{2^{n}} = 2$. 
+
+        
+    \end{enumerate}
+    \item \begin{enumerate}
+        \item Assume that $\sum a_{n}$ diverges. We want to show that $\sum \frac{a_{n}}{a_{n} + 1}$ diverges. Let's split this into two cases. 
+        
+        \textbf{Case 1:} Assume that $a_{n} \rightarrow 0$. Then at some $N$, $a_{n} < 1$ for all $n \geq N$. 
+
+        Hence $a_{n} + 1 < 2$ and $\frac{a_{n}}{a_{n}+1} > \frac{a_{n}}{2}$. 
+        Note that because $\sum a_{n} = \infty$ then $\sum \frac{1}{2} a_{n} = \frac{1}{2} \sum a_n = \infty$. 
+
+        Hence, by the comparison test, since $\frac{a_{n}}{a_{n}+1} > \frac{a_{n}}{2}$ for all $n \geq N$, then $\sum \frac{a_{n}}{a_{n}+1}$ must diverge. 
+
+        \textbf{Case 2:} Assume that $a_{n} \not \rightarrow 0$. Then, there exists a $\epsilon > 0$ there are an infinitely many $a_{n} > \epsilon$. 
+        So, we can found a lower boudn for $\frac{a_{n}}{a_{n} + 1} > \frac{\epsilon}{\epsilon + 1}$. We know that $\frac{a_{n}}{a_{n} + 1} > \frac{\epsilon}{\epsilon + 1} > 0$. So $\lim_{ n \to \infty} \frac{a_{n}}{a_{n} + 1} \neq 0$. 
+
+        Hence, $\sum \frac{a_{n}}{a_{n} + 1}$ diverges. 
+
+        \item Recall that $s_{n} = a_{1} + ... + a_{n}$. 
+        So, 
+        \[ 
+            \sum^{n}_{k=1}\frac{a_{N+k}}{s_{N+k}} = \frac{a_{N+1}}{s_{N+1}} + \frac{a_{N+2}}{s_{N+2}} + \dots + \frac{a_{N+n}}{s_{N+n}}
+        \]
+        and 
+        \[ 
+         1- \frac{S_{N}}{S_{N+n}} = \frac{S_{N+n} - S_{n}}{S_{N+n}} = \frac{a_{N+n} + ... + a_{N+1}}{S_{N+n}}
+        \]
+
+        Note that $S_{N + n} \geq S_{N + k}$ for all such $k$ in the sum because $a_{n+k} \geq 0$. 
+
+        Hence each, $\frac{a_{N+k}}{s_{N+k}} \geq \frac{a_{N+k}}{S_{N+n}}$. Thus, 
+
+        \[
+            \sum^{n}_{k=1}\frac{a_{N+k}}{s_{N+k}} = \frac{a_{N+1}}{s_{N+1}} + \frac{a_{N+2}}{s_{N+2}} + \dots + \frac{a_{N+n}}{s_{N+n}} \geq \frac{a_{N+n} + ... + a_{N+1}}{S_{N+n}} = 1 - \frac{S_{N}}{S_{N+n}}
+        \]
+
+        Notice that $S_{N+n}$ approaches infinity since $\sum a_{n}$ diverges by assumption. Since $S_{N}$ is a constant, $\lim_{n \to \infty} \frac{S_{N}}{S_{N+n}} = 0$. 
+
+        Hence, we can find some $n_{\epsilon}$ such that $\frac{S_{N}}{S_{N+n}} < \frac{1}{2}$. So, $1 - \frac{S_{N}}{S_{N+n}} \geq \frac{1}{2}$. 
+
+        Thus, if we partition the sum $\sum \frac{a_{n}}{s_{n}}$ into sets of $n_{\epsilon}$ values, for any $M > 0$, the sum of $2M$ such groupings must add up to greater than or equal to $M$. 
+        Therefore, the $\sum \frac{a_{n}}{s_{n}}$ diverges to infinity. 
+
+        \item Using some basic math, and the fact that $s_{n-1}s_{n} \leq s_{n}s_{n}$, 
+        \[
+        \frac{1}{s_{n-1}} - \frac{1}{s_{n}} = \frac{s_{n}- s_{n-1}}{s_{n-1}s_{n}} = \frac{a_{n}}{(s_{n-1})s_{n}} \geq \frac{a_{n}}{(s_{n})^{2}}
+        \] 
+
+        Using this and a telescoping argument, we find that 
+        \begin{align*}
+            \sum_{n\geq 1} \frac{a_{n}}{s_{n}^2} &= \frac{a_{1}}{s_{1}^{2}} + \sum_{n \geq 2} \frac{a_{n}}{s_{n}^2}\\
+            &\leq \frac{1}{a_{n}^2} + \sum_{n\geq 2} (\frac{1}{s_{n-1}} - \frac{1}{s_{n}}) \\ 
+            &= \frac{1}{a_{1}^2} + \frac{1}{s_{1}^{2}} - \lim_{n \to \infty} \frac{1}{s_{n}^{2}} = 1 + \frac{2}{a_{1}^{2}}
+        \end{align*}
+        Assuming that $a_{1} \neq 0$, this converges. 
+    \end{enumerate}
+
+    \item Let $s_{n} = \sum_{k=1}^n a_{k}$. We know that $\lim_{N \to \infty}\sum_{n\geq N} a_{n}= 0$ since $\lim_{n \to \infty} s_{n}$ converges. 
+    
+   Notice that \[ \sum_{n \geq N} a_{n} \geq  \sum_{n = N}^{N+M} a_n \geq \sum_{n = N}^{N+M} a_{N+M } = (N+M)a_{N+M}\]
+
+   for all $N, M \in \mathbb{N}$ because the sequence is decreasing and non-negative. 
+    
+   Using the fact that $\lim_{N \to \infty}\sum_{n \geq N} a_{n} = 0$, for every $\epsilon > 0$, we can bound $na_{n}$ this way. Thus, $\lim_{n \to \infty}na_{n} = 0$. 
+\end{enumerate}
+
+\end{document}

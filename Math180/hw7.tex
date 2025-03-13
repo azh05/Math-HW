@@ -1,0 +1,99 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}			% Use this package to include images
+\usepackage{amsmath}			% A library of many standard math expressions
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}% Sets 1in margins. 
+\usepackage{fancyhdr}			% Creates headers and footers
+\usepackage{enumerate}          %These two package give custom labels to a list
+\usepackage[shortlabels]{enumitem}
+
+
+% Creates the header and footer. You can adjust the look and feel of these here.
+\pagestyle{fancy}
+\fancyhead[l]{Anthony Zhao}
+\fancyhead[c]{Math 180 Homework \#7}
+\fancyhead[r]{\today}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt} %Creates a horizontal line underneath the header
+\setlength{\headheight}{15pt} %Sets enough space for the header
+
+
+
+\begin{document} %The writing for your homework should all come after this. 
+%FromSection2.4: 4*,6,15*,19,23,36*. FromSection1.1: 3,5,7,12*,17,34*.
+
+%Enumerate starts a list of problems so you can put each homework problem after each item. 
+\begin{enumerate}[start=1,label={\bfseries Problem \arabic*:},leftmargin=1in] %You can change "Problem" to be whatever label you like. 
+    \item $(10.1.2a)$ We want to show that $m(4) \geq 15$. 
+
+    First, let's see what cases we should consider. From theorem 10.1.5, we can use the gluing argument and replace $x, y \in X$ where $\{x , y\} \not \subseteq M$ for all $M \in \mathcal{M}$ with some $z$. 
+    If we color $z$ with the same color as $x$ and $y$, then we get the same coloring as the unaltered graph. 
+
+    Notice that in systems of size $4$ subsets, there are $\binom{4}{2} = 6$ pairs. 
+    In $14$ sets of size $4$, there are $14 \cdot 6 = 84$ pairs.
+
+    So we want the number of total pairs in $X$ to be at least $84$. 
+    Let $n = \left| X \right| $. This means $\binom{n}{2} \geq 84$. The smallest such $n$ is $14$.
+    
+    So if $\left| X \right| \geq 14$, then we can inductively "remove" a pair of elements from $X$ and add a new element to get a new system of size $4$ subsets with one less element, until $\left| X \right| \leq 14$. 
+
+    Now, let's show that for $\left| X \right| \leq 14$, the probability that at least one of the $14$ sets of size $4$ subsets is monochromatic is non-zero. 
+
+    Add vertices until the graph has 14 vertices. Color 7 vertices red and 7 vertices white. 
+
+    There are $\binom{14}{7} = 3432$ such colorings. If we let a single 4-tuple be monochromatic, (let's say white) then there must be 3 other white vertices in the 10 remaining. There are $\binom{10}{3} = 120$ ways to choose these vertices.
+    Since, we can say the same about red, the probability that one 4 tuple is $2 \cdot \frac{\binom{10}{3}}{3432}$. 
+
+    So, the probability at least one of 14 sets of size $4$ subsets is monochromatic is less than the union bound $14 \cdot 2 \cdot \frac{\binom{10}{3}}{3432} = \frac{28 \cdot 120}{3432} = \frac{3360}{3432} < 1$.
+    
+    The complement of this is non-zero so the probability that no 4-tuple is monochromatic is non-zero.
+
+    \item $(10.1.4)$ We want to show that if $n$ is high enough then there is some order of the cars that cannot be achieved on track $B$. 
+    In other word, we want to show that the total number of permutations is less than $n!$. 
+    
+    For a set of $n$ trains, we can have $4n$ total moves, where a move is defined as a train moving from one track to another.
+
+    At each move, we have $5$ places that may have trains, and we want to choose $2$ of them, so that we can take a train from one location and move it to another location. 
+    There are $\binom{5}{2} = 10$ ways to choose these locations.
+    
+    Hence, there are a total of $10^{4n}$ possible moves if we count this way. Since factorial grows faster than exponential, there must be some order of the cars that cannot be achieved on track $B$.
+    \item $(10.2.3)$ We want to show that a random graph almost surely contains a triangle. 
+    Notice that the probability of two sets of three distinct vertices containing a triangle are independent events. 
+    There are roughly $\frac{n}{3}$ sets of three distinct vertices.
+    The probability that a set of three vertices doesn't contain a triangle is $1 - \frac{1}{8} = \frac{7}{8}$. So the probability that no set of three vertices contains a triangle is $\left( \frac{7}{8} \right)^{\frac{n}{3}}$.
+    
+    So, the probability that at least one set of three vertices contains a triangle is $1 - \left( \frac{7}{8} \right)^{\frac{n}{3}}$.
+    As we take the limit, this probability approaches $1$.
+
+    \item $(10.2.9)$ $\frac{1}{3}$
+    \item $(10.3.1)$ 
+    \begin{itemize}
+        \item Let $\mathbb{P}(f = 1) = \frac{1}{2}$ and $\mathbb{P}(f = 0) = \frac{1}{2}$.
+        Let $\mathbb{P}(g = 1) = \frac{3}{4}$ and $\mathbb{P}(g = 0) = \frac{1}{4}$. 
+
+        Then $E[f] = \frac{1}{2}$ and $E[g] = \frac{3}{4}$. So, $ E[f]E[g] = \frac{3}{8}$.
+
+        Let's look at the random variable $fg$. 
+        Assume that $\mathbb{P}(f = 1, g = 1) = \frac{1}{2}$, $\mathbb{P}(f = 1, g = 0) = 0$, $\mathbb{P}(f = 0, g = 1) = \frac{1}{4}$, and $\mathbb{P}(f = 0, g = 0) = \frac{1}{4}$. 
+
+        Then $E[fg] = \frac{1}{2}$.
+
+        \item Let $\mathbb{P}(f = 2) = \frac{1}{2}$ and $\mathbb{P}(f = 1) = \frac{1}{2}$. 
+        Then $E[f] = \frac{3}{2}$ so $E[f]^2 = \frac{9}{4}$. 
+        
+        On the other hand $E[f^2] = 2^2 (\frac{1}{2}) + 1^2 (\frac{1}{2}) = \frac{5}{2}$.
+
+        \item Let $\mathbb{P}(f = 2) = \frac{1}{2}$ and $\mathbb{P}(f = 1) = \frac{1}{2}$. 
+        Then $E[f] = \frac{3}{2}$ so $\frac{1}{E[f]}= \frac{2}{3}$.
+
+        On the other hand $\frac{1}{E[f]} = \frac{1}{2} \cdot \frac{1}{2} + \frac{1}{2} \cdot 1 = \frac{3}{4}$.
+
+    \end{itemize}
+    \item $(10.3.3)$ We want compute the expected number of fixed points of a permutation $\pi$ in the space $\mathcal{S}_n$.
+    We note that $f(\pi) = \sum_{i = 1}^{n} X_{i}$ where each $X_{i} = \{ 1 \text{ if } \pi(i) = i \text{ and } 0 \text{ otherwise} \}$.
+    So, $E[f(\pi)] = E[\sum_{i = 1}^{n} X_{i}] = \sum_{i = 1}^{n} E[X_{i}] = \sum_{i = 1}^{n} \mathbb{P}(\pi(i) = i) = \sum_{i = 1}^{n} \frac{1}{n} = 1$.
+
+\end{enumerate}
+
+\end{document}

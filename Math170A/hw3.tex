@@ -1,0 +1,117 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}			% Use this package to include images
+\usepackage{amsmath}			% A library of many standard math expressions
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}% Sets 1in margins. 
+\usepackage{fancyhdr}			% Creates headers and footers
+\usepackage{enumerate}          %These two package give custom labels to a list
+\usepackage[shortlabels]{enumitem}
+
+
+% Creates the header and footer. You can adjust the look and feel of these here.
+\pagestyle{fancy}
+\fancyhead[l]{Anthony Zhao}
+\fancyhead[c]{Math 170A Homework \#3}
+\fancyhead[r]{\today}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt} %Creates a horizontal line underneath the header
+\setlength{\headheight}{15pt} %Sets enough space for the header
+
+
+
+\begin{document} %The writing for your homework should all come after this. 
+%FromSection2.4: 4*,6,15*,19,23,36*. FromSection1.1: 3,5,7,12*,17,34*.
+
+%Enumerate starts a list of problems so you can put each homework problem after each item. 
+\begin{enumerate}[start=1,label={\bfseries Problem \arabic*:},leftmargin=1in] %You can change "Problem" to be whatever label you like. 
+    \item We want to show that $\mathbb{P}_1$, the measure induced by $Y = h \circ X$ on $\Omega$ is the same as $\tilde{\mathbb{P}}_{1}$, the measure induced on $h$ on $E_{0}$.
+    So, 
+    \begin{align*}
+        \mathbb{P}_1(A) &= \mathbb{P}_Y(A) \qquad \forall A \in \mathcal{E}_{1} \\ 
+        \tilde{\mathbb{P}}_1(A) &= \mathbb{P}_X(h^{-1}(A)) \qquad \forall A \in \mathcal{E}_{0}
+    \end{align*}
+    We know that $Y = h \circ X$. Let $A \in \mathcal{E}_{1}$.
+    Stating some definitions of sets and functions, we get $Y^{-1}(A) = (h \circ X)^{-1}(A) = X^{-1}(h^{-1}(A))$.
+
+    Hence, 
+    \[
+        \tilde{\mathbb{P}}_1(A) = \mathbb{P}_X(h^{-1}(A)) = \mathbb{P}_X(X^{-1}(h^{-1}(A))) = \mathbb{P}_X(Y^{-1}(A)) = \mathbb{P}_Y(A) = \mathbb{P}_1(A)
+    \]  
+    \item Let $E_{0} = V_{X_{1}} \times V_{X_{2}}$. Let $X: \Omega \to E_{0}$, so $X = (X_{1}, X_{2})$ and let $h: V_{X_{1}} \times V_{X_{2}} \rightarrow V_{Y}$. 
+    Define $Y = h \circ X$. So, we know that $\mathbb{E}(h(X_{1}, X_{2})) = \mathbb{E}(h(X)) = \mathbb{E}(Y)$. 
+
+    By question 1, we know that $\mathbb{P}_{Y}(y) = \mathbb{P}_{X}(h^{-1}(y))$ for all $y \in V_{Y}$, since $V_{Y}$ is discrete by assumption. 
+    So, 
+    \begin{align*}
+        \sum_{y \in V_{Y}} y\mathbb{P}_{Y}(y) &= \sum_{y \in V_{Y}} y\mathbb{P}_{X}(h^{-1}(y)) \\
+    \end{align*}
+    Realize that $\mathbb{P}_{X}(h^{-1}(y)) = \sum_{(x_{1}, x_{2}) \in E_{0} \text{ s.t. }h(x_{1}, x_{2} = y)} \mathbb{P_{X}}(x_{1},x_{2})$. 
+    
+    So, 
+    \begin{align*}
+        &= \sum_{y \in V_{Y}} y \cdot (\sum_{(x_{1}, x_{2}) \in E_{0} \text{ s.t. }h(x_{1}, x_{2} = y)} \mathbb{P_{X}}(x_{1},x_{2}))\\
+        &= \sum_{(x_{1}, x_{2}) \in E_{0}} h(x_{1}, x_{2}) \sum_{y \in V_{Y} \text{ s.t. } y = h(x_{1}, y_{1})}\mathbb{P_{X}}(x_{1},x_{2})\\ 
+        &= \sum_{(x_{1}, x_{2}) \in E_{0}} h(x_{1}, x_{2}) \mathbb{P_{X}}(x_{1},x_{2})\\
+        &=\sum_{(x_{1}, x_{2}) \in E_{0}} h(x_{1}, x_{2}) f_{X_{1}, X_{2}}(x_{1},x_{2})
+    \end{align*}
+
+    \item 
+    
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{|c|c|c|c|}
+            \hline 
+            y/x & 0 & 1 & 2 \\
+            \hline
+            1 & $\frac{2}{21}$ & $\frac{3}{21}$ & $\frac{4}{21}$ \\
+            \hline
+            1 & $\frac{3}{21}$ & $\frac{4}{21}$ & $\frac{5}{21}$ \\
+            \hline
+        \end{tabular}
+
+    \end{table}
+    \begin{align*}
+        g(x=1\mid y=1) &= \frac{2}{9}\\ 
+        g(x=2\mid y=1) &= \frac{3}{9}\\
+        g(x=3\mid y=1) &= \frac{4}{9}\\
+        g(x=1\mid y=2) &= \frac{3}{12}\\
+        g(x=2\mid y=2) &= \frac{4}{12}\\
+        g(x=3\mid y=2) &= \frac{5}{12}\\
+        h(y=1\mid x=1) &= \frac{2}{5}\\ 
+        h(y=2\mid x=1) &= \frac{3}{5}\\
+        h(y=1\mid x=2) &= \frac{3}{7}\\
+        h(y=2\mid x=2) &= \frac{4}{7}\\
+        h(y=1\mid x=3) &= \frac{4}{9}\\
+        h(y=2\mid x=3) &= \frac{5}{9}\\
+    \end{align*} 
+
+    \item Recall $\mathbb{P}(X = x) = \sum_{y \in V_{Y}} \mathbb{P}(X = x, Y = y)$.
+    So, $\mathbb{P}(X=1) = \frac{5}{21}$, $\mathbb{P}(X=2) = \frac{7}{21}$, $\mathbb{P}(X=3) = \frac{9}{21}$.
+    Similarly, $\mathbb{P}(Y=1) = \frac{9}{21}$ and $\mathbb{P}(Y=2) = \frac{12}{21}$. 
+
+    Hence, 
+    \begin{align*}
+        \mathbb{E}(X) &= \frac{5}{21} + 2 \cdot \frac{7}{21} + 3 \cdot \frac{9}{21} = \frac{5}{21} + \frac{14}{21} + \frac{27}{21} = \frac{46}{21} = \frac{46}{21}\\
+        \mathbb{E}(Y) &= \frac{9}{21} + 2 \cdot \frac{12}{21} = \frac{33}{21} = \frac{11}{7}
+    \end{align*}
+
+    So, \begin{align*}
+        \sigma^{2}(X) &= \mathbb{E}(X^{2}) - \mathbb{E}(X)^{2}\\
+        &= \frac{5}{21} + 4 \cdot \frac{7}{21} + 9 \cdot \frac{9}{21} - (\frac{46}{21})^{2} \\ 
+        &= \frac{5}{21} + \frac{28}{21} + \frac{81}{21} - \frac{2116}{441} \\
+        &= \frac{114}{21} - \frac{2116}{441} = \frac{278}{441}\\ 
+        \sigma^{2}(Y) &= \mathbb{E}(Y^{2}) - \mathbb{E}(Y)^{2}\\ 
+        &= \frac{9}{21} + 4\cdot\frac{12}{21}-(\frac{11}{7})^{2} \\ 
+        &= \frac{9}{21} + \frac{48}{21} - \frac{121}{49}\\ 
+        &= \frac{19}{7} - \frac{121}{49} = \frac{12}{49}\\ 
+        \sigma(X,Y) &= \mathbb{E} ((X-\mu_{X})(Y-\mu_{Y}))\\ 
+        &= \sum_{(x,y) \in V_{X} \times V_{Y}}(X-\mu_{X})(Y-\mu_{Y})f_{X, Y}(x, y)\\ 
+        &= (1 - \frac{46}{21})(1-\frac{11}{7})\frac{2}{21} + (1- \frac{46}{21})(2 - \frac{11}{7})\frac{3}{21} \\ 
+        &+ (2 - \frac{46}{21})(1-\frac{11}{7})\frac{3}{21} + (2-\frac{46}{21})(2-\frac{11}{7})\frac{4}{21}\\ 
+        &+ (3 - \frac{46}{21})(1-\frac{11}{7})\frac{4}{21} + (3-\frac{46}{21})(2-\frac{11}{7})\frac{5}{21}\\ 
+        &= -\frac{2}{147}
+    \end{align*}
+\end{enumerate}
+
+\end{document}

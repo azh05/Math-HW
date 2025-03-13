@@ -1,0 +1,146 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}			% Use this package to include images
+\usepackage{amsmath}			% A library of many standard math expressions
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}% Sets 1in margins. 
+\usepackage{fancyhdr}			% Creates headers and footers
+\usepackage{enumerate}          %These two package give custom labels to a list
+\usepackage[shortlabels]{enumitem}
+
+
+% Creates the header and footer. You can adjust the look and feel of these here.
+\pagestyle{fancy}
+\fancyhead[l]{Anthony Zhao}
+\fancyhead[c]{Math 180 Homework \#6}
+\fancyhead[r]{\today}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt} %Creates a horizontal line underneath the header
+\setlength{\headheight}{15pt} %Sets enough space for the header
+
+
+
+\begin{document} %The writing for your homework should all come after this. 
+%FromSection2.4: 4*,6,15*,19,23,36*. FromSection1.1: 3,5,7,12*,17,34*.
+
+%Enumerate starts a list of problems so you can put each homework problem after each item. 
+\begin{enumerate}[start=1,label={\bfseries Problem \arabic*:},leftmargin=1in] %You can change "Problem" to be whatever label you like. 
+    \item $(7.1.1)$ Let $G$ be such graph. We know that each face is bounded by exactly 3 edges. Consider a subset of the dual graph of $G$, where an edge 
+    exists between two vertices in the dual graph $G'$ if the edge between their corresponding faces in $G$ have different labels. 
+
+    With this construction, a vertex in $G'$ can only have degree $0$ (the face is bounded by 3 vertices of different labels), $2$ (there are two vertices with one label and one vertex with another), or $3$ (all three vertices have different labels).
+    
+    By, hand shake lemma, there can only be an even number of vertices in a graph with odd degree. So, there must be an even number of vertices of degree 3. Thus, there are an even number of faces with three labels. 
+    \item $(7.2.1)$
+    \begin{enumerate}
+        \item We can partition $\mathcal{N}$ into two sets $\mathcal{N}_{1}$ and $\mathcal{N}_{2}$. 
+        We define 
+        \begin{align*}
+            \mathcal{N}_{1} &= \{ N \in \mathcal{N} \text{ s.t. } M \subseteq N  \text{ for some } M \in \mathcal{N} \}\\ 
+            \mathcal{N}_{2} &= \mathcal{N} \setminus \mathcal{N}_1
+        \end{align*}
+        
+        Note that $\left| \mathcal{N} \right| = \left| \mathcal{N}_1 \right|  + \left| \mathcal{N}_2 \right|$. 
+    
+        We claim that $\mathcal{N}_{1}$ and $\mathcal{N}_2$ are both independent systems of $X$. 
+        
+        $\mathcal{N}_2$ is an independent system by construction.
+    
+        Let $A, B \in \mathcal{N}_1$ where $A \neq B$. We want to show that $A \not \subseteq B$. 
+    
+        Assume that $A \subseteq B$. We know there exists some $M \in \mathcal{N}$ such that $M \subseteq A$. 
+        Note that $M \neq B$ since $A \neq B$. So, $M, A, B$ are different subsets but $M \subseteq A \subseteq B$. This contradicts the fact that $\mathcal{N}$ is semi-independent. 
+
+        Hence, $A \not \subseteq B$. 
+
+        Since $\mathcal{N}_{1}$ and $\mathcal{N}_2$ are both independent systems, we can use Sperner's lemma to bound both of them. 
+        So, $\left| \mathcal{N}_{1} \right| \leq \binom{n}{\lfloor \frac{n }{2}\rfloor}$ and $\left| \mathcal{N}_{2} \right| \leq \binom{n}{\lfloor \frac{n }{2}\rfloor}$. Thus, $\mathcal{N} \leq 2\binom{n}{\lfloor \frac{n }{2}\rfloor}$.
+
+        \item If $n$ is odd, $\binom{n}{\frac{n-1}{2}} = \binom{n}{\frac{n+1}{2}}$?
+    \end{enumerate}
+    
+    \item  $(7.2.6)$ 
+    \begin{enumerate}
+        \item Let $\mathcal{M} = \{ I \subseteq \{ 1, \dots, n \} \mid -1 < \sum_{i \in I} a_{i} - \sum_{j \not \in I} a_{j}  < 1 \}$. 
+        We want to show that $\mathcal{M}$ is an independent system. If we do, it follows the conclusion follows from Sperner's Lemma. 
+    
+        We can assume that all $a_{i}$ are non negative (since we can just flip the corresponding $\epsilon_{i}$ to correct the sign).
+        
+        Let $A, B \in \mathcal{M}$ where $A \neq B$ and $A \subseteq B$. 
+        
+        Let $C = B\setminus A$. So, 
+        \begin{align*}
+            S_{A} &= \sum_{i \in A} a_{i}- \sum_{j \not \in A} a_{j }\\
+            S_{B} &= \sum_{i \in A} a_{i} + \sum_{k \in C} a_{k} - \sum_{l \not \in B} a_{l}
+        \end{align*}
+        Notice that 
+        \[ 
+            \sum_{j \not \in A} a_{j} = \sum_{k \in C} a_{k }+ \sum_{l \not \in B} a_{l}
+        \]
+    
+        So, 
+        \[ 
+            S_{A} - S_{B} = -2\sum_{k \in C} a_{k}
+        \]
+    
+        We know that $C \neq \emptyset$ and each $\left|  a_{k}  \right| > 1$. 
+        So, $\sum_{k \in C} a_{k} \geq 2 \left| C \right| \geq 2$. Hence, both $-1 < S_{A} < 1$ and $-1 < S_{B} < 1$ cannot both happen. 
+        Thus, $A \not \subset B$ and $\mathcal{M}$ is an independent system. 
+        \item Let $a_{1} = 1$, $a_{2} = 1$, $a_{3} = 1$, $a_{4} = 1$  (a sequence of only 1s). Choosing two out of 4 to be positive makes $\binom{4}{2} = \binom{4}{\lfloor \frac{4}{2} \rfloor}$ 
+    \end{enumerate}
+    
+    \item $(7.2.7)$ By definition, $n$ must only have prime factors. So, $n = p_{1}p_{2}p_{3}...p_{k}$ 
+    We know that $k \leq \log_{2}(n)$. So, our system $\mathcal{M}$ would be subsets of $\{ p_{1}, p_{2}, \dots, p_{k}\}$. 
+
+    Using Sperner's lemma, $\left| \mathcal{M} \right| \leq \binom{k}{\lfloor \frac{k}{2} \rfloor} \leq \binom{\lceil \log_{2}(n) \rceil}{\lfloor \frac{\lceil \log_{2}(n) \rceil}{2} \rfloor} $
+
+    \item $(7.3.5bc)$ 
+    
+    $(b)$
+    \textbf{Case 1:} $x, y \leq 1$. Then $f(\lambda x + (1-\lambda)y) = 0 \leq \lambda f(x) + (1-\lambda)f(y) = 0 $  
+
+    \textbf{Case 2:} $x \leq 1, y > 1$. if $\lambda x + (1- \lambda)y \leq 1$ then $f(\lambda x + (1- \lambda)y) = 0 \leq (1- \lambda )\frac{y(y-1)}{2}$
+
+    Otherwise, we need to check that $\frac{(\lambda x + (1- \lambda)y)(\lambda x + (1- \lambda)y - 1)}{2} \leq (1-\lambda)\frac{y(y-1)}{2}$.
+    
+    With some algebraic manipulation, we can conclude this.
+    
+    
+    \textbf{Case 3:} $x > 1$, $y > 1$. The second derivative of $\frac{x(x-1)}{2} = 1 > 0$ for all $x > 1$. 
+    
+    Thus, $f(x)$ is convex. 
+
+
+    $(c)$ Note that $m = \left| E(G) \right| = \frac{1}{2} \sum_{v \in V} deg(v)$. So $2m = \sum_{v \in V} deg(v)$. 
+    
+    From part a and b, \[f(\frac{1}{n}\sum_{v\in V} deg(v)) \leq \frac{1}{n} \sum_{v \in V} f(deg(v))\] 
+
+    So, \[nf(\frac{2m}{n}) \leq \sum_{v \in V} f(deg(v))\]
+
+    From before, we know that for $deg(v) > 1$, $f(deg(v)) = \binom{deg(v)}{2}$. Since $G$ cannot contain $K_{2, 2}$, 
+    \[ \sum_{v\in V} \binom{deg(v)}{2} \leq \binom{n}{2} \]
+
+    Hence, 
+    $nf(\frac{2m}{n}) \leq \binom{n}{2}$. 
+
+    Expanding this out, we get \[n \cdot \frac{\frac{2m}{n}(\frac{2m}{n} - 1)}{2} \leq \frac{n(n-1)}{2}\]
+
+    Simplifying, we eventually get $4m^{2} - 2mn \leq n^{3} - n^{2}$. 
+
+    Solving for $m$, we get that $m \leq \frac{1}{2}(n^{\frac{3}{2}} + n)$
+
+    \item $(7.3.6)$ Let $f(x) = \frac{x(x-1)(x-2)}{6}$. On $x>2$ if we take the second derivative, we can see that is clearly postive $(1)$ for all $x > 2$. 
+    Hence, $f$ is convex. 
+
+    Using a similar argument, 
+\[ nf(\frac{2m}{n}) \leq \sum_{v \in V} \binom{deg(v)}{3} \leq \binom{n}{3}\] 
+
+    Expanding this out we get 
+    \[ 
+        2m^{3} - 6mn^{2} + 6mn^{2} \leq n^{3}(n-1)(n-2)
+    \]
+
+    Taking the cubed root, we get $m \leq O(n^{\frac{5}{3}})$ as desired. 
+\end{enumerate} 
+
+\end{document}

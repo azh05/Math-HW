@@ -1,0 +1,278 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}			% Use this package to include images
+\usepackage{amsmath}			% A library of many standard math expressions
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}% Sets 1in margins. 
+\usepackage{fancyhdr}			% Creates headers and footers
+\usepackage{enumerate}          %These two package give custom labels to a list
+\usepackage[shortlabels]{enumitem}
+
+
+% Creates the header and footer. You can adjust the look and feel of these here.
+\pagestyle{fancy}
+\fancyhead[l]{Anthony Zhao}
+\fancyhead[c]{Math 131AH Homework \#3}
+\fancyhead[r]{\today}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt} %Creates a horizontal line underneath the header
+\setlength{\headheight}{15pt} %Sets enough space for the header
+
+
+
+\begin{document} %The writing for your homework should all come after this. 
+%FromSection2.4: 4*,6,15*,19,23,36*. FromSection1.1: 3,5,7,12*,17,34*.
+
+%Enumerate starts a list of problems so you can put each homework problem after each item. 
+\begin{enumerate}[start=1,label={\bfseries Problem \arabic*:},leftmargin=1in] %You can change "Problem" to be whatever label you like. 
+    \item Prove that $\sup S = \sup A + \sup B$. 
+    
+    First, we want to show that $\sup A + \sup B$ is an upper bound of $S$. 
+    Let $s \in S$. Then, we know $s = a+b$ for some $a \in A$ and $b \in B$.
+    Since $a \leq \sup A$ and $b \leq \sup B$, we have $s = a+b \leq \sup A + \sup B$.
+    Therefore $\sup A + \sup B$ is an upper bound of $S$.
+
+    Now, we want to show that $\forall  L \in S$ such that $L < \sup A + \sup B$, there exists $c \in S$ such that $L < c$.
+    
+    Let $L \in S$ such that $L < \sup A + \sup B$. 
+    So, $L = a + b$ for some $a \in A$ and $b \in B$. 
+
+    Define $\epsilon = \sup  A + \sup B - L$. Since, $L < \sup A + \sup B$, we have $\epsilon > 0$.
+
+    By the definition of supremum, there exists $a' \in A$ such that $\sup A - \frac{\epsilon}{2} < a'$.
+    Similarly, there exists $b' \in B$ such that $\sup B - \frac{\epsilon}{2} < b'$.
+
+    Then, we have  $c = a' + b' > \sup A + \sup B - \epsilon = L$. Since $c \in S$, we have found a $c$ such that $L < c$. Hence $\sup A + \sup B$ must be the supremum of $S$. 
+
+    \item Let $a \in \mathbb{R}$. By definition, $a$ is an upper bound of $A$. 
+    We want to show that for $L < a, L \in \mathbb{Q}$ there exists $c \in A$ such that $L < c$.
+
+    Let $L \in \mathbb{Q}$ and $L < a$. Since $\mathbb{Q}$ is dense in $\mathbb{R}$, we can always find a rational number between two real numbers. Thus, there exists $r \in \mathbb{Q}$ such that $L < r < a$.
+    So, $L$ cannot be an upper bound of $A$. Therefore, $a$ must be the supremum of $A$.
+
+    \item Prove $\sup P = \sup A \cdot \sup B$. 
+    
+    First, we want to show that $\sup A \cdot \sup B$ is an upper bound of $P$.
+
+    Let $c \in P$. By definiton, there exists some $a \in A$ and $b \in B$ such that $c = a \cdot b$. Since $a \leq \sup A$ and $b \leq \sup B$, we have $a \cdot b \leq \sup A \cdot \sup B$.
+    Therefore, $\sup A \cdot \sup B$ is an upper bound of $P$.    
+
+    Now, let $L \in P$ such that $L < \sup A \cdot \sup B$. We want show there exists a $p \in P$ such that $L < p$.
+
+    Choose a $a \in A$ and $b \in B$ such that 
+    \begin{align*}
+        a &> \sup A - \epsilon \\ 
+        b &> \sup B - \epsilon
+    \end{align*}
+    for some $\epsilon > 0$. 
+
+    Let $p = a \cdot b$. Then,
+    \begin{align*}
+        p &= (\sup A - \epsilon) \cdot (\sup B - \epsilon) \\
+        &= \sup A \cdot \sup B - \epsilon \sup A - \epsilon \sup B + \epsilon^2 \\
+        &= \sup A \cdot \sup B - \epsilon (\sup A + \sup B - \epsilon) \\
+        &> \sup A \cdot \sup B - \epsilon (\sup A + \sup B) \\
+        &> L
+    \end{align*}
+
+    Rearranging this inequality, we get 
+    \begin{align*}
+        \sup A \cdot \sup B - L &> \epsilon (\sup A + \sup B) \\
+        \frac{\sup A \cdot \sup B - L}{\sup A + \sup B} &> \epsilon
+    \end{align*}
+    Since $A$ and $B$ are sets of positive numbers, we know that $\sup A + \sup B > 0$. By assumption $\sup A \cdot \sup B - L > 0$, so $\epsilon > 0$. 
+
+    Therefore, we have found a $p \in P$ such that $L < p$. Hence, $\sup A \cdot \sup B$ must be the supremum of $P$.
+
+    \item \begin{itemize}
+        \item Let $\alpha, \beta \in F_{+}$. 
+        
+        We want to show that $\alpha \cdot \beta \neq \emptyset$. 
+        Since $\alpha \neq \emptyset$, there exists $a \in \alpha$. Similarly, there exists $b \in \beta$. 
+        Then, $a \cdot b \in \alpha \cdot \beta$. Therefore, $\alpha \cdot \beta \neq \emptyset$.
+
+        Next, we want to show that $\alpha \cdot \beta \neq \mathbb{Q}$.
+        We know that there exists a $p > a$ for all $a \in \alpha$ and $q > b$ for all $b \in \beta$ such that $p, q \in \mathbb{Q}$ since they are both not equal to $\mathbb{Q}$.
+        Hence, $p \cdot \sup q > a \cdot b$ for all $a \in \alpha$ and $b \in \beta$. Therefore, $p \cdot q \not \in \alpha \cdot \beta$ and $\alpha \cdot \beta \neq \mathbb{Q}$.
+        
+        Let $p \in \alpha \cdot \beta$ and let $q < p$. We want to show that $q \in \alpha \cdot \beta$.
+
+        We know that $p = a \cdot b$ for some $0 < a \in \alpha$ and $0 < b \in \beta$. Since $q < p$, we have $q < a \cdot b$. So, by transitivity, $q \in \alpha \cdot \beta$.
+        
+        Let $p \in \alpha \cdot \beta$. We want to show that there exists $q \in \alpha \cdot \beta$ such that $q > p$.
+        We know that $p = a \cdot b$ for some $0 < a < \sup A \in \alpha$ and $0 < b < \sup B \in \beta$. Using the property that $\alpha$ and $\beta$ are positive dedekind cuts, 
+        there must exist a $a < a' \in \alpha$ and $b < b' \in \beta$. Hence, $a' \cdot b' > a \cdot b = p$. Since $a' \cdot b' < \sup A \cdot \sup B$, $a' \cdot b' \in \alpha \cdot \beta$ and $a' \cdot b' > p$.
+
+        Therefore, $a \cdot b \in F_{+}$. 
+        \item Let $\alpha, \beta \in F_{+}$. We want to show that $\alpha \cdot \beta \subseteq \beta \cdot \alpha$.
+        
+        Let $p \in \alpha \cdot \beta$. Then, $p = a \cdot b$ for some $0 < a \in \alpha$ and $0 < b \in \beta$.
+        It follows from the commutatvity of $\mathbb{Q}$ that $p < ba$. Hence, $p \in \beta \cdot \alpha$. Therefore, $\alpha \cdot \beta \subseteq \beta \cdot \alpha$. 
+
+        The other direction is similar. Therefore, $\alpha \cdot \beta = \beta \cdot \alpha$.
+
+        \item Let $\alpha, \beta, \gamma \in F_{+}$. We want to show that $(\alpha \cdot \beta) \cdot \gamma \subseteq \alpha \cdot (\beta \cdot \gamma)$.
+        Let $p \in (\alpha \cdot \beta) \cdot \gamma$. Then, $p = n \cdot c$ for some $0 < n \in \alpha \cdot \beta$ and $0 < c \in \gamma$.
+        We can further expand this to say that $n = ab$ for some $0 < a \in \alpha$ and $0 < b \in \beta$. Hence, $p < (a \cdot b) \cdot c$. Using the associativity of $\mathbb{Q}$, we have $p < a \cdot (b \cdot c)$. 
+        Note that $a > 0$, and $0 < (b \cdot c) \in \beta \cdot \gamma$. Therefore, $p \in \alpha \cdot (\beta \cdot \gamma)$. Hence, $(\alpha \cdot \beta) \cdot \gamma \subseteq \alpha \cdot (\beta \cdot \gamma)$.
+    
+        The other direction can be proven in the same fashion. Therefore, $(\alpha \cdot \beta) \cdot \gamma = \alpha \cdot (\beta \cdot \gamma)$.
+
+        \item We want to show that there exists a $1 \in F_{+}$ such that $1 \cdot \alpha = \alpha$ for all $\alpha \in F_{+}$.
+        
+        Define $1 := \{ q \in \mathbb{Q} \mid q < 1 \}$. 
+
+        $(\subseteq)$ Let $p \in \alpha \cdot 1$. We want to show that $p \in \alpha$. 
+        We know that $p = a \cdot b$ for some $0 < a \in \alpha$ and $0 < b \in 1$. Since $b < 1$,
+        $b < \frac{a}{a}$ so $p = ab < a$. So, $p \in \alpha$ since $\alpha$ is a dedekind cut. 
+        Hence, $\alpha \cdot 1 \subseteq \alpha$.
+
+        $(\supseteq)$ Let $p \in \alpha$. We want to show that $p \in \alpha \cdot 1$.
+
+        Let $p \in \alpha$. We know that there exists $a \in \alpha$ such that $p < a$. 
+        So, $a - p > 0$. We also know that since $a > p$ that $\frac{p}{a} < 1$.
+        So, $\frac{a}{a} > \frac{p}{a} \Rightarrow 1 > \frac{a-p}{a} > 0$ and $1 > 1 - \frac{a-p}{a} > 0$. 
+
+        Let $b > 1 - \frac{a-p}{a}$. Then, $b \in 1$ and $b > 0$.
+
+        So, $ab > a(1 - \frac{a-p}{a}) = a - (a-p) = p$ and $ab \in \alpha \cdot \beta$. Hence, $p \in \alpha \cdot 1$. Therefore, $\alpha \subseteq \alpha \cdot 1$ and $\alpha = \alpha \cdot 1$.
+        
+        \item Let $\alpha \in F_{+}\setminus \{0\}$. Define the multiplicative inverse by the following:
+        \[
+            \alpha^{-1} := \{ p \in \mathbb{Q} \mid ap < 1 \text{ s.t. } a \not \in \alpha, p > 0\}
+        \]
+
+        We will know show that $\alpha^{-1}$ is a dedekind cut. 
+        \begin{itemize}
+            \item Let $M = \sup \alpha$ and let $0 < M < a \in \mathbb{Q}$. We also know that $a + 1 \in \mathbb{Q}$ and that $a, a+1 \not \in \alpha$. 
+            Note that $a+1>a$ so $(a+1)^{-1} < a^{-1}$. Hence, $(a+1)^{-1}a < 1$. So, $(a+1)^{-1} \in \alpha^{-1}$ and $a^{-1} \neq \emptyset$. 
+            
+            \item Let $M = \sup \alpha$. Suppose $M^{-1} \in \alpha^{-1}$. Then there would exist a $p \not \in \alpha$ such that $pM^{-1} < 1$. 
+            So, $p < M$. However, $M$ is the supremum of $\alpha$ so $p \in \alpha$. This is a contradiction. Hence, $M^{-1} \not \in \alpha^{-1}$ and $\alpha^{-1} \neq \mathbb{Q}$.
+
+            \item Let $p \in \alpha^{-1}$. We want to show that there exists a $q \in \alpha^{-1}$ such that $q > p$.
+            
+            We know that there exists some $a \not \in \alpha$ such that $ap < 1$ and  $a > 0$. 
+
+            Let $0 < \epsilon < 1 - ap$. Define $q = p + \frac{\epsilon}{a}$. Evidentally, $q > p$. Now, we want to show that $aq < 1$. 
+            \[
+                aq = a(p + \frac{\epsilon}{a}) = ap + \epsilon < ap + 1 - ap < 1
+            \]
+
+            \item Let $p \in \alpha^{-1}$. Let $q < p$. We want to show that $q \in \alpha^{-1}$.
+            
+            We know that $p \cdot a < 1$ for some $a \not \in \alpha$. Since $q < p$, we have $q \cdot a < p \cdot a < 1$. Hence, $q \in \alpha^{-1}$.
+        \end{itemize}
+
+        Now we will show that $\alpha \cdot \alpha^{-1} = 1$.
+
+        $(\subseteq)$ Let $p \in \alpha \cdot \alpha^{-1}$. We want to show that $p \in 1$.
+        So, $p = a \cdot b$ for some $0 < a \in \alpha$ and $0 < b \in \alpha^{-1}$.
+        
+        Since $b \in \alpha^{-1}$, we know there exists some $c \not \in \alpha$ such that $bc < 1$.
+        Since $c \not \in \alpha$, we have $c > \sup \alpha$. So, $c > a$ for all $a \in \alpha$. Hence $p = ab < bc < 1$. Therefore, $p \in 1$.
+
+        $(\supseteq)$ Let $p \in 1$. So, $0 < p < 1$. We want to show that $p \in \alpha \cdot \alpha^{-1}$.
+        
+         Let $a \in \alpha$ such that $a > \sup \alpha \cdot p$. This must exist since $p < 1$ so $\sup \alpha \cdot p < \sup \alpha$. 
+        
+         Let $b = \frac{p}{a}$. We know show that $b \in \alpha^{-1}$.
+        So, we know that $a > \sup \alpha \cdot p \Rightarrow \frac{a}{p} > \sup \alpha$. By density of $\mathbb{Q}$ in the $\mathbb{R}$, we can find a $c$ such that $\frac{a}{p} > c > \sup \alpha$.
+        
+         Obviously, $c \not \in \alpha$, and \[
+         bc = \frac{p}{a} \cdot c < \frac{p}{a} \frac{a}{p} = 1
+         \]
+         So, $b \in \alpha^{-1}$ and $p = a \cdot b \in \alpha \cdot \alpha^{-1}$. Therefore, $1 = \alpha \cdot \alpha^{-1}$.
+        \item Let $\alpha, \beta, \gamma \in F_{+}$. We want to show that $\alpha \cdot (\beta + \gamma) = \alpha \cdot \beta + \alpha \cdot \gamma$. 
+        
+        $(\subseteq)$ Let $p \in \alpha \cdot (\beta + \gamma)$. We want to show that $p \in \alpha \cdot \beta + \alpha \cdot \gamma$.
+        So, $p = a \cdot m$ for some $0 < a \in \alpha$, $0 < m \in \beta + \gamma$. Further decompositing this, we have $m = b + c$ for some $0 < b \in \beta$ and $0 < c \in \gamma$. 
+        So, $p = a \cdot (b + c) = a \cdot b + a \cdot c$. Since $a \cdot b \in \alpha \cdot \beta$ and $a \cdot c \in \alpha \cdot \gamma$, we have $p \in \alpha \cdot \beta + \alpha \cdot \gamma$. 
+        Hence, $\alpha \cdot (\beta + \gamma) \subseteq \alpha \cdot \beta + \alpha \cdot \gamma$.
+
+        $(\supseteq)$ Let $q \in \alpha \cdot \beta + \alpha \cdot \gamma$. Then $q = p + r$ for some $p \in \alpha \cdot \beta$ and $r \in \alpha \cdot \gamma$. By definition of the product, there exists $0 < a_{2}, a_{1} \in \alpha$, $0 < b \in \beta$, and $0 < c \in \gamma$ such that $p = a_{1} \cdot b$ and $r = a_{2} \cdot c$. 
+        If we take the max of $a_{1}$ and $a_{2}$, we have $p < max\{x_{1}, x_{2}\} \cdot b$ and $r < max\{x_{1}, x_{2}\} \cdot c$. Note that these products are still in $\alpha \cdot \beta$ and $\alpha \cdot \gamma$ respectively.
+
+        So, $q = p + r < max\{x_{1}, x_{2}\} \cdot b + max\{x_{1}, x_{2}\} \cdot c = max\{x_{1}, x_{2}\} \cdot (b + c)$. Since $b + c \in \beta + \gamma$, we have $q \in \alpha \cdot (\beta + \gamma)$. Therefore, $\alpha \cdot \beta + \alpha \cdot \gamma \subseteq \alpha \cdot (\beta + \gamma)$.
+
+        Hence, $\alpha \cdot (\beta + \gamma) = \alpha \cdot \beta + \alpha \cdot \gamma$.
+    \end{itemize}
+
+    \item \begin{enumerate}
+        \item Show that $A_{x}$ is a non-empty set that is bounded above. 
+        
+        Let $x \in \mathbb{R}$. 
+        We know that there exists a $r \in \mathbb{Q}$ such that $r < x$. So, $\phi(r) \in A_{x}$ and $A_{x} \neq \emptyset$.
+        
+        We want to show that $A_{x}$ is bounded above. Choose a $x - 1 \leq r < x$ such that $r \in \mathbb{Q}$. Then, $r + 1 \geq x$. 
+        So, $\phi(r + 1) \geq x > \phi(p)$ for all $p \in A_{x}$. Hence, $r + 1$ is an upper bound of $A_{x}$.
+        So, $A_{x}$ is a non-empty set that is bounded above.
+
+        \item Let $x, y \in \mathbb{R}$. 
+        
+        \begin{itemize}
+            \item  We want to show that $\phi(x) + \phi(y)$ is an upper bound for $A_{x+y}$. 
+        
+            Let $p \in A_{x+y}$. Then, $p = \phi(r)$ for some $r < x + y$ and $r \in \mathbb{Q}$.
+            We can find $a < x$ and $b < y$ such that $r = a + b$ by the density of $\mathbb{Q}$. 
+            
+            Note that $\phi(a) \in A_{x}$ and $\phi(b) \in A_{y}$. So, $\phi(a) < \sup A_{x} = \phi(x)$ and $\phi(b) < \sup A_{y} = \phi(y)$.
+            So, $p = \phi(r) = \phi(a + b) = \phi(a) + \phi(b) < \phi(x) + \phi(y)$. Hence, $\phi(x) + \phi(y)$ is an upper bound for $A_{x+y}$.
+        
+            Let $L \in A_{x+y}$ such that $L < \phi(x) + \phi(y)$. We want to show that there exists $c \in A_{x+y}$ such that $L < c$.
+            
+            Let $\epsilon = \phi(x) + \phi(y) - L$. Since $L < \phi(x) + \phi(y)$, we have $\epsilon > 0$.
+            We know we can find a $\phi(x) > \phi(p) > \phi(x) - \frac{\epsilon}{2}$ and $\phi(y) > \phi(q) > \phi(y) - \frac{\epsilon}{2}$ for some $p, q \in \mathbb{Q}$.
+    
+            So, $\phi(p) + \phi(q) > \phi(x) + \phi(y) - \epsilon = L$. 
+    
+            Now, we must show that $c = \phi(p) + \phi(q) \in A_{x+y}$. Note that $c = \phi(p + q)$. 
+            Since $\phi(p) < \phi(x)$, then $p < x$ and similarly, $q < y$. So, $p + q < x + y$. Hence, $c \in A_{x+y}$.
+        
+            Thus $\phi(x) + \phi(y) = \sup A_{x+y} = \phi(x + y)$.
+
+            \item We want to show that $\phi(x) \cdot \phi(y)$ is an upper bound for $A_{xy}$.
+            
+            Let $p \in A_{xy}$. Then $a = \phi(r)$ for some $r < xy$ and $r \in \mathbb{Q}$.
+            Using the density of $\mathbb{Q}$, we can find $a < x$ and $b < y$ such that $r < ab$ and $a, b\in \mathbb{Q}$. 
+
+            Note that $\phi(a) < \phi(x)$ and $\phi(b) < \phi(y)$. This is because we can find a $a' \in \mathbb{Q}$ such that $a < a' < x$. 
+            Since $\phi(x) = \sup A_{x}$ and $\phi(a') \leq \phi(x)$, we have $\phi(a) < \phi(a') \geq \phi(x)$. Hence, $\phi(r) < \phi(ab) = \phi(a) \cdot \phi(b) < \phi(x) \cdot \phi(y)$.
+            So, $\phi(x) \cdot \phi(y)$ is an upper bound for $A_{xy}$.
+
+            Let $L \in A_{xy}$ such that $L < \phi(x) \cdot \phi(y)$. We want to show that there exists $c \in A_{xy}$ such that $L < c$.
+        
+            Let $\epsilon = \phi(x) \cdot \phi(y) - L$. Since $L < \phi(x) \cdot \phi(y)$, we have $\epsilon > 0$.
+             We know we can find a $\phi(x) > \phi(p) > \phi(x) - \frac{\epsilon}{2\phi(y)}$ and $\phi(y) > \phi(q) > \phi(y) - \frac{\epsilon}{2\phi(x)}$ for some $p, q \in \mathbb{Q}$.
+            Note that \[
+                \phi(p) \cdot \phi(q) = \phi (x) \phi(y) - \epsilon + \frac{\epsilon^{2}}{2\phi(x)\phi(y)} > \phi(x) \cdot \phi(y) - \epsilon = L
+            \]
+            
+            Also, $p < x$ and $q < y$ by similar reasoning as before. So, $p \cdot q < xy$. Hence, $c = \phi(p) \cdot \phi(q) \in A_{xy}$.
+            Thus, $L$ cannot be an upper bound. So, $\phi(x) \cdot \phi(y) = \sup A_{xy}$.
+            
+            \item Assume $x < y$. We want to show that $\phi(x) < \phi(y)$. 
+            By the density of $\mathbb{R}$, we can find a $p \in \mathbb{Q}$ such that $x < p < y$.
+            Let $q \in \mathbb{Q}$ such that $q < x$. Then, perservation of order in $\mathbb{Q}$,    
+            $\phi(q) < \phi(p)$. Hence, $\phi(p)$ is an upper bound for $A_{x}$. So, $\phi(x) = \sup A_{x} \leq \phi(p) < \phi(y)$. 
+            By the same argument as before, we know that $\phi(p) < \phi(y)$ because we can find a $p'$ such that $p < p' < y$. Hence, $\phi(x) \leq \phi(p) < \phi(y)$, so $\phi(x) < \phi(y)$.
+
+        \end{itemize}
+
+        \item We want to show that $\phi: \mathbb{R} \rightarrow F$ is one to one and onto. 
+        
+        The fact that $\phi$ is one to one follows from the fact that $\phi(x) < \phi(y)$ if $x < y$. 
+        This is because if $x < y$, then $\phi(x) < \phi(y)$ and if $x > y$, then $\phi(x) > \phi(y)$. By trichotomy of the order relation, then if $x = y$, then $\phi(x) = \phi(y)$.
+
+        To show that $\phi$ is onto, we want to show that for all $y \in F$, there exists $x \in \mathbb{R}$ such that $\phi(x) = y$.  
+
+        Let $y \in F$. Define $A := \{ r \in \mathbb{R} \mid \phi(x) < y \}$. 
+        Since this is a subset of $\mathbb{R}$, using the least upper bound property, we can find a $x \in \mathbb{R}$ such that $\sup A = x$.
+        Let $\phi(A) = \{ \phi(a) \mid a \in A\}$. Realize that $y = \sup (\phi(A))$. With some careful noticing, we can see that $\phi(x) = \sup (\phi(A))$ using preservation of the order relation. 
+        Hence, $\phi$ is onto. 
+    \end{enumerate}
+
+    \end{enumerate}
+
+
+\end{document}

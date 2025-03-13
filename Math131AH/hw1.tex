@@ -1,0 +1,143 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}			% Use this package to include images
+\usepackage{amsmath}			% A library of many standard math expressions
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}% Sets 1in margins. 
+\usepackage{fancyhdr}			% Creates headers and footers
+\usepackage{enumerate}          %These two package give custom labels to a list
+\usepackage[shortlabels]{enumitem}
+
+
+% Creates the header and footer. You can adjust the look and feel of these here.
+\pagestyle{fancy}
+\fancyhead[l]{Anthony Zhao}
+\fancyhead[c]{Math 131AH Homework \#1}
+\fancyhead[r]{\today}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt} %Creates a horizontal line underneath the header
+\setlength{\headheight}{15pt} %Sets enough space for the header
+
+
+
+\begin{document} %The writing for your homework should all come after this. 
+%FromSection2.4: 4*,6,15*,19,23,36*. FromSection1.1: 3,5,7,12*,17,34*.
+
+%Enumerate starts a list of problems so you can put each homework problem after each item. 
+\begin{enumerate}[start=1,label={\bfseries Exercise \arabic*:},leftmargin=1in] %You can change "Problem" to be whatever label you like. 
+    \item \begin{enumerate}
+        \item You want to live a happy life and tie it to people and things, not a goal
+        \item The plane leaves and you are not on it, and you do not regret it.
+        \item There is someone for which there isn't someone that makes them unhappy.
+    \end{enumerate}
+    
+    \item \textbf{Base Case:}
+    \[
+    2(1) - 1 = 1 = 1^2
+    \]
+    \textbf{Induction Hypothesis:} Assume for some $n \in \mathbb{N}$ that $1 + \cdots + (2n - 1) = n^2$. 
+    
+    \textbf{Induction Step:} We want to show that it holds for $n + 1$. 
+
+    Expanding the left hand side (line 1) and using the induction hypothesis (line 3),
+    \begin{align*}
+        1 + \cdots + (2(n+1) - 1) &= 1 + \cdots + (2n - 1) + (2(n+1) - 1)\\
+        &= 1 + \cdots + (2n - 1) + (2n + 2 - 1) \\
+        &= n^2 + 2n + 1\\
+        &= (n + 1)^2
+    \end{align*}
+
+    Hence, the statement holds for $n+1$. 
+
+    \item \textbf{Base Case:} 
+    \begin{align*}
+        1^3 + 2^3 + 3^3 &= 1 + 8 + 27\\
+        &= 36
+    \end{align*}
+    36 is divisble by 9
+
+    \textbf{Induction Hypothesis:} Assume for some $n \in \mathbb{N}$ that $(n)^3 + (n+1)^3 + (n+2)^3$ is divisible by 9. 
+    So, $(n)^3 + (n+1)^3 + (n+2)^3 = 9k$ for some $k \in \mathbb{N}$.
+
+    \textbf{Induction Step:} We want to show that it holds for $n+1$. 
+
+    Expanding the term and using the induction hypothesis, we get the following
+    \begin{align*}
+        (n+1)^3 + (n+2)^3 + (n+3)^3 &= (n+1)^3 + (n+2)^3 + n^3 + 3n^2 + 9n + 27 \\
+        &= n^3 + (n+1)^3 + (n+2)^3 + 9(n + 27) \\ 
+        &= 9k + 9(n + 27) \\
+        &= 9(k + n + 27)
+    \end{align*}
+    Since $k, n, 27 \in \mathbb{N}$, the sum is also divisible by 9.
+    \item \textbf{Base Case:}
+    \begin{align*}
+        1^5 - 1 = 0
+    \end{align*}
+    0 is divisible by 30. 
+
+    \textbf{Induction Hypothesis:} Assume for some $n \in \mathbb{N}$ that $n^5 - n$ is divisible by 5.
+    That is $n^5 - n = 30k$ for some $k \in \mathbb{N}$.
+
+    \textbf{Induction Step:} We want to show that it holds for $n + 1$.
+    
+    Expanding the $(n+1)^5$ term and applying the induction hypothesis, we get the following.
+    \begin{align*}
+        (n+1)^5 - (n+1) &= n^5 + 5n^4 + 10n^3 + 10n^2 + 5n + 1 - n - 1 \\
+        &= n^5 - n + 5n^4 + 10n^3 + 10n^2 + 5n \\
+        &= 30k + 5(n^4 + 2n^3 + 2n^2 + n)\\
+        &= 30k + 5n(n+1)(n^2+n+1) \\
+        &= 30k + 5n(n+1)(n^2 + 4n + 4 - 3n - 3)\\
+        &= 30k + 5n(n+1)(n+2)^2 - 15n(n+1)
+    \end{align*} 
+    
+    We know that $n(n+1)$ must be even because either $n$ or $n+1$ is even, so the third term is divisible by 30.
+    We also know that $n(n+1)(n+2)$ must be divisible by 6 because at least one of the terms in the product must be divisible by 3 and one of the terms in the product must be divisible by 2. 
+    Therefore, it holds for $n+1$
+
+    \item We want to show that 
+    \[
+        \frac{1^2}{1\cdot 3} + \cdots + \frac{n^2}{(2n-1)(2n+1)} = \frac{\sum^n_{i=1}i}{2n + 1}
+    \]
+    for all natural numbers $n \geq 1$.
+
+    \textbf{Base Case:} 
+    \[
+    \frac{1}{1\cdot3} = \frac{1}{3} = \frac{2(1)-1}{2(1)+1}
+    \]
+
+    \textbf{Induction Hypothesis:}  Assume for some $n \in \mathbb{N}$ that 
+    \[
+        \frac{1^2}{1\cdot 3} + \cdots + \frac{n^2}{(2n-1)(2n+1)} = \frac{\sum^n_{i=1}i}{2n + 1}
+    \]
+    \textbf{Induction Step:} We want to show that it holds for $n+1$. 
+
+    Note that $\sum_{i=1}^n i = \frac{n(n+1)}{2}$.
+    Expanding the sum and using the induction hypothesis,
+    \begin{align*}
+        \frac{1^2}{1\cdot 3} + \cdots + \frac{n^2}{(2n-1)(2n+1)} + \frac{(n+1)^2}{(2n+1)(2n+3)} &= \frac{\sum^n_{i=1}i}{2n + 1} +  \frac{(n+1)^2}{(2n+1)(2n+3)}\\
+        &= \frac{n(n+1)}{2(2n+1)} + \frac{(n+1)^2}{(2n+1)(2n+3)}\\
+        &= \frac{n(n+1)(2n+1) + 2(n+1)^2}{2(2n+1)(2n+3)}\\
+        &= \frac{(n+1)(n+3)}{2(2n+3)}\\
+        &= \frac{\sum^{n+1}_{i=1}i}{2(n+1)+1}
+    \end{align*}
+
+    Therefore, it holds for $n+1$. 
+    \item Let $a, b \in \mathbb{Z}$ where $GCD(a, b) = 1$. Assume that $(\frac{a}{b})^2 = 6$. 
+    So, $a^2 = 6b^2$. So, $a^2$ is divisible by 6, meaning that $a$ also must be divisible by 6, so
+    $a^2 = 6k$ for some $k \in \mathbb{Z}$. Thus, 
+    \begin{align*}
+        a^2 &= (6k)^2 \\
+        &= 36k^2\\
+        36k^2 &= 6b^2 \\
+        6k^2 &= b^2 \\
+    \end{align*}
+    This implies that $b^2$ and $b$ are divisible by 6. So, $a$ and $b$ are both divisible by 6, 
+    which contradicts our claim that $GCD(a, b) = 1$. Therefore there cannot exist a rational number whose square is 6.
+    \item $b$
+    \item $b$
+    \item $e$
+    \item $g$
+    \item $b$
+\end{enumerate}
+
+\end{document}

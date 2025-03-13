@@ -1,0 +1,140 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}			% Use this package to include images
+\usepackage{amsmath}			% A library of many standard math expressions
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}% Sets 1in margins. 
+\usepackage{fancyhdr}			% Creates headers and footers
+\usepackage{enumerate}          %These two package give custom labels to a list
+\usepackage[shortlabels]{enumitem}
+
+
+% Creates the header and footer. You can adjust the look and feel of these here.
+\pagestyle{fancy}
+\fancyhead[l]{Anthony Zhao}
+\fancyhead[c]{Math 131AH Homework \#1}
+\fancyhead[r]{\today}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt} %Creates a horizontal line underneath the header
+\setlength{\headheight}{15pt} %Sets enough space for the header
+
+
+
+\begin{document} %The writing for your homework should all come after this. 
+%FromSection2.4: 4*,6,15*,19,23,36*. FromSection1.1: 3,5,7,12*,17,34*.
+
+%Enumerate starts a list of problems so you can put each homework problem after each item. 
+\begin{enumerate}[start=1,label={\bfseries Exercise \arabic*:},leftmargin=1in] %You can change "Problem" to be whatever label you like. 
+    \item Let $n \geq 1$. We want to show that if $A_{1}, \dots, A_{n}$ are countable then $A_{1} \times \dots \times A_{n}$ is countable. We will prove this by induction on $n$.
+    
+    \textbf{Base Case:} $n = 1$. By the given, $A_{1}$ is countable. 
+
+    $n = 2$. We want to show that $A_{1} \times A_{2}$ is countable. 
+
+    Since $A_{1}$ and $A_{2}$ are countable there exists bijective functions $f_{1}: A_{1} \rightarrow \mathbb{N}$ and $f_{2}: A_{2} \rightarrow \mathbb{N}$. 
+    We know that $g(n, m) = \frac{(n+m-1)(n+m-2)}{2}+n$ is a bijective function from homework 7. 
+
+    We also know that the composition of bijective functions are bijective. 
+
+    Hence, we can a bijective $h_{1}: A_{1} \times A_{2} \rightarrow \mathbb{N}$ where $h_{2}(a_{1}, a_{2}) = g(f_{1}(a_{1}), f_{2}(a_{2}))$.
+
+    \textbf{Induction Step:} Assume that $A_{1} \times \dots \times A_{n}$ is countable. We want to show that $A_{1} \times \dots \times A_{n} \times A_{n+1}$ is countable.
+
+    Since $A_{1} \times \dots \times A_{n}$ is countable, there exists a bijective function $h_{n}: A_{1} \times \dots \times A_{n} \rightarrow \mathbb{N}$.
+
+    Since $A_{n+1}$ is countable, there exists a bijective function $f_{n+1}: A_{n+1} \rightarrow \mathbb{N}$.
+
+    So, we can define $h_{n+1} = g(h_{n}, f_{n+1})$ where $g$ is the bijective function from the base case.
+    Since the composition of bijective functions are bijective, $h_{n+1}$ is bijective.
+
+    Thus, there exists a bijective function $h_{n+1}: A_{1} \times \dots \times A_{n} \times A_{n+1} \rightarrow \mathbb{N}$. So, $A_{1} \times \dots \times A_{n} \times A_{n+1}$ is countable.
+
+    \item Assume $A\sim B$. We want to show $\mathcal{P}(A) \sim \mathcal{P}(B)$.
+    
+    We know there exists $f: A \rightarrow B$ that is bijective. 
+    Define $g: \mathcal{P}(A) \rightarrow \mathcal{P}(B)$ where $g(S) = \{f(s) \mid s \in S\}$ for all $S \in \mathcal{P}(A)$.
+
+    Take $X, Y \in \mathcal{P}(A)$. We want to show that $g(X) = g(Y) \implies X = Y$.
+
+    Assume otherwise, $g(X) = g(Y)$ and $X \neq Y$. Then there exists $x \in X$ such that $x \notin Y$ or $y \in Y$ such that $y \notin X$. 
+    Without loss of generality, assume that there exists $x \in X$ such that $x \notin Y$. 
+    Then $f(x) \in g(X)$ by definition of $g$. We also know that $f(x) \in g(Y)$ since $g(X) = g(Y)$. 
+    So, $f(x) = x'$ for some $x' \in Y$. However, $f$ is bijective so $f^{-1}(x') = x$. Thus, $x \in Y$, which is a contradiction. 
+
+    Thus, $X = Y$. So, $g$ is injective.
+
+    Now we want to show that $g$ is surjective. Take $Y \in \mathcal{P}(B)$.  
+    We know that for all $y \in Y$, there exists a $x \in X$ such that $f(x) = y$ since $f$ is bijective.
+
+    So, $X = \{x \in A \mid f(x) \in Y\}$. 
+    Then $g(X) = \{f(x) \mid x \in X\} = \{y \in B \mid y \in Y\} = Y$.
+
+    Thus, $g$ is surjective and bijective. 
+    \item Let $S \subseteq \mathbb{N}$. We define $f: \mathcal{P}(\mathbb{N}) \rightarrow 2^{\mathbb{N}}$ by $f(S) = f_{S}(x) = \{ 1 \text{ if } x \in S, 0 \text{ if } x \notin S\}$.
+    We want to show that $f$ is bijective. 
+
+    Take $S, T \in \mathcal{P}(\mathbb{N})$. We want to show that $f(S) = f(T) \implies S = T$.
+
+    Assume otherwise, $f(S) = f(T)$ and $S \neq T$. Then there exists $x \in S$ such that $x \notin T$ or $y \in T$ such that $y \notin S$.
+    Without loss of generality, assume that there exists $x \in S$ such that $x \notin T$. 
+    Then $f_{S}(x) = 1$ and $f_{T}(x) = 0$. This contradicts the fact that $f(S) = f(T)$. Hence, $S = T$, and $f$ is injective.
+
+    Now we want to show that $f$ is surjective. Take $g \in 2^{\mathbb{N}}$. We want to show that there exists $S \in \mathcal{P}(\mathbb{N})$ such that $f(S) = g$.
+    Let $S = \{x \in \mathbb{N} \mid g(x) = 1\}$. Then, $f(S) = g$ by definition of $f$. 
+
+    Hence, $f$ is bijective. 
+
+    \item Notice that $2^{\mathbb{N}} \subseteq \mathbb{N}^{\mathbb{N}}$. So the identity function from $2^{\mathbb{N}} \rightarrow \mathbb{N}^{\mathbb{N}}$ is injective. 
+    Now we want to show that there exists a function $f:\mathbb{N}^\mathbb{N} \rightarrow 2^{\mathbb{N}}$ that is injective. 
+
+    Let $\{ a_{n} \} \in \mathbb{N}^\mathbb{N}$. We can define $f$ as the encoding of $\{a_{n}\}$ by the following:
+    For each $a_{i} \in \{ a_{n} \}$, we map it to a string of $0$'s of length $a_{i}$, followed by a $1$. 
+    We then concatenate all of these strings together. 
+
+    This is an injective function. 
+
+    Hence, since we can define two injective functions from $2^{\mathbb{N}} \rightarrow \mathbb{N}^{\mathbb{N}}$ and $\mathbb{N}^\mathbb{N} \rightarrow 2^{\mathbb{N}}$, we have that $2^{\mathbb{N}} \sim \mathbb{N}^{\mathbb{N}}$.
+
+    \item We want to show that the set of all real roots of all polynomials in $\mathcal{P}$ is countable. 
+    Let $n \geq 1$. We know that a polynomial of degree $n$ has at most $n$ real roots.
+
+    Thus, for all $p \in \mathcal{P}$, there is a finite number of real roots of $p$. 
+    
+    Note that we can map $\mathcal{P}$ to $\mathbb{N}^n$ using the coefficients of the polynomial. 
+    This means that $\mathcal{P}$ is countable. Hence $\mathcal{A}$ can be defined as the countable union of finite sets. 
+    By some theorem proven in class, this is a countable set. Hence, $\mathcal{A}$ is countable. 
+
+
+    \item Fix a $n \geq 1$. We want to show that the set of all subsets of $\mathbb{N}$ with $n$ distinct elements is countable. 
+    Let's call this set $\mathcal{M}$. 
+
+    We can use exercise 1 to show that $S$ is countable, since we know that $\mathbb{N} \times \cdots \times \mathbb{N}$ is countable.
+
+    We can define an injective function $f: \mathcal{M} \rightarrow \mathbb{N} \times \cdots \times \mathbb{N}$. 
+    Let $S \in \mathcal{M}$. Define $f$ by sorting the elements of $S$ in ascending order. Then, make a tuple of the elements of $S$. This is obviously an element of $\mathbb{N} \times \cdots \times \mathbb{N}$.
+
+    Let $S, T \in \mathcal{M}$ such that $f(S) = f(T)$. Then, $S$ and $T$ are the same $n-$tuple, so  
+    they contain all the same elements. Hence $S = T$. 
+
+    We want to define a surjective function $g: \mathbb{N} \times \cdots \times \mathbb{N} \rightarrow \mathcal{M}$.
+    \item We want to show that $\mathbb{R} \sim (0, 1)$. 
+    Note that strictly increasing function are injective. $\tanh(x)$ is strictly increasing on $\mathbb{R}$. 
+    If we define $f(x) = \frac{1}{2}\tanh(x) + \frac{1}{2}$ for all $x \in \mathbb{R}$, then $f$ is injective and is restricted to $(0, 1)$. 
+
+    Since $(0, 1) \subseteq \mathbb{R}$, the identity map suffices as an injective function.  
+
+
+    \item Denote the set of irrational numbers as $\mathcal{I} = \mathbb{R} \setminus \mathbb{Q}$. 
+    We want to show that $\mathbb{R} \sim \mathcal{I}$. 
+
+    The identity map $f: \mathcal{I} \rightarrow \mathbb{R}$ is injective because $\mathcal{I} \subseteq \mathbb{R}$. 
+
+    We can define an injective function $g: \mathbb{R} \rightarrow \mathcal{I}$ by the following:
+    $g(x) = x + \pi$ for all $x \in \mathbb{R}$.
+
+    Let $x, y \in \mathbb{R}$ such that $g(x) = g(y)$. Then $x + \pi = y + \pi$, so $x = y$. Hence $g$ is injective. 
+    Thus, $\mathbb{R} \sim \mathcal{I}$.
+
+\end{enumerate}
+
+\end{document}

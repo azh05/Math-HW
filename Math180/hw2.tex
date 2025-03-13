@@ -1,0 +1,132 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}			% Use this package to include images
+\usepackage{amsmath}			% A library of many standard math expressions
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}% Sets 1in margins. 
+\usepackage{fancyhdr}			% Creates headers and footers
+\usepackage{enumerate}          %These two package give custom labels to a list
+\usepackage[shortlabels]{enumitem}
+
+
+% Creates the header and footer. You can adjust the look and feel of these here.
+\pagestyle{fancy}
+\fancyhead[l]{Anthony Zhao}
+\fancyhead[c]{Math 180 Homework \#2}
+\fancyhead[r]{\today}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt} %Creates a horizontal line underneath the header
+\setlength{\headheight}{15pt} %Sets enough space for the header
+
+
+
+\begin{document} %The writing for your homework should all come after this. 
+%FromSection2.4: 4*,6,15*,19,23,36*. FromSection1.1: 3,5,7,12*,17,34*.
+
+%Enumerate starts a list of problems so you can put each homework problem after each item. 
+\begin{enumerate}[start=1,label={\bfseries Problem \arabic*:},leftmargin=1in] %You can change "Problem" to be whatever label you like. 
+    \item The bridges can be represented graphically like this:
+    
+    \includegraphics[scale=0.5]{/Users/anthonyzhao/Desktop/UCLA-Math/Math180/Images/Screenshot 2025-01-30 at 11.30.29 PM.png}
+    
+    \begin{enumerate}
+        \item Notice that the graph has a score of $(3,3, 3, 5)$. Since, the degrees of a vertex is odd, that means there cannot exist an Eulerian Tour.
+        \item Adding an additional edge between the top vertex to the bottom vertex, and one from the left vertex to the right vertex results in a graph where the degrees of all edges are even. Thus, an Eulerian Tour exists.
+    \end{enumerate}
+
+    \item  \begin{enumerate}
+        \item All the graphs have Hamiltonian cycles:
+
+        \includegraphics[scale=0.5]{/Users/anthonyzhao/Desktop/UCLA-Math/Math180/Images/Screenshot 2025-01-30 at 11.39.45 PM.png}
+        \item A graph with two components of 3-cycles and a graph with one component with a 6 cycle both have a score of $(2, 2, 2, 2, 2, 2)$ but only one of them has a Hamiltonian cycle. 
+    \end{enumerate}
+
+    \item $(\Rightarrow)$ Assume $G = (V, E)$ is a directed Eulerian graph. We want to show that the symmetrization is connected and $deg_{G}^{+}(v) = deg_{G}^{-1}(v)$ for all $v \in V$. 
+    
+    Since there exists a directed Eulerian Tour in $G$, every vertex can be reached from every other vertex. Obviously, symmetrizing $G$ wouldn't change this fact. So, the symmetrization of $G$ is connected. 
+    Assume that for some $v \in V$ that $deg_{G}^{+}(v) \neq deg_{G}^{-1}(v)$. 
+
+    Assume that $deg_{G}^{+}(v) > deg_{G}^{-1}(v)$. Then, at some point we will enter $v$, and there will not be any out unused out vertices remaining, but there will still be vertices into $v$ remaining. This contradicts that fact that $G$ has a Eulerian Tour, since all vertices have not been used. 
+
+    The case for $deg_{G}^{+}(v) < deg_{G}^{-1}(v)$ follows similarly. There will be a point where we leave $v$ with other out edges remaining, but not be able to return to $v$. Hence, by contradiction, $deg_{G}^{+}(v) = deg_{G}^{-1}(v)$. 
+
+    $(\Leftarrow)$ Assume that the symmetrization of $G$ is connected and $deg_{G}^{+}(v) = deg_{G}^{-1}(v)$ for all $v \in V$. We want to show that $G$ is a directed Eulerian graph.
+
+    Let $T$ be a tour on $G$ of maximal length $(n)$. So, 
+    \[
+        T = (v_{0}, e_{1}, \dots, e_{n}, v_{n})
+    \]
+    We will show that this tour is a Eulerian Tour. 
+
+    First, we want to show that $v_{0} = v_{n}$. 
+
+    Assume that $v_{0} \neq v_{n}$. This means we've exited $v_{0}$ more times than we have entered $v_{m}$. By assumption, $deg_{G}^{+}(v) = deg_{G}^{-1}(v)$, so 
+    there exists an edge into $v_{0}$, such that we can extend the walk. Hence, $T$ is not maximal. By contradiction, $v_{0}= v_{n}$ in a maximal tour.
+
+    Next, we want to show that all vertices are in $T$. 
+    By assumption that $G$ is weakly connected, every vertex must have at least one edge going out of it or going in it. 
+    Assume that $v \not \in T$.
+    Since $deg_{G}^{+}(v) = deg_{G}^{-1}(v)$, this guarantees that there must be at least a pair of edges going in and out of $v$. 
+    Hence, we can extend the tour by adding $v$ to the tour. Thus, by contradiction, all vertices are in $T$ if it is maximal.
+
+    Lastly, assume that there exists an edge $e \in E$ that is not in $T$. 
+    Then we can add $e$ to $T$ to extend the tour, and use the previous two claims to show that $T$ is not the maximal tour. 
+
+    Hence, $T$ is an Eulerian Tour since $T$ visits every edge, vertex, and starts and ends in the same place.
+
+    \item I am pretty sure that the forward direction is not correct. If we assume that $G$ is a strongly directed graph and has a cycle of even length, it doesn't necessarily have to be 2-colorable. 
+    For example, consider the following graph:
+
+    \includegraphics[scale=0.5]{/Users/anthonyzhao/Desktop/UCLA-Math/Math180/Images/Screenshot 2025-01-31 at 4.42.58 PM.png}
+    
+    This graph has a cycle of length 4 and is strongly connected, but it is not 2-colorable.
+
+    If we change the first claim to be that every cycle in $G$ is an even cycle. The equivalence holds true. 
+
+    $(\Rightarrow)$ Assume that every cycle in $G$ is an even cycle. We want to show that $G$ is two colorable. 
+    
+    Take a vertex $v$. We know that for every $v'$, there exists a path from $v$ to $v'$ (and $v'$ to $v$, which creates a cycle). Take the shortest path from $v$ to $v'$. 
+    If the length of this path is even, then color it the same color as $v$. If it is odd, then color it the other color. 
+
+    Why does this work? 
+
+    Let $P$ be the path from $v$ to $v'$, and let $P'$ be the path from $v$ to $v'$. Assume that $P$ is an odd length. We can define a cycle from $v$ to $v'$ using $P$ and then $v'$ to $v$ using $P'$. 
+    If $P$ is of odd length, then $P'$ must also be of odd length, since cycles are of even length, which stays consistent with the coloring. It is similar if $P$ is of even length as well. The coloring stays consistent in either case. 
+
+    
+
+
+    $(\Leftarrow)$ Assume that $G$ is two colorable. We want to show that every cycle is an even cycle. 
+    Assume otherwise. There exists a odd cycle $C = (v, v_{1}, \dots, v_{n}, v_{1})$. Notice that every vertex an odd distance away from $v_{1}$ is the same color as $v_{1}$. 
+    By assumption $v_{n}$ is an odd distance from $v_{1}$. So it is the same color as $v_{1}$. However, since $v_{n}$ and $v_{1}$ are connected, they must be different colors by assumption. 
+    Hence, by contradiction, there cannot exist a cycle $C$ of odd cycle. So, every cycle in $G$ is an even cycle. 
+
+
+    \item Let $G$ be a tournament. We want to show that $G$ has a directed path passing through all vertices (Hamiltonian Path). 
+    
+    We will prove this by induction on the number of vertices in $G$.
+
+   \textbf{Base Case:} $|V| = 1$. Then, the graph is trivially a Hamiltonian Path. $V = 2$ is also a Hamiltonian path since there is one directed edge between two vertices, so there must be a path that visits both vertices. 
+
+    \textbf{Inductive Hypothesis:} Let $G = (V, E)$ be a tournament where $|V| = n$ for some $n \in \mathbb{N}$. Assume for all such $G$, there exists a directed path $P$ that contains all the vertices of $G$. 
+
+    \textbf{Induction Step:} Let $G$ be a tournament with $|V| = n+1$. We want to show there exists a directed path $P$ that contains all the vertices of $G$. 
+
+    \textbf{Lemma:} $G$ is a tournament $\Longleftrightarrow$ $G-v$ is a tournament for any $v$ in $V$. 
+
+    Remove any $v$ from $G$ to ge ta tournament $G'$. Note that $G'$ has $n$ vertices, so we can use the induction hypothesis and find some directed path $P'$ that contains all the vertices of $G'$. 
+    We want to show that we can add $v$ somewhere into the path and still form a directed path with all the vertices. 
+    \[
+        P' = (v_{1}, v_{2}, \dots, v_{n})
+    \]
+
+    \textbf{Case 1:} For all $v' \in V'$, there exists an edge $(v, v') \in E$. In other words, all the edges are coming out of $v$ to $v'$. 
+    Then, we can append $v$ to the beginning of the path $P'$ to form $P = (v, v_{1}, \dots, v_{n})$, and this is a path containing all vertices in $G$. 
+
+    \textbf{Case 2:} There exists a $v_{k} \in V'$ such that $(v_{k}, v) \in E$. Select the last such $v_{k}$ in $P$. Then we know that $(v, v_{k+1}) \in E$ (if $k \neq n$). 
+    So, we can append $v$ after $v_{k}$ to form $P = (v_{1}, \dots, v_{k}, v, v_{k+1}, \dots, v_{n})$. This is a path containing all vertices in $G$.
+    If $k = n$, then we can append $v$ to the end of the path. In both cases, $P$ is a directed path that contains all the vertices in $G$. 
+    
+\end{enumerate}
+
+\end{document}

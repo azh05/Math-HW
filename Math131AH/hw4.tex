@@ -1,0 +1,233 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}			% Use this package to include images
+\usepackage{amsmath}			% A library of many standard math expressions
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}% Sets 1in margins. 
+\usepackage{fancyhdr}			% Creates headers and footers
+\usepackage{enumerate}          %These two package give custom labels to a list
+\usepackage[shortlabels]{enumitem}
+
+
+% Creates the header and footer. You can adjust the look and feel of these here.
+\pagestyle{fancy}
+\fancyhead[l]{Anthony Zhao}
+\fancyhead[c]{Math 131AH Homework \#4}
+\fancyhead[r]{\today}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt} %Creates a horizontal line underneath the header
+\setlength{\headheight}{15pt} %Sets enough space for the header
+
+
+
+\begin{document} %The writing for your homework should all come after this. 
+%FromSection2.4: 4*,6,15*,19,23,36*. FromSection1.1: 3,5,7,12*,17,34*.
+
+%Enumerate starts a list of problems so you can put each homework problem after each item. 
+\begin{enumerate}[start=1,label={\bfseries Problem \arabic*:},leftmargin=1in] %You can change "Problem" to be whatever label you like. 
+    \item $(\Rightarrow)$ Assume that $\{ a_{n} \}_{n \in \mathbb{N}}$ converges to $a$. We want to show that $\{ |a_{n}| \}_{n \in \mathbb{N}}$ converges to $|a|$.
+    
+    Let $\epsilon > 0$. Since $\{ a_{n} \}_{n \in \mathbb{N}}$ converges to $a$, there exists an $n_{\epsilon} \in \mathbb{N}$ such that for all $n \geq n_{\epsilon}$, $|a_{n} - a| < \epsilon$.
+    We know that $||a_{n}| - |a|| \leq |a_{n} - a|$. Thus, $||a_{n}| - |a|| < \epsilon$ for all $n \geq n_{\epsilon}$. Hence, $\{ |a_{n}| \}_{n \in \mathbb{N}}$ converges to $|a|$.
+    
+    $(\nLeftarrow)$ Let $a_{n} = -1$ for all $n \in \mathbb{N}$. Evidentally, $\{|a_{n}|\}$ converges to $1$ but $\{a_{n}\}$ converges to $-1$. Hence, the converse is not true.
+
+    \item Let $\epsilon > 0$. Note that $a_{n} = 1 + \sum^{n-1}_{i=1} \frac{1}{3^{i}}$. 
+    
+    Using some facts about sums and geometric series, we know that 
+    \begin{align*}
+        \sum^{\infty}_{i=1} ar^{n-1} &= \frac{a}{1-r}\\
+        \sum^{n}_{i=1} ar^{n-1} &= \frac{a(1-r^{n})}{1-r}
+    \end{align*}
+
+    Subtracting the two and plugging in $a = 1$ and $r = \frac{1}{3}$, we get
+    \begin{align*}
+        \sum^{\infty}_{i=n} \frac{1}{3^{i}} = \frac{1}{1-\frac{1}{3}} - \frac{1-\frac{1}{3^{n}}}{1-\frac{1}{3}} = \frac{1-(1-\frac{1}{3^{n}})}{\frac{2}{3}} = \frac{3}{2}\frac{1}{3^{n}}
+    \end{align*}
+    Note the limit of the series is $ \sum^{\infty}_{i=0} \frac{1}{3^{i}} = \frac{3}{2}$, and the difference from that value from $a_{n}$ is $\frac{3}{2}\frac{1}{3^{n}}$. Thus, we want to choose a $n_{\epsilon}$ such that $\frac{3}{2}\frac{1}{3^{n_{\epsilon}}} < \epsilon$.
+
+    Solving for $n_{\epsilon}$, we get $n_{\epsilon} > \log_{3}(\frac{3}{2\epsilon})$. Hence, for all $n \geq n_{\epsilon}$, $|a_{n} - \frac{3}{2}| < \epsilon$. Thus, $\{a_{n}\}$ converges to $\frac{3}{2}$.
+
+    \item Since $\{ a_{n} \}$ is bounded, we know there exists some $M$ such that $a_{n} \leq M$ for all $n \in \mathbb{N}$. 
+    
+    Hence, $|a_{n}b_{n}| = |a_{n}||b_{n}| \leq |M||b_{n}|$. 
+
+    Let $\epsilon > 0$. Since $\lim_{n \to \infty} b_{n} = 0$, we can find a $n_{\epsilon} \in \mathbb{N}$ such that $|b_{n} - 0| = |b_{n}| < \frac{\epsilon}{|M|}$. Note that $\frac{\epsilon}{|M|} > 0$. 
+
+    Hence, for all $n \geq n_{\epsilon}$, $|a_{n}b_{n} - 0| = |a_{n}b_{n}| \leq |M||b_{n}| < |M|\frac{\epsilon}{|M|} = \epsilon$. Thus, $\lim_{n \to \infty} a_{n}b_{n} = 0$.
+
+    \item Since we know $\lim_{n \to \infty} a_{n} = \lim_{n \to \infty} c_{n}$ then $\lim_{n \to \infty}(a_{n} - c_{n}) = 0$.
+    
+    Let $\epsilon > 0$. Since $\lim_{n \to \infty} b_{n} = 0$, we can find a $n_{\epsilon} \in \mathbb{N}$ such that $\left|  a_{n} - c_{n} \right| < \epsilon$. 
+    Note that since we know $c_{n} \geq a_{n}$ for all $n \in \mathbb{N}$, $\left| a_{n} - c_{n} \right| = c_{n} - a_{n}$. 
+
+    Using the fact that $a_{n} \leq b_{n}$, we know that $c_{n} - a_{n} \geq c_{n} - b_{n}$ for all $n \in \mathbb{N}$. 
+
+    Hence, $|c_{n} - b_{n}| \leq |c_{n} - a_{n}|$ for all $n \in \mathbb{N}$. Thus, for all $n \geq n_{\epsilon}$, $|c_{n} - b_{n}| \geq |c_{n} - a_{n}| < \epsilon$. 
+    So, $\lim_{n \to \infty} (c_{n} - b_{n}) = 0$. So, $\lim_{n \to \infty} b_{n} = \lim_{n \to \infty} c_{n} = \lim_{n \to \infty} a_{n}$.
+
+    \item \begin{align*}
+        \lim_{n \to \infty} \sqrt{4n^{2} + n} - 2n &= \lim_{n \to \infty} (\sqrt{4n^{2} + n} - 2n)\cdot \frac{\sqrt{4n^{2} + n} + 2n}{\sqrt{4n^{2} + n} + 2n}\\
+        &= \lim_{n \to \infty} \frac{4n^{2} + n - 4n^{2}}{\sqrt{4n^{2} + n} + 2n}\\
+        &= \lim_{n \to \infty} \frac{n}{\sqrt{4n^{2} + n} + 2n}\\
+        &= \lim_{n \to \infty} \frac{n}{n(\sqrt{4 + \frac{1}{n}} + 2)}\\
+        &= \frac{1}{\sqrt{4 + \lim_{n \to \infty}\frac{1}{n}} + 2}\\
+        &= \frac{1}{4}
+    \end{align*}
+    \item \begin{enumerate}
+        \item Assume that for all but finitely many $a_{n}$ we have $a_{n} \geq a$. Assume that $\lim_{n \to \infty} a_{n} = L < a$. 
+        Let $\epsilon = a - L > 0$. We know that there exists an $n_{\epsilon} \in \mathbb{N}$ such that $|a_{n} - a| < \epsilon$ for all $n \geq n_{\epsilon}$.
+        So, \begin{align*}
+            -\epsilon < a_{n} - L &< \epsilon\\ 
+            L - a < a_{n} - L &< a - L \\ 
+            a_{n} &< a
+        \end{align*} 
+        Hence, for all $n \geq n_{\epsilon}$, $a_{n} < a$. So, there an infinite number of $a_{n} < a$. This is a contradiction. So, $\lim_{n \to \infty} a_{n} \geq a$.
+
+        \item This can be shown similarly by contradiction. 
+        \item We know that finitely many $a_{n}$ belong to the intervval $[ a, b]$. So, we know that for finitely many $a_{n} \geq a$ and $a_{n} \geq b$. Using the previous two parts,
+        we know that $\lim_{n \to \infty} a_{n} \geq a$ and $\lim_{n \to \infty} a_{n} \leq b$. Hence, $a \leq \lim_{n \to \infty} a_{n} \leq b$, so $\lim_{n \to \infty} a_{n} \in [a, b]$.
+    \end{enumerate}
+    \item Let $\lim_{n \to \infty} a_{n} = L > a$. Let $\epsilon = L - a > 0$. 
+    We know there exists a $n_{\epsilon}$ such that $|a_{n} - L| < \epsilon$ for all $n \geq n_{\epsilon}$.
+
+    So, $\left|  a_{n} - L \right| < L - a$. 
+    The case where $a_{n} > L$ is trivial, so we consider the case where $a_{n} < L$. 
+    $\left| a_{n} - L \right| = L - a_{n}$. 
+    So, $-a_{n} < -a$ which means $a_{n} > a$ for all $n \geq n_{\epsilon}$. Hence, we have found such $n_{\epsilon}$.
+
+    \item Since $\{a_{n}\}$ is bounded, we know there exists some $M$ such that $a_{n} \leq M$ for all $n \in \mathbb{N}$.
+    
+    Let $\epsilon > 0$. Choose a $n_{\epsilon}$ such that $|a_{n} - a_{m}| < \frac{\epsilon}{M^{2}}$ for all $n, m \geq n_{\epsilon}$.
+    So, $|a_{n}^2 - a_{m}^2| = |a_{n} - a_{m}||a_{n} + a_{m}| < \frac{\epsilon}{M^{2}}(2M) = \epsilon$ for all $n, m \geq n_{\epsilon}$. Hence, $\{a_{n}^{2}\}$ is Cauchy.
+
+    \item 
+    \begin{enumerate}
+        \item Inductively, we can show that since $a_{1} = 3$ and $a_{n+1} = \frac{1}{2}a_{n} + \frac{2}{a_{n}}$, that if $a_{n}$ is a positive rational number, then $a_{n+1}$ must be one as well. 
+        This is beacuse $\mathbb{Q}$ is closed under addition and multiplciation, and both terms in the reccurence must be positive.
+
+        Hence, since $a_{n} > 0$ for all $n \in \mathbb{N}$, we can conclude that 0 is a lower bound for the sequence.
+        \item By the above, we know that each $a_{n} \in \mathbb{Q}$. 
+        \item We want to show that $\{a_{n}\}$ is monotonically decreasing. 
+        
+        So, we know that 
+        \[
+            a_{n+1} = \frac{a_{n}}{2} + \frac{1}{a_{n}} = \frac{a_{n}^{2} + 2}{2a_{n}}
+        \]
+        We want to show that $a_{n} \geq a_{n+1}$. 
+
+        \begin{align*}
+            a_{n} &\geq a_{n+1}\\ 
+            a_{n} &\geq \frac{a_{n}^{2} + 2}{2a_{n}}\\
+            a_{n}^{2} &\geq 2
+        \end{align*}
+        
+        Using induction on $n$, we can show that $a_{n}^{2} \geq 2$ for all $n \in \mathbb{N}$. 
+
+        Hence, we have shown that $a_{n} \geq a_{n+1}$ for all $n \in \mathbb{N}$, so $\{ a_{n} \}$ is monotonically decreasing.
+
+        \item Since $\{ a_{n} \}$ is monotonically decreasing and bounded below, we know that it must converge. 
+       
+        Since $\lim_{n \to \infty} a_{n} = \lim_{n \to \infty} a_{n+1} = a$, we can plug this into the reccurence to find that $a = \frac{a^2+2}{2a}$. Solving for $a$, 
+        we get $2a^{2} - a^{2} -2 = 0$. So, $a^{2} - 2 = 0$. Hence, $a = \pm \sqrt{2}$. However, we know that $a>0$, so $a = \sqrt{2}$.
+    \end{enumerate}
+    \item \begin{enumerate}
+        \item By induction, we can show that for all $n \in \mathbb{N}$, $a_{n} < 2$. 
+        
+        \textbf{Base Case:} $a_{1} = 2 < 2$.
+
+        \textbf{Induction Hypothesis:} Assume that $a_{n} < 2$ for some $n \in \mathbb{N}$.
+
+        \textbf{Induction Step:} We want to show that $a_{n+1} < 2$. 
+        We know that $2 + a_{n} < 4$ by the induction hypothesis. So, $\sqrt{2 + a_{n}} < 2$. 
+        Hence, $a_{n+1} = \sqrt{2 + a_{n}} < 2$.
+
+        Thus, there exists an upper bound for $a_{n}$ and it is 2.
+        \item We want to show that $\{a_{n}\}$ is monotonically increasing. 
+        \begin{align*}
+            a_{n+1} = \sqrt{2 + a_{n}} &\geq a_{n}\\
+            2 + a_{n} &\geq a_{n}^{2}\\
+            a_{n}^{2} - a_{n} - 2 &\leq 0\\
+            (a_{n} - 2)(a_{n} + 1) &\leq 0\\
+            -1 \leq a_{n} \leq 2
+        \end{align*}
+        Evidentally, $a_{n}$ is greater than 0, since we can prove with induction that $a_{n} + 2 > 0$ for all $n \in \mathbb{N}$,
+        and by part 1, we know that $2$ is an upper bound for $a_{n}$. Hence, $a_{n}$ is monotonically increasing because the inequality holds for all $n$. 
+
+        \item Since $\{a_{n}\}$ is monotonically increasing and bounded above, we know that it must converge.
+        Let $a = \lim_{n \to \infty} a_{n} = \lim_{n \to \infty} a_{n+1}$. Then, $a = \sqrt{2 + a}$. Solving for $a$, we get $a^{2} - a - 2 = 0$. Hence, $a = 2, -1$. Since $a > 0$, we know that $a = 2$.
+    \end{enumerate}
+    \item 
+    \begin{enumerate}
+        \item We want to show that $\{a_{n}\}$ is monotonically increasing.
+    
+        \textbf{Lemma:} $a_{n} \leq b_{n}$ for all $n \in \mathbb{N}$.
+        
+        \textbf{Base Case:} $0 < a_{1} < b_{1}$ is given. 
+    
+        \textbf{Induction Hypothesis:} Assume that $a_{n} \leq b_{n}$ for some $n \in \mathbb{N}$.
+    
+        \textbf{Induction Step:} We want to show that $a_{n+1} \leq b_{n+1}$.
+    
+        We know that $a_{n+1} = \sqrt{a_{n}b_{n}}$ and $b_{n+1} = \frac{a_{n} + b_{n}}{2}$.
+        We can use induction to show that $a_{n} > 0$ and $b_{n} > 0$.  
+        By the AM-GM inequality, we know that $\sqrt{a_{n}b_{n}} \leq \frac{a_{n} + b_{n}}{2}$. Hence, $a_{n+1} \leq b_{n+1}$.
+        
+        Using the lemma, we know that $a_{n} \leq b_{n}$. So, 
+        \begin{align*}
+            a_{n} &\leq b_{n}\\
+            a_{n}a_{n} &\leq a_{n}b_{n}\\ 
+            \sqrt{a_{n}a_{n}} &\leq \sqrt{a_{n}b_{n}}\\ 
+            a_{n} &\leq a_{n+1}
+        \end{align*}
+    
+        Hence, $\{a_{n}\}$ is monotonically increasing. 
+    
+        We want to show that $\{ b_{n} \}$ is monotonically decreasing. 
+    
+        We know that $a_{n} \leq b_{n}$ by the lemma. So, 
+        \begin{align*}
+            a_{n} &\leq b_{n} \\ 
+            a_{n} + b_{n} &\leq 2b_{n} \\ 
+            \frac{a_{n} + b_{n}}{2} &\leq b_{n} \\ 
+            b_{n+1} &\leq b_{n}
+        \end{align*}
+        Therefore, $\{b_{n} \}$ is monotonically decreasing. 
+    
+        \item We want to show that $a_{n} \leq b_{1}$, or in other words $b_{1}$ is an upper bound for $\{a_{n}\}$.
+        
+        \textbf{Base Case:} $a_{1} < b_{1}$ by the assumption. 
+    
+        \textbf{Induction Hypothesis:} Assume that $a_{n} \leq b_{1}$ for some $n \in \mathbb{N}$.
+    
+        \textbf{Induction Step:} Note the following ineqaulity
+        \begin{align*}
+            a_{n}b_{n} \leq a_{1}b_{n} \leq a_{1}b_{1} \leq b_{1}^2
+        \end{align*}
+        Hence, $a_{n+1}=\sqrt{a_{n}b_{n}}\leq b_{1}$
+    
+        We want to show that $b_{n} \geq a_{1}$, or in other words $a_{1}$ is a lower bound for $\{b_{n}\}$.
+    
+        \textbf{Base Case:} $b_{1} > a_{1}$ by the assumption.
+    
+        \textbf{Induction Hypothesis:} Assume that $b_{n} \geq a_{1}$ for some $n \in \mathbb{N}$.
+    
+        \textbf{Induction Step:} Note the following inequality 
+        We know that $a_{1} \leq a_{n}$ since $\{ a_{n} \}$ is monotone increasing. 
+        So, $a_{1} + b_{n} \leq a_{n} + b_{n}$. So, $\frac{a_{1}+b_{n}}{2} \leq b_{n+1}$. 
+        By induction hypothesis, $a_{1} \leq b_{n}$. Hence, $\frac{a_{1} + a_{1}}{2} = a_{1} \leq b_{n}+1$. 
+        
+        Thus $a_{1}$ is a lower bound for $\{b_{n}\}$.
+    
+        \item By the previous parts, we know that $\{a_{n}\}$ is bounded above and monotone increasing, so it must converge. 
+        Similarly, $\{b_{n}\}$ is bounded below and monotone decreasing, so it must converge. 
+
+        Let $a = \lim_{n \to \infty} a_{n}$ and $b = \lim_{n \to \infty} b_{n}$. 
+        Then, $a = \sqrt{ab}$ and $b = \frac{a+b}{2}$. Solving for $a$ and $b$, we get $a = b$.
+    \end{enumerate}
+
+    
+
+\end{enumerate}
+
+\end{document}
