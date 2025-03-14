@@ -1,0 +1,129 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}			% Use this package to include images
+\usepackage{amsmath}			% A library of many standard math expressions
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}% Sets 1in margins. 
+\usepackage{fancyhdr}			% Creates headers and footers
+\usepackage{enumerate}          %These two package give custom labels to a list
+\usepackage[shortlabels]{enumitem}
+\usepackage{hyperref}
+
+
+
+% Creates the header and footer. You can adjust the look and feel of these here.
+\pagestyle{fancy}
+\fancyhead[l]{Anthony Zhao}
+\fancyhead[c]{Math 170A Homework \#5}
+\fancyhead[r]{\today}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt} %Creates a horizontal line underneath the header
+\setlength{\headheight}{15pt} %Sets enough space for the header
+
+
+
+\begin{document} %The writing for your homework should all come after this. 
+%FromSection2.4: 4*,6,15*,19,23,36*. FromSection1.1: 3,5,7,12*,17,34*.
+
+%Enumerate starts a list of problems so you can put each homework problem after each item. 
+\begin{enumerate}[start=1,label={\bfseries Problem \arabic*:},leftmargin=1in] %You can change "Problem" to be whatever label you like. 
+    \item Note that $aX$ has mean $a\mu_X$ and variance $a^2 \sigma_X^2$. Similarly, $bY$ has mean $b\mu_Y$ and variance $b^2 \sigma_Y^2$. 
+    Since, $X$ and $Y$ are independent, $aX$ and $bY$ are independent. So, we can use the theorem that the density function of $Z = aX + bY$ 
+    is $f_X \ast f_Y$. 
+
+    So, \[ f_X \ast f_Y = \frac{1}{2\pi a\sigma_Xb\sigma_Y} \int^{\infty}_{-\infty} \exp(J)dx\]
+    
+    where 
+    \[
+        J = -\frac{1}{2}((\frac{(x- a\mu_X)^2}{2a^2\sigma_X^2}) + \frac{(t - x - b\mu_Y)^2}{2b^2\sigma_Y^2})
+    \]
+
+    Doing some rearranging and expanding of terms, 
+    \[ 
+        J = -\frac{1}{2}(x^2 (\frac{1}{a^2\sigma_X^2}+ \frac{1}{b^2\sigma_Y^2}) - 2x(\frac{a\mu_X}{a^2\sigma_X^2} + \frac{(t - b\mu_Y)}{b^2\sigma_Y^2}) + C)
+    \]
+
+    where 
+    \[ 
+        C = \frac{a\mu_X}{a^2\sigma_X^2} + \frac{(t - b\mu_Y)^2}{b^2\sigma_Y^2}
+    \]
+
+    Notice that $C$ doesn't depend on $x$ so we can take it out of the integral. 
+
+    Let $A = \frac{1}{a^2\sigma_X^2} + \frac{1}{b^2\sigma_Y^2}$ and $B = \frac{a\mu_X}{a^2\sigma_X^2} + \frac{(t - b\mu_Y)}{b^2\sigma_Y^2}$. 
+    Using these substitutions and completing the square, 
+    \[ 
+        J = - \frac{1}{2}C + \frac{B^2}{2A} - \frac{1}{2}A(x - \frac{B}{A})^2
+    \]
+
+    Next, using u substitution where $u = (\sqrt{\frac{A}{2}}(x-\frac{B}{A}))$ we get that $du = \sqrt{\frac{A}{2}}dx$. 
+    So, 
+    \begin{align*}
+        \int_{\infty}^{-\infty} \exp(J)dx &= \int_{\infty}^{-\infty} \exp(-u^2 - \frac{C}{2} + \frac{B^2}{2A})du\\ 
+         &= \exp(-\frac{C}{2} + \frac{B^2}{2A})\int_{\infty}^{-\infty} \exp(-u^2)\sqrt{\frac{2}{A}}du\\ 
+        &= \sqrt{\frac{2\pi}{A}}\exp(-\frac{C}{2} + \frac{B^2}{2A})
+    \end{align*}
+
+    Simplifying some things, we get that 
+    \[ 
+    f_X \ast f_Y = \frac{1}{\sqrt{2\pi} \sqrt{a^2\sigma_X^2 + b^2\sigma_Y^2}} \exp(-\frac{C}{2} + \frac{B^2}{2A})
+    \]
+    Notice that the $a^2\sigma_X^2 + b^2\sigma_Y^2$ in the denominator is exactly the variance we desire. 
+    
+    Expanding $-\frac{C}{2} + \frac{B^2}{2A}$, we get $\frac{(t - (a\mu_X + b\mu_Y))^2}{2(a^2\sigma_X^2 + b^2\sigma_Y^2)}$. Thus, $\mu_Z = a\mu_X + b\mu_Y$ as desired
+
+    \item \textbf{Case 1:} Let $s < t$. Note that $W_t = (W_t - W_s) + W_s$. 
+    
+    So, $\sigma(W_s, W_t) = \sigma(W_s, (W_t - W_s) + W_s)$. By linearity of Covariance, 
+    \[ 
+        \sigma(W_s, (W_t - W_s) + W_s) = \sigma(W_s, (W_t - W_s)) + \sigma(W_s, W_s) 
+    \]
+       
+    Note that $W_s = W_s - W_0$. So, by independent increments 
+    \[
+        \sigma(W_s, W_t - W_s) = \sigma(W_s - W_0, W_t - W_s) =  0  
+    \]
+    Also note that $\sigma(W_s, W_s) = \sigma^2(W_s) = s = \min(s, t)$.
+
+    $t < s$ can be solved in a similar fashion.
+
+    \textbf{Case 2:} Let $s = t$. Then $\sigma(W_s, W_t) = \sigma^2(W_s) = s = t = \min(s, t)$.
+
+    \item  $Z_1 = \frac{W_s}{\sqrt{s}}$ and $Z_2 = \frac{W_t - W_s}{\sqrt{t-s}}$ are independent and distributed $N(0, 1)$. 
+    This is because the means of $W_s$ and $W_t - W_s$ are $0$ and the variance are $s$ and $t- s$ respectively. 
+
+    If there exists a $A$ such that $X = \begin{bmatrix}
+        W_s \\ W_t
+    \end{bmatrix} = A\begin{bmatrix}
+        Z_1 \\ Z_2
+    \end{bmatrix} + \vec{\mu}$, then $X$ is bivariate normal. 
+
+    Substituting the $\frac{W_s}{\sqrt{s}}$ and $\frac{W_t - W_s}{\sqrt{t-s}}$,  we get that 
+    \[
+        A = \begin{bmatrix}
+            \sqrt{s} & 0 \\ 
+            \sqrt{s} & \sqrt{t - s}
+        \end{bmatrix}
+    \]
+    Hence, the joint distribution of $W_s$ and $W_t$ is bivariate normal 
+
+    \item Note that for $X, Y$ independent, $\mathbb{E}(X \mid Y) = \mathbb{E}(X)$.
+    We know that by independent increments 
+    \[
+        \mathbb{E}(W_t \mid W_s) = \mathbb{E}(W_t \mid W_{s_0}, W_{s_1}, \ldots, W_{s_n} \text{ for } s_i < s)
+    \]
+
+    Moreover, \[ \mathbb{E}(W_t \mid W_s) = \mathbb{E}((W_t - W_s) +  W_s \mid W_s) \]
+
+    By Linearity of expectation, 
+    \[
+        = \mathbb{E}(W_t - W_s \mid W_s) + \mathbb{E}(W_s \mid W_s)
+    \]
+
+    Since $W_t - W_s$ and $W_s$ are independent, \[\mathbb{E}(W_t - W_s \mid W_s) = \mathbb{E}(W_t - W_s) = 0\]
+    $\mathbb{E}(W_s \mid W_s) = W_s$. Thus, $\mathbb{E}(W_t \mid W_s) = W_s$. 
+
+    I think by this stack exchange post, this is sufficient: \href{https://math.stackexchange.com/questions/1348253/elementary-markov-property-of-the-brownian-motion}{Stack Exchange}
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,418 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}			% Use this package to include images
+\usepackage{amsmath}			% A library of many standard math expressions
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}% Sets 1in margins. 
+\usepackage{fancyhdr}			% Creates headers and footers
+\usepackage{enumerate}          %These two package give custom labels to a list
+\usepackage[shortlabels]{enumitem}
+
+
+% Creates the header and footer. You can adjust the look and feel of these here.
+\pagestyle{fancy}
+\fancyhead[l]{Anthony Zhao}
+\fancyhead[c]{Math 131AH Homework \#2}
+\fancyhead[r]{\today}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt} %Creates a horizontal line underneath the header
+\setlength{\headheight}{15pt} %Sets enough space for the header
+
+
+
+\begin{document} %The writing for your homework should all come after this. 
+%FromSection2.4: 4*,6,15*,19,23,36*. FromSection1.1: 3,5,7,12*,17,34*.
+
+%Enumerate starts a list of problems so you can put each homework problem after each item. 
+\begin{enumerate}[start=1,label={\bfseries Problem \arabic*:},leftmargin=1in] %You can change "Problem" to be whatever label you like. 
+    \item \textbf{Lemma:} For all $a \in F$, $a^{2} \geq 0$. 
+    
+    \textbf{Proof:} Let $a \in F$.
+
+    \textbf{Case 1:} Assume $a = 0$. Then $a^{2} = 0 \cdot 0 = 0$ by Proposition 4.5.1. 
+
+    \textbf{Case 2:} Assume $a \neq 0$. Then $a^{2} > 0$ by Proposition 5.1.3. 
+    
+    Hence, $a^{2} \geq 0$. 
+
+    \begin{enumerate}
+        \item Let $a, b\in F$. By the field axioms, $-b \in F$ and $a + (-b) = a - b \in F$. So, 
+        using the lemma, $(a - b)^{2} \geq 0$. Using the field axioms to expand the left hand side and add the additive inverse of $-2ab$,
+        \begin{align*}
+            (a-b)^{2} = a^{2} -2ab +b^{2} &\geq 0\\ 
+            a^2 -2ab + b^{2} + 2ab &\geq 0 + 2ab \\ 
+            a^{2} + b^{2} &\geq 2ab
+        \end{align*}
+        \item Let $a, b, c \in F$. By the Field Axioms, $a-b, b-c, c-a \in F$. 
+        Hence, $(a-b)^{2} \geq 0$, $(b-c)^{2} \geq 0$, and $(c-a)^{2} \geq 0$.
+
+        From ordered field axiom 1, we get the following inequality, 
+        \[
+            0 \leq (a-b)^{2} + 0 + 0 \leq (a-b)^{2} + (b-a)^{2} + 0 \leq (a-b)^{2} + (b-a)^{2} + (c-a)^{2}
+        \]
+
+        Expanding $(a-b)^{2} + (b-a)^{2} + (c-a)^{2}$ with the Field axioms, we get 
+        \[
+            (a-b)^{2} + (b-a)^{2} + (c-a)^{2} = 2(a^{2}+b^{2}+c^{2} - ab - bc - ca) \geq 0
+        \]
+
+        \textbf{Lemma:} In the ordered field $F$, $2 \neq 0$. 
+
+        \textbf{Proof:} We know that $0 < 1$ from Proposition 5.1.3. From Ordered Field Axiom 1, $0 < 1 + 0 < 1 + 1 = 2$. 
+        By Trichtomy of Order Relations, $0 \neq 2$. 
+
+        Since, $2 \neq 0$, $2^{-1} \in F$. Note that $0 \cdot 2^{-1} = 0$ by a proposition. 
+
+        So, using the field axioms 
+        \begin{align*}
+            2^{-1} \cdot 2(a^{2}+b^{2}+c^{2} - ab - bc - ca) &\geq 2^{-1} \cdot 0\\ 
+            a^{2} + b^{2} + c^{2} - ab - bc - ca &\geq  0\\ 
+            a^{2} + b^{2} + c^{2} &\geq ab + bc + ca
+        \end{align*}
+    \end{enumerate}
+
+    \item Note that both tables must be symmetric because fields are commutative 
+    both for addition and multplication. 
+
+    \includegraphics[scale=0.5]{~/Desktop/UCLA-Math/Math131AH/images/Screenshot 2025-01-17 at 11.43.40 PM.png}
+    
+    \textbf{Multiplication:} From the propositions, $0 \cdot a = 0$ for all $a \in F$. 
+    From the axioms, $1 \cdot a = a$ for all $a \in F$. This explains the first two rows and columns. 
+    Additionally, the table is evidentally closed under multiplication. Moreover, all of the multiplicative inverses of the non-zero elements 
+    are also non-zero. 
+
+    Next, we can verify that it is associative. It is trivial to check for products with 0 or 1. 
+    \begin{align*}
+        a(a \cdot a) = a(b) = 1 \\ 
+        (a \cdot a)a = b(a) = 1 \\ 
+        a(a \cdot b) = a(1) = a \\ 
+        (a \cdot a)b = bb = a \\ 
+        a(b \cdot a) = a(1) = a \\ 
+        (a \cdot b)a = (1)a = a \\ 
+        b(a \cdot b) = b(1) = b \\ 
+        (b \cdot a)b = (1)b = b \\ 
+        b(b \cdot b) = b(a) = 1 \\ 
+        (b \cdot b)b = a(b) = 1
+    \end{align*}
+    
+    \includegraphics[scale=0.5]{/Users/anthonyzhao/Desktop/UCLA-Math/Math131AH/images/Screenshot 2025-01-17 at 11.43.21 PM.png}
+    
+    \textbf{Addition:} The first row and column follow the axiom of the additive identity. Evidentally, addition is closed as well 
+    and every element has an additive inverse. Associativity of addition can be verified the same way as multiplication. 
+
+    There are too many cases to check for distributivity, but trust that I have verified them, and that it works. 
+
+    \item \begin{enumerate}
+        \item Let $q \geq 2$ be a prime number. Let $n, m, n', m' \in \mathbb{Z}$ where $n ~ n'$ and $m ~ m'$. 
+         We want to show that $C(n + m) = C(n' + m')$. 
+
+         So, we know that $C(n) = C(n')$ and $C(m) = C(m')$. This means $n - n' = kq$ for some $k \in \mathbb{Z}$ 
+         and $m - m' = lq$ for some $l \in \mathbb{Z}$. 
+
+         Adding these two equations together, we get 
+         \[
+            n - n' + m - m' = kq + lq
+         \]
+
+         Moving around terms, we find 
+         \[
+            (m + n) - (m' + n) = (k + l)q
+         \]
+        Note that $k + l \in \mathbb{Z}$. Hence, $C(m + n) = C(m' + n')$ and addtion is well defined. 
+
+        To show that multiplication is well defined, we want to show that $C(n \cdot m) = C(n' \cdot m')$, or $n\cdot m - n' \cdot m' = cq$ for some $c \in \mathbb{Z}$
+    
+        We can obtain the left hand side of the previous equation from 
+        \[
+            n\cdot m - n' \cdot m' = n \cdot (m - m') + m' \cdot (n - n')
+        \]
+        Using the same variables as the addition check, 
+        \[
+            n \cdot (m - m') + m' \cdot (n - n') = n \cdot lq + m' \cdot kq
+        \]
+        Distributing, 
+        \[
+            n \cdot lq + m' \cdot kq = q(nl + m'k)
+        \]
+        Since $\mathbb{Z}$ is closed under addition and multiplication, $nl + m'k \in \mathbb{Z}$. 
+        Hence, $n\cdot m - n' \cdot m' = q(nl + m'k)$ and $C(mn) = C(m'n')$. 
+        \item \begin{itemize}
+            \item Additive Closure. Let $C(n), C(m) \in \mathbb{Z}/q\mathbb{Z}$. We know that $n + m \in \mathbb{Z}$ because $\mathbb{Z}$ is closed under addition. 
+            Therefore, $C(n + m)$ is an equivalence class by definition, so $C(m+n) \in \mathbb{Z}/q\mathbb{Z}$. 
+             
+            \item Additive Commutativity. Let $C(n), C(m) \in \mathbb{Z}/q\mathbb{Z}$.
+            We know that $C(n) + C(m) = C(n + m)$. Using the additive commutativity of $\mathbb{Z}$, we find 
+            $C(n + m) = C(m + n)$. We know that $C(m + n) = C(m) + C(n)$. Hence, $C(m)+C(n) = C(n)+C(m)$
+            \item Additive Associativity. Let $C(n), C(m), C(p) \in \mathbb{Z}/q\mathbb{Z}$. 
+            We know that $(C(n) + C(m)) + C(p) = C(n + m) + C(p) = C((n + m) + p)$. Using the associativity of $\mathbb{Z}$, 
+            $C((n+m) + p) = C(n + (m + p)) = C(n) + C(m + p) = C(n) + (C(m) + C(p))$. Ergo, $(C(n) + C(m)) + C(p) = C(n) + (C(m)+C(p))$ 
+            \item Additive Identity. Let $C(n) \in \mathbb{Z}/q\mathbb{Z}$. Using the additive identity of $\mathbb{Z}$, 
+            we know that $n + 0 = n = 0 + n$. So, $C(n) = C(n + 0) = C(n) + C(0)$ and $C(n) = C(0 + n) = C(0) + C(n)$. Hence, there exists an additive identity and it is $C(0)$. 
+            \item Additive Inverse. Let $C(n) \in \mathbb{Z}/q\mathbb{Z}$. We know that $-n$ exists in $\mathbb{Z}$. So, 
+            $C(0) = C(n + (-n)) = C(n) + C(-n)$. Hence, the additive inverse of $C(n)$ exists and it is $C(-n)$ since their sum is the additive identity $C(0)$. 
+
+            \item Multiplicative Closure. Let $C(n), C(m) \in \mathbb{Z}/q\mathbb{Z}$. We know $nm \in \mathbb{Z}$ since it is closed under multiplication. 
+            Hence, $C(nm)$ is an equivalence class and $C(n) \cdot C(m) \in \mathbb{Z}/q\mathbb{Z}$.
+            \item Multiplicative Commutativity. Let $C(n), C(m) \in \mathbb{Z}/q\mathbb{Z}$.
+            We know that $C(n) \cdot C(m) = C(n \cdot m)$. Using the additive commutativity of $\mathbb{Z}$, we find 
+            $C(n \cdot m) = C(m \cdot n)$. We know that $C(m\cdot n) = C(m) \cdot C(n)$. Hence, $C(m)\cdot C(n) = C(n)\cdot C(m)$
+            \item Multiplicative Associativity. Let $C(n), C(m), C(p) \in \mathbb{Z}/q\mathbb{Z}$. 
+            We know that $(C(n) \cdot C(m)) \cdot C(p) = C(n \cdot m) \cdot C(p) = C((n \cdot m) \cdot p)$. Using the associativity of $\mathbb{Z}$, 
+            $C((n\cdot m) \cdot p) = C(n \cdot (m \cdot p)) = C(n) \cdot C(m \cdot p) = C(n) \cdot (C(m) \cdot C(p))$. Therefore, $(C(n) \cdot C(m)) \cdot C(p) = C(n) \cdot (C(m)\cdot C(p))$ 
+            \item Multiplicative Identity. Let $C(n) \in \mathbb{Z}/q\mathbb{Z}$ and assume $C(n) \neq C(0)$. Using the multiplicative identity of $\mathbb{Z}$, 
+            we know that $n \cdot 1 = n = 1 \cdot n$. So, $C(n) = C(n \cdot 1) = C(n) \cdot C(1)$ and $C(n) = C(1 \cdot n) = C(1) \cdot C(n)$. Hence, there exists an additive identity and it is $C(1)$. 
+            \item Multiplicative Inverse. Let $C(n) \in \mathbb{Z}/q\mathbb{Z}$. We want to show that there exists a $C(m) \in \mathbb{Z}/q\mathbb{Z}$ such that $C(m) \cdot C(n) = C(1)$. 
+            
+            Assume that $C(mn) = C(1)$. So, $mn - 1 = kq$ for some $k \in \mathbb{Z}$. This is equivalent to finding an multiplicative inverse for the field $\mathbb{Z}$ mod $q$. 
+            By pigeonhole principle, we can show that every element $1, ..., q-1$ has a multiplicative inverse because $q$ is prime. 
+            Note that by pigeonhole principle $n$ must share an equivalence class with some $x \in \{ 1, ... q-1 \}$ because $C(n) \neq C(0)$. Let $m$ be the multiplicative inverse of $x$. 
+            $m$ is also the multiplicative inverse of $n$. Hence, there exists a $C(m)$ such that $C(m) \cdot C(n) = C(mn) = C(1)$. 
+            \item Distributivity. Let $C(n), C(m), C(p) \in \mathbb{Z}/q\mathbb{Z}$. 
+            \begin{align*}
+                (C(n) + C(m)) \cdot C(p) &= C(n + m) \cdot C(p) \\ 
+                &= C((n+m) \cdot p) \\ 
+                &= C(n \cdot p + m \cdot p) \\ 
+                &= C(n \cdot p) + C(m \cdot p)
+            \end{align*}
+
+            Hence, $\mathbb{Z}/q\mathbb{Z}$ is distributive
+        \end{itemize}
+        Since, $\mathbb{Z}/q\mathbb{Z}$ fulfills all of the axioms, it is a field. 
+        \item Assume there exists an order relation $<$ on $\mathbb{Z}/q\mathbb{Z}$. 
+        
+        We know that $C(q) = C(0)$. By proposition 5.1, we know that $C(1)$ the multiplicative identity must be greater than $C(0)$ in any order relation; so $C(0) < C(1)$.  
+        Since $C(1) > C(0)$, if we add $C(1)$ $q-1$ times to both sides of the inequality we get, 
+        $C(1) < C(q-1) < C(q)$. However, $C(q) = C(0)$, so $C(1) < C(q-1) < C(0)$. This leads to a contradiction since $C(1) > C(0)$ in all ordered fields. Hence, there cannot be an ordered relation on $\mathbb{Z}/q\mathbb{Z}$
+    \end{enumerate}
+    \item \begin{enumerate}
+        \item \begin{itemize}
+            \item Let $(a_{1}, a_{2}), (b_{1}, b_{2}) \in F$. We know that $\mathbb{R}$ is closed under addition, so $a_{1} + b_{1}, a_{2} + b_{2} \in \mathbb{Z}$ 
+            So, $(a_{1}, a_{2}), (b_{1}, b_{2}) = (a_{1} + b_{1}, a_{2} + b_{2}) \in F$. 
+            \item Let $(a_{1}, a_{2}), (b_{1}, b_{2}) \in F$. Using additive commutativity of $\mathbb{R}$
+            \begin{align*}
+                (a_{1}, a_{2}) + (b_{1}, b_{2}) &= (a_{1} + b_{1}, a_{2} + b_{2}) \\ 
+                &= (b_{1} + a_{1}, b_{2} +  a_{2}) \\ 
+                &= (b_{1}, b_{2}) + (a_{1}, a_{2})
+            \end{align*}
+ 
+            \item Let $(a_{1}, a_{2}), (b_{1}, b_{2}), (c_{1},c_{2}) \in F$. Using additive associativity of $\mathbb{R}$ 
+            \begin{align*}
+                ((a_{1}, a_{2}) +  (b_{1}, b_{2})) + (c_{1}, c_{2}) &= (a_{1} + b_{1}, a_{2} + b_{2}) + (c_{1}, c_{2})\\ 
+                &= ((a_{1} + b_{1}) + c_{1}, (a_{2} + b_{2}) + c_{2}) \\ 
+                &= (a_{1} + (b_{1} + c_{1}), a_{2} + (b_{2}) + c_{2}) \\ 
+                &= (a_1, a_{2}) + (b_{1} + c_{1}, b_{2}+ c_{2}) \\ 
+                &= (a_{1}, a_{2}) +((b_{1}, b_{2}) + (c_{1}, c_{2}))
+            \end{align*}
+            \item Let $(a_{1}, a_{2}) \in F$. We know that for all $c \in \mathbb{R}$, $c+ 0 = c$ and $0 + c = c$.  
+            So, $(0, 0) + (a_{1}, a_{2})  = (0 + a_{1}, 0 + a_{2}) = (a_{1}, a_{2})$ and 
+            $(a_{1}, a_{2}) + (0, 0) = (a_{1} + 0, a_{2} + 0) = (a_{1}, a_{2})$. Hence, there exists an additive identity in $F$ and it is $(0, 0)$
+            \item Let $(a_{1}, a_{2}) \in F$. We know that for all $c \in \mathbb{R}$, there exists a $-c$ such that $c + (-c) = 0$. 
+            So, $(a_1, a_{2}) + (-a_{1}, -a_{2}) = (a_{1} + (-a_{1}), a_{2} + (-a_{2})) = (0, 0)$ and 
+            $(-a_{1}, -a_{2}) + (a_{1}, a_{2}) = (-a_{1} + a_{1}, -a_{2} + a_{2}) = (0, 0)$. Hence, there exists an additive inverse for every element in $F$. 
+
+            \item Let $(a_{1}, a_{2}), (b_{1}, b_{2}) \in F$. Since $\mathbb{R}$ is closed under multiplication, $a_{1}b_{1}, a_{2}b_{2}, a_{1}b_{2}, a_{2}b_{1} \in \mathbb{R}$. 
+            The sums of these elements are also elements of $\mathbb{R}$ because it is closed under addition as well. 
+            So, $(a_{1}, a_{2}) \cdot (b_{1}, b_{2}) = (a_{1}b_{1} - a_{2}b_{2}, a_{1}b_{2} + b_{2}a_{1}) \in F$.  
+            \item Let $(a_{1}, a_{2}), (b_{1}, b_{2}) \in F$. Since $\mathbb{R}$ is a field, it has multiplicative and additive commutativity. 
+            So, 
+            \begin{align*}
+                (a_{1}, a_{2}) \cdot (b_{1}, b_{2}) &= (a_{1}b_{1} - a_{2}b_{2}, a_{1}b_{2} + a_{2} b_{1})\\
+                &= (b_{1}a_{1} - b_{2}a_{2}, b_{1}a_{2} + b_{2}a_{1})\\ 
+                &= (b_{1}, b_{2}) \cdot (a_{1}, a_{2}) 
+            \end{align*}
+
+            \item Let $(a_{1}, a_{2}), (b_{1}, b_{2}), (c_{1}, c_{2}) \in F$. Using the field axioms of $\mathbb{R}$, 
+            \begin{align*}
+                ((a_{1}, a_{2}) \cdot (b_{1}, b_{2})) \cdot (c_{1}, c_{2}) &= (a_{1}b_{1}-a_{2}b_{2}, a_{1}b_{2}+a_{2}b_{1}) \cdot (c_{1}, c_{2})\\
+                &= ((a_{1}b_{1} - a_{2}b_{2})c_{1} - (a_{1}b_{2} + a_{2}b_{1})c_{2}, \\ 
+                & (a_{1}b_{1} - a_{2}b_{2})c_{2} + (a_{1}b_{2} + a_{2}b_{1})c_{1})\\ 
+                &= (a_{1}b_{1}c_{1} - a_{2}b_{2}c_{1} - a_{1}b_{2}c_{2} - a_{2}b_{1}c_{2}, \\
+                &a_{1}b_{1}c_{2} - a_{2}b_{2}c_{2} + a_{1}b_{2}c_{1} + a_{2}b_{1}c_{1})\\ 
+                &= ((b_{1}c_{1} -b_{2}c_{2})a_{1} - (b_{1}c_{2} + b_{2}c_{1})a_{1}, \\
+                &(b_{1}c_{1} - b_{2}c_{2})a_{2} + (b_{1}c_{2} + b_{2}c_{1})a_{1}) \\ 
+                &= (b_{1}c_{1} - b_{2}c_{2}, b_{1}c_{2} + b_{2}c_{2}) \cdot (a_{1}, a_{2}) \\ 
+                &= ((b_{1}, b_{2}) \cdot (c_{1}, c_{2})) \cdot (a_{1}, a_{2}) \\ 
+                &= (a_{1}, a_{2}) \cdot ((b_{1}, b_{2}) \cdot (c_{1}, c_{2}))
+            \end{align*}
+
+            \item Let $(a_{1}, a_{2}) \in F$. $(1, 0)$ is the multiplicative identity in $F$. 
+            
+            \textbf{Proof:} $(a_{1}, a_{2}) \cdot (1, 0) = (a_{1} \cdot 1 - a_{2} \cdot 0, a_{1} \cdot 0 + a_{2} \cdot 1) = (a_{1}, a_{2})$. Using multiplicative commutativity, 
+            we know that $(1, 0) \cdot (a_{1}, a_{2}) = (a_{1}, a_{2})$ as well. 
+
+            \item Let $(a_{1}, a_{2}) \in F$ and assume that $(a_{1}, a_{2}) \neq (0, 0)$. 
+            The multiplciative inverse of $(a_{1}, a_{2})$ is $(\frac{a_{1}}{a_{1}^{2}+a_{2}^{2}},-\frac{a_{2}}{a_{1}^{2} + a_{2}^{2}})$. 
+            This is well defined since $a_{1} \neq 0$ and $a_{2} \neq 0$, so the denominator can never be zero in $\mathbb{R}$ 
+
+            \item Let $(a_{1}, a_{2}), (b_{1}, b_{2}), (c_{1}, c_{2}) \in F$. 
+            \begin{align*}
+                ((a_{1}, a_{2}) + (b_{1}, b_{2})) \cdot (c_{1}, c_{2}) &= (a_{1} + b_{1}, a_{2} + b_{2}) \cdot (c_{1}, c_{2}) \\ 
+                &\vdots \\
+                &= (a_{1}, a_{2}) \cdot (c_{1}, c_{2}) + (b_{1}, b_{2}) \cdot (c_{1}, c_{2})
+            \end{align*}
+        \end{itemize}
+
+        Hence, $F$ is a field. 
+        \item Let $<$ be an order relation on $F$. 
+        Take $(0, 1) \in F$ and note that $(0, 1) \neq (0, 0)$. 
+
+        \[ (0, 1) \cdot (0, 1) = (0 - 1, 0 + 0) = (-1, 0)\]
+        Since $(1, 0)$ is the multiplicative identity in $F$, $(1, 0) > (0, 0)$ by proposition 5.1. Also, 
+        notice that $(1, 0) + (-1, 0) = (0, 0)$. This means that $(-1, 0) = -(1, 0)$. By proposition 5.1, $-(1, 0) < 0$ because $(1, 0) > 0$. 
+        So, $(0, 1)^{2} < 0$. However, by proposition 5.1, the square of any non-zero element in an ordered element must be greater than zero. 
+        Hence, this leads to a contradiction. Therefore, there cannot exist an order relation on $F$. 
+    \end{enumerate}
+
+    \item 
+    \begin{enumerate}
+        \item 
+    
+    
+        \begin{itemize}
+            \item Additive Closure. let $(a_{1}, a_{2}), (b_{1}, b_{2}) \in R$. Since $\mathbb{Z}$ is
+            closed under addition, we know that $a_{1} + b_{1}, a_{2} + b_{2} \in \mathbb{R}$. Hence, $(a_{1}, a_{2}) + (b_{1} + b_{2}) = (a_{1} + b_{1}, a_{2} + b_{2}) \in F$
+            
+            \item Additive Commutativity. Let $(a_{1}, a_{2}), (b_{1}, b_{2}) \in R$. $\mathbb{Z}$ has additive commutativity so, $a_{1} + b_{1} = b_{1} + a_{1}$ and $a_{2} + b_{2} = b_{2} + a_{2}$. 
+            Therefore, $(a_{1}, b_{1}) + (a_{2}, b_{2}) = (a_{1} + b_{1}, a_{2} + b_{2}) = (b_{1} + a_{1}, b_{2} + b_{1}) = (b_{1}, b_{2}) + (a_{1}, a_{2})$
+
+            \item Additive Associativity. Let $(a_{1}, a_{2}), (b_{1}, b_{2}), (c_{1}, c_{2}) \in R$. $\mathbb{R}$ has additive associativity, so $(a_{1} + b_{1}) + c_{1} = a_{1} + (b_{1} + c_{1})$ and $(a_{2} + b_{2}) + c_{2} = a_{2} + (b_{2} + c_{2})$.
+            So, 
+            \begin{align*}
+                ((a_{1}, a_{2}) + (b_{1}, b_{2})) + (c_{1}, c_{2}) &= (a_{1} + b_{1}, a_{2} + b_{2}) + (c_{1}, c_{2}) \\ 
+                &= ((a_{1} + b_{1}) + c_{1}, (a_{2} + b_{2}) + c_{2}) \\ 
+                &= (a_{1} + (b_{1} + c_{1}), a_{2} + (b_{2} + c_{2})) \\ 
+                &= (a_{1}, a_{2}) + (b_{1} + c_{1}, b_{2} + c_{2}) \\ 
+                &= (a_{1}, a_{2}) + ((b_{1}, b_{2}) + (c_{1}, c_{2}))
+            \end{align*}
+
+            \item Additive Identity. Let $(a_{1}, a_{2}) \in R$. We know that for all $x\in\mathbb{Z}$ that $x + 0 = x$. 
+            So, $(0, 0)$ is the additive identity in $F$ since $(a_{1}, a_{2}) + (0, 0) = (a_{1} + 0, a_{2} + 0) = (a_{1}, a_{2})$. 
+
+            \item Additive Inverse. Let $(a_{1}, a_{2}) \in R$. We know that for all $x \in \mathbb{Z}$ there exists a $-x$ such that $0 = x + (-x)$. 
+            So, the additive inverse of $(a_{1}, a_{2})$ is $(-a_{1}, -a_{2})$. 
+
+            \item Multiplicative Closure. Let $(a_{1}, a_{2}), (b_{1}, b_{2}) \in R$. Since $\mathbb{R}$ is a field, $a_{1}b_{1}, a_{2}b_{2}, a_{1}b_{2}, a_{2}b_{1} \in \mathbb{R}$ 
+            and any of their sums are also in $\mathbb{R}$. 
+
+            So, $a_{1}b_{1} + 2a_{2}b_{2}, a_{1}b_{2} + a_{2}b_{1} \in \mathbb{Z}$. Thus, 
+            $(a_{1}, a_{2}) \cdot (b_{1}, b_{2}) = (a_{1}b_{1} + 2a_{1}b_{2}, a_{1}b_{2} + a_{2}b_{1}) \in F$. 
+        
+            \item Multiplciative Commutativity. Let $(a_{1}, a_{2}), (b_{1}, b_{2}) \in R$. Using the commutativity of addition and multiplication in $\mathbb{Z}$, we know that 
+            $a_{1}b_{1} + 2a_{2}b_{2} = b_{1}a_{1} + 2b_{2}a_{2}$ and $a_{1}b_{2} + b_{1}a_{2} = b_{1}a_{2} + b_{2}a_{1}$. So, 
+            \begin{align*}
+                (a_{1}, a_{2}) \cdot (b_{1}, b_{2}) &= (a_{1}b_{1} + 2a_{2}b_{2}, a_{1}b_{2} + b_{1}a_{2}) \\ 
+                &= (b_{1}a_{1} + 2b_{2}a_{2}, b_{1}a_{2} + b_{2}a_{1}) \\ 
+                &= (b_{1}, b_{2}) \cdot (a_{1}, a_{2})
+            \end{align*} 
+                
+            \item Multiplicative Associativity. Let $(a_{1}, a_{2}), (b_{1}, b_{2}), (c_{1}, c_{2}) \in R$. 
+            Using the fact that $\mathbb{Z}$ is a ring, we can use the properties to expand $((a_{1}, a_{2}) \cdot (b_{1}, b_{2})) \cdot (c_{1}, c_{2})$ to show that it is equal to $ (a_{1}, a_{2}) \cdot ((b_{1}, b_{2}) \cdot (c_{1}, c_{2}))$
+
+            \item Distributivity. Let $(a_{1}, a_{2}), (b_{1}, b_{2}), (c_{1}, c_{2}) \in R$. 
+            Similarly, we can use the axioms of $\mathbb{Z}$ being a ring to show that $((a_{1}, a_{2}) + (b_{1}, b_{2})) \cdot (c_{1}, c_{2}) = (a_{1}, a_{2}) \cdot (c_{1}, c_{2}) + (b_{1}, b_{2}) \cdot (c_{1}, c_{2})$. 
+        \end{itemize}
+
+        \item 
+            \begin{itemize}
+                \item Let $(a_{1}, a_{2}), (b_{1}, b_{2}), (c_{1}, c_{2}) \in R$. Assume that $(a_{1}, a_{2}) < (b_{1}, b_{2})$. We want to show that $(a_{1}, a_{2}) + (c_{1}, c_{2}) < (b_{1}, b_{2}) + (c_{1}, c_{2})$. 
+                
+                By definition of the order relation, we know that $a_{1} + a_{2} \sqrt{2} < b_{1} + b_{2} \sqrt{2}$. 
+                Using the order relation of $\mathbb{R}$, we also know that for all $x \in \mathbb{R}$, 
+                \[ 
+                a_{1} + a_{2} \sqrt{2} + x< b_{1} + b_{2} \sqrt{2} + x
+                \]
+                Note that $c_{1} + c_{2}\sqrt{2} \in \mathbb{R}$. So, 
+                \begin{align*}
+                    a_{1} + a_{2} \sqrt{2} + c_{1} + c_{2}\sqrt{2} &< b_{1} + b_{2} \sqrt{2} + c_{1} + c_{2}\sqrt{2}\\ 
+                    (a_{1} + c_{1}) + (a_{2} + c_{2}) \sqrt{2} &< (b_{1} + c_{1}) + (b_{2} + c_{2}) \sqrt{2}\\ 
+                    (a_{1} + c_{1}, a_{2} + c_{2}) \sqrt{2} &< (b_{1} + c_{1}, b_{2} + c_{2}) \\ 
+                    (a_{1}, a_{2}) + (c_{1}, c_{2}) &< (b_{1}, b_{2}) + (c_{1}, c_{2})
+                \end{align*}
+                    
+
+                \item Let $(a_{1}, a_{2}), (b_{1}, b_{2}), (c_{1}, c_{2}) \in R$. Assume that $(a_{1}, a_{2}) < (b_{1}, b_{2})$ and that $(c_{1}, c_{2}) > (0, 0)$.
+                This means that $a_{1} + a_{2}\sqrt{2} < b_{1} + b_{2}\sqrt{2}$ and $c_{1} + c_{2}\sqrt{2} > 0$. 
+                
+                Multiplying $(c_{1}, c_{2})$, we get 
+                \begin{align*}
+                    (a_{1}, a_{2}) \cdot (c_{1}, c_{2}) &= (a_{1}c_{1} + 2a_{2}c_{2}, a_{1}c_{2} + a_{2}c_{1})\\ 
+                    (b_{1}, b_{2}) \cdot (c_{1}, c_{2}) &= (b_{1}c_{1} + 2b_{2}c_{2}, b_{1}c_{2} + b_{2}c_{1})
+                \end{align*}
+
+                We want to show that 
+                \[
+                    (a_{1}c_{1} + 2a_{2}c_{2}) + (a_{1}c_{2} + a_{2}c_{1})\sqrt{2} < (b_{1}c_{1} + 2b_{2}c_{2}) + (b_{1}c_{2} + b_{2}c_{1})\sqrt{2}
+                \]
+
+                With the use of associativity, commutativity, and distributivity in $\mathbb{R}$, we find that 
+                \begin{align*}
+                    (a_{1}c_{1} + 2a_{2}c_{2}) + (a_{1}c_{2} + a_{2}c_{1})\sqrt{2} &= (a_{1} + a_{2}\sqrt{2})(c_{1} + c_{2}\sqrt{2})\\ 
+                    (b_{1}c_{1} + 2b_{2}c_{2}) + (b_{1}c_{2} + b_{2}c_{1})\sqrt{2} &= (b_{1} + b_{2}\sqrt{2})(c_{1} + c_{2}\sqrt{2})\\ 
+                \end{align*}
+                
+                By assumption we know that $a_{1} + a_{2}\sqrt{2} < b_{1} + b_{2}\sqrt{2}$ and $c_{1} + c_{2}\sqrt{2} > 0$. So, using the order relation on $\mathbb{R}$, 
+                we know that 
+                \[
+                    (a_{1} + a_{2}\sqrt{2})(c_{1} + c_{2}\sqrt{2}) < (b_{1} + b_{2}\sqrt{2})(c_{1} + c_{2}\sqrt{2})
+                \]
+                Therefore, 
+                \[
+                    (a_{1}c_{1} + 2a_{2}c_{2}) + (a_{1}c_{2} + a_{2}c_{1})\sqrt{2} < (b_{1}c_{1} + 2b_{2}c_{2}) + (b_{1}c_{2} + b_{2}c_{1})\sqrt{2}
+                \]
+                and $<$ is an order relation on $R$.
+            \end{itemize}
+    \end{enumerate}
+
+    \item Let $S$ be a nonempty subset of $\mathbb{R}$. 
+    \begin{enumerate}
+        \item  Using the definitions of both, we know that $\inf S \leq s \leq \sup S$ for all $s \in S$. 
+
+        Since $S$ is nonempty, there exists at least one element $s \in S$. Therefore, $\inf S \leq s \leq \sup S$ holds for at least one $s \in S$. 
+
+        Therefore, by transitivity $\inf S \leq \sup S$.
+
+        \item Assume that $\inf S = \sup S$. 
+        
+        We know that $\inf S \leq s \leq \sup  S$ for all $s \in S$. Substituting the asusmption, 
+        $\sup  S \leq s \leq \sup S$. Since, $S$ is non empty, $s = \sup S = \inf S$. Hence, $S = \{ \sup  S \}$
+    \end{enumerate}
+
+    \item Let $S$ and $T$ be two non-empty bounded subsets of $\mathbb{R}$. 
+    \begin{enumerate}
+        \item Assume that $S \subseteq T$. 
+        From question 6, we know that $\inf S \leq \sup S$ and $\inf T \leq \sup  T$, so it is sufficient to show that $\inf T \leq \inf S$ and $\sup S \leq \sup T$. 
+
+        Since $S \subseteq T$, we know that for all $s \in S$, $s \in T$. 
+        So, $\inf T \leq s$ for all $s \in S$. Therefore, $\inf T$ is a lower bound for $S$. By definition, $\inf S$ is the greatest lower bound of $S$, so $\inf S \geq \inf T$. 
+
+        Similarly, we can apply the definition of $\sup S$ and the greatest upper bound to show that $\sup  S \leq \sup  T$. 
+
+        Therefore, $\inf T \leq \inf S \leq \sup  S \leq \sup T$.
+
+
+        \item Let $m = \max\{ \sup  S, \sup T \}$. Then $\sup  S \leq m$ and $\sup T \leq m$. 
+        So for all $ x\in S$, $x \leq \sup S \leq m$, and for all $x \in T$, $x \leq \sup T \leq m$. 
+        Hence, for all $y \in S \cup T$, $y \leq m$. Therefore, $m$ is an upper bound for $S \cup T$. 
+        
+        Assume that $m = \sup S$ (the same can be done with $\sup T$). Then, $\sup T \leq \sup S = m$. 
+        Assume that $l$ is a lower bound of $S \cup T$ and $l < m$. Then $d$ would be an an upper bound of $S$, and $l < \sup S$. 
+        However, this is a contradiction because $\sup  S$ is the least upper bound of $S$. Thus, there cannot exist an upper bound of $S \cup T$ less than $m$. 
+        Therefore, $\max\{\sup S, \sup T\} = \sup(S \cup T)$ 
+
+    \end{enumerate}
+
+    \item Let $A$ be a nonempty subset of $\mathbb{R}$ which is bounded below and let $-A = \{ -a \colon a \in A\}$
+    
+    \begin{itemize}
+        \item We know that $\inf A \leq a$ for all $a \in A$. So, $- \inf A \geq -a$, for all $a \in A$. 
+        In other words, $-inf A \geq b$, for all $b \in -A$. Thus, $-\inf A$ is an upper bound for $-A$. 
+
+        \item We want to show that $-inf A$ is the least upper bound.  Assume that there exists an $l$ such that $l$ is an upper bound for $-A$ and $l < -\inf A$. 
+        Then, for all $b \in -A$, $l \geq b$ and $-l \leq -b$. Note that $-(-A) = A$ and that $\inf A < l$. So, $l$ is a lower bound for $A$. 
+        However, this leads to a contradiction, because $\inf A$ is the greatest lower bound of $A$. Therefore, there cannot exist an upper bound $l$ of $-A$ that is lesser than $-\inf A$. 
+        Therefore, $- \inf A = \sup -A$ and $\inf A = - \sup  -A$. 
+    
+    \end{itemize}
+\end{enumerate}
+
+\end{document}
